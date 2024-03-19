@@ -9,14 +9,14 @@ Spotify profile.
 This is supposed to be a "native" app, but I am building it as a web app
 (mobile-only view).
 
-<!-- look into electron for native app building (use one JS code base to run native apps) -->
+<!-- will deploy with Capacitator -->
 
 ### Problem
 
 <!-- Why is your app needed? Background information around any pain points or other
 reasons. -->
 
-Spotify is an amazing platform for discovering new music. However, all of the
+Spotify is the premier platform for discovering new music. However, all of the
 cataloging functionality focuses on single songs. There is no way for an
 album-listener (TM) to intuitively organize, shuffle-play, or view their most
 beloved records. This functionality has been requested on multiple ocasions in
@@ -160,11 +160,12 @@ visually using diagrams, or write it out. -->
 - user_id (foreign key)
 - name (string, default to "my crate #<id>")
 - cover_art (static link)
+- album_id
 - empty_crate (boolean, default to true)
 - created_at (timestamp, default to now)
 - updated_at (timestamp, default to now, change with every update)
 
-#### ~ album table
+<!-- #### ~ album table
 
 - id (primary key, from spotify)
 - name (string)
@@ -209,7 +210,7 @@ visually using diagrams, or write it out. -->
 #### ~ track_artist table
 
 - track_id
-- artist_id
+- artist_id -->
 
 ### Endpoints
 
@@ -286,6 +287,8 @@ it will be to build. -->
 document. Under nice-to-haves, you can list any additional features you may
 complete if you have extra time, or after finishing. -->
 
+- questionaire that helps build default crate (or maybe check user library /
+  history)
 - preview song on audioFile
 - play an album in Spotify
 - play albums in a crate in Spotify (in order)
