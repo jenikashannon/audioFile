@@ -1,7 +1,8 @@
 import "./App.scss";
 
-// pages
+// pages & components
 import CratesPage from "./pages/CratesPage/CratesPage";
+import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 
@@ -22,6 +23,7 @@ function App() {
 					element={<UsersPage setIsLoggedIn={setIsLoggedIn} />}
 				/>
 			</Routes>
+			<Footer />
 		</BrowserRouter>
 	);
 }

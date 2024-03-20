@@ -1,0 +1,18 @@
+@use "../../styles/partials/colors";
+
+.footer {
+	background-color: colors.$black-light;
+	color: colors.$white;
+	// height: 2.5rem;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	display: flex;
+	gap: 3.5rem;
+	justify-content: center;
+
+	&__icon {
+		height: 75;
+		fill: colors.$accent-light;
+	}
+}
