@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function CratesPage({ isLoggedIn }) {
+function CratesPage() {
 	const [crateList, setCrateList] = useState(null);
 
 	const user_id = localStorage.getItem("audioFileId");
@@ -40,7 +40,9 @@ function CratesPage({ isLoggedIn }) {
 	return (
 		<main className='crates-page'>
 			<h1 className='crates-page__title'>My crates</h1>
-			<ItemList crateList={crateList} />
+			<div className='crates-page__container'>
+				<ItemList crateList={crateList} />
+			</div>
 		</main>
 	);
 }

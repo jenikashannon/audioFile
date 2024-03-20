@@ -1,5 +1,3 @@
-import "./ItemList.scss";
-
 // components
 import Item from "../Item/Item";
 
@@ -13,7 +11,7 @@ function ItemList({ crateList }) {
 	}
 
 	return (
-		<section>
+		<section className='item-list'>
 			{itemList.map((item) => {
 				return <Item key={item.id} item={item} type={type} />;
 			})}
