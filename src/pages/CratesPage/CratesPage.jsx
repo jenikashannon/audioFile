@@ -14,7 +14,6 @@ function CratesPage({ isLoggedIn }) {
 		if (!isLoggedIn) {
 			navigate("/login");
 		}
-		console.log(userId);
 	}, []);
 
 	return <div>crates are right here</div>;

@@ -16,8 +16,11 @@ function UsersPage({ setIsLoggedIn }) {
 			const response = await axios.get(
 				`${baseUrl}/users/createUser?code=${code}`
 			);
+
 			localStorage.setItem("audioFileId", response.data.id);
+
 			setIsLoggedIn(true);
+
 			navigate("/");
 		} catch (error) {
 			console.log(error);
