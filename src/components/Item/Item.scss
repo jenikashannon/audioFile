@@ -13,8 +13,13 @@
 
 	&__container {
 		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
+		justify-content: space-between;
+		width: 100%;
+
+		&--text {
+			flex-direction: column;
+			justify-content: flex-start;
+		}
 	}
 
 	&__name {
@@ -26,5 +31,9 @@
 	&__details {
 		font-size: 0.7rem;
 		color: colors.$grey;
+	}
+
+	&__icon {
+		fill: colors.$grey;
 	}
 }
