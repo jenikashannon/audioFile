@@ -3,6 +3,7 @@ import "./App.scss";
 // pages
 import CratesPage from "./pages/CratesPage/CratesPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import UsersPage from "./pages/UsersPage/UsersPage";
 
 // libraries
 import { useState } from "react";
@@ -15,9 +16,10 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				<Route path='/' element={<CratesPage isLoggedIn={isLoggedIn} />} />
+				<Route path='/login' element={<LoginPage />} />
 				<Route
-					path='/login'
-					element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
+					path='/users'
+					element={<UsersPage setIsLoggedIn={setIsLoggedIn} />}
 				/>
 			</Routes>
 		</BrowserRouter>
