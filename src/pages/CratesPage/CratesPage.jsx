@@ -1,22 +1,48 @@
 import "./CratesPage.scss";
+import { baseUrl } from "../../utils/consts";
 
 // components
+import ItemList from "../../components/ItemList/ItemList";
 
 // libraries
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function CratesPage({ isLoggedIn }) {
+	const [crateList, setCrateList] = useState(null);
+
+	const user_id = localStorage.getItem("audioFileId");
+
 	const navigate = useNavigate();
-	const userId = localStorage.getItem("audioFileId");
+
+	async function getUserCrates() {
+		try {
+			const response = await axios.get(`${baseUrl}/crates/${user_id}`);
+			setCrateList(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	useEffect(() => {
-		if (!isLoggedIn) {
+		if (!user_id) {
 			navigate("/login");
+		} else {
+			getUserCrates();
 		}
 	}, []);
 
-	return <div>crates are right here</div>;
+	if (!crateList) {
+		return <>Loading...</>;
+	}
+
+	return (
+		<main className='crates-page'>
+			<h1 className='crates-page__title'>My crates</h1>
+			<ItemList crateList={crateList} />
+		</main>
+	);
 }
 
 export default CratesPage;
