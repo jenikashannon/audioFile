@@ -11,6 +11,7 @@ import axios from "axios";
 
 function CratesPage() {
 	const [crateList, setCrateList] = useState(null);
+	const [defaultCrate, setDefaultCrate] = useState(null);
 
 	const user_id = localStorage.getItem("audioFileId");
 
@@ -20,6 +21,7 @@ function CratesPage() {
 		try {
 			const response = await axios.get(`${baseUrl}/crates/${user_id}`);
 			setCrateList(response.data);
+			setDefaultCrate(response.data[0].default_crate);
 		} catch (error) {
 			console.log(error);
 		}
@@ -42,6 +44,12 @@ function CratesPage() {
 			<h1 className='crates-page__title'>my crates</h1>
 			<div className='crates-page__container'>
 				<ItemList crateList={crateList} />
+				{defaultCrate ? (
+					<p className='crates-page__default-text'>
+						We've created your first crate for you, just click the edit icon to
+						make it your own.
+					</p>
+				) : null}
 			</div>
 		</main>
 	);
