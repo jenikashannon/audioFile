@@ -13,6 +13,10 @@
 
 	&__icon {
 		height: 75;
-		fill: colors.$accent-light;
+		fill: colors.$accent-dark;
+
+		&--active {
+			fill: colors.$accent-light;
+		}
 	}
 }
