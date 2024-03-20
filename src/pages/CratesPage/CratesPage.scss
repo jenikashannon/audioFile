@@ -1,0 +1,15 @@
+@use "../../styles/partials/colors";
+
+.crates-page {
+	width: 100%;
+
+	&__title {
+		background-color: colors.$green-main;
+		color: colors.$white;
+		font-size: 1.5rem;
+		padding: 1rem;
+		width: 100%;
+		position: fixed;
+		top: 0;
+	}
+}

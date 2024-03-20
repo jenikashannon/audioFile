@@ -2,4 +2,12 @@
 ::after,
 ::before {
 	box-sizing: border-box;
+	margin: 0;
+}
+
+Link,
+button,
+.clickable {
+	cursor: pointer;
+	text-decoration: none;
 }
