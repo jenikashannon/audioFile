@@ -7,7 +7,6 @@ function Item({ item, type }) {
 	const user_id = localStorage.getItem("audioFileId");
 
 	let albumCount;
-	console.log(item);
 
 	if (type === "crate") {
 		albumCount =
