@@ -39,7 +39,7 @@ function CratesPage() {
 
 	return (
 		<main className='crates-page'>
-			<h1 className='crates-page__title'>My crates</h1>
+			<h1 className='crates-page__title'>my crates</h1>
 			<div className='crates-page__container'>
 				<ItemList crateList={crateList} />
 			</div>
