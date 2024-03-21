@@ -20,7 +20,7 @@ function CratesPage() {
 
 	async function getUserCrates() {
 		try {
-			const response = await axios.get(`${baseUrl}/crates/${user_id}`);
+			const response = await axios.get(`${baseUrl}/crates?user_id=${user_id}`);
 			setCrateList(response.data);
 		} catch (error) {
 			console.log(error);
@@ -35,12 +35,16 @@ function CratesPage() {
 		}
 	}, []);
 
+	useEffect(() => {
+		if (crateList) {
+			if (crateList.length === 1 && crateList[0].default_crate) {
+				setDefaultCrate(true);
+			}
+		}
+	}, [crateList]);
+
 	if (!crateList) {
 		return <>Loading...</>;
-	}
-
-	if (crateList.length === 1 && crateList[0].default_crate) {
-		setDefaultCrate(true);
 	}
 
 	return (
