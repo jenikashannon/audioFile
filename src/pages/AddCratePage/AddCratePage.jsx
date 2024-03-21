@@ -31,19 +31,22 @@ function AddCratePage() {
 	}
 
 	return (
-		<main>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor='crate_name'>name your crate</label>
+		<main className='add-crate-page'>
+			<form className='add-crate-page__form' onSubmit={handleSubmit}>
+				<label className='add-crate-page__label' htmlFor='crate_name'>
+					name your crate
+				</label>
 				<input
+					className='add-crate-page__field'
 					type='text'
 					value={crateName}
 					name='crate_name'
 					onChange={handleChange}
 				/>
 				<input
+					className='add-crate-page__button'
 					type='submit'
-					value='make my crate!
-                '
+					value='add crate'
 				/>
 			</form>
 		</main>

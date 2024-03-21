@@ -1,0 +1,33 @@
+@use "../../styles/partials/colors";
+
+.add-crate-page {
+	margin: 1rem;
+	&__form {
+	}
+
+	&__label {
+		display: block;
+		color: colors.$grey;
+		margin-bottom: 4px;
+	}
+
+	&__field {
+		width: 100%;
+		border: none;
+		border-bottom: 2px colors.$black solid;
+		background-color: rgba(11, 57, 57, 0.07);
+		font-size: 2rem;
+		padding: 0.5rem;
+		border-radius: 4px;
+	}
+
+	&__button {
+		background-color: colors.$green-main;
+		color: colors.$white;
+		border-radius: 40px;
+		padding: 8px;
+		border: none;
+		width: 100%;
+		margin-top: 1rem;
+	}
+}
