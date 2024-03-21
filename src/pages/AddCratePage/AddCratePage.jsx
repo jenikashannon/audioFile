@@ -1,6 +1,9 @@
 import "./AddCratePage.scss";
 import { baseUrl } from "../../utils/consts";
 
+// components
+import Header from "../../components/Header/Header";
+
 // libraries
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -32,6 +35,7 @@ function AddCratePage() {
 
 	return (
 		<main className='add-crate-page'>
+			<Header text='add a crate' />
 			<form className='add-crate-page__form' onSubmit={handleSubmit}>
 				<label className='add-crate-page__label' htmlFor='crate_name'>
 					name your crate

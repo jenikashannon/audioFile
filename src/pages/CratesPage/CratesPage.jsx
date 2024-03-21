@@ -2,6 +2,7 @@ import "./CratesPage.scss";
 import { baseUrl } from "../../utils/consts";
 
 // components
+import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
 
 // libraries
@@ -41,7 +42,7 @@ function CratesPage() {
 
 	return (
 		<main className='crates-page'>
-			<h1 className='crates-page__title'>my crates</h1>
+			<Header text='my crates' />
 			<div className='crates-page__container'>
 				<ItemList crateList={crateList} />
 				{defaultCrate ? (

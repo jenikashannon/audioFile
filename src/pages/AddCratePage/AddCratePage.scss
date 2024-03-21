@@ -1,8 +1,10 @@
 @use "../../styles/partials/colors";
 
 .add-crate-page {
-	margin: 1rem;
+	margin-top: 4rem;
+
 	&__form {
+		padding: 1rem;
 	}
 
 	&__label {
