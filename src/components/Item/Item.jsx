@@ -16,7 +16,7 @@ function Item({ item, type, mode }) {
 	}
 
 	return (
-		<Link to={`/crates/${user_id}/${item.id}`} className='item'>
+		<Link to={`/crates/${item.id}`} className='item'>
 			<img src={item.cover_art} className='item__icon' />
 			<div className='item__container'>
 				<div className='item__container--text'>

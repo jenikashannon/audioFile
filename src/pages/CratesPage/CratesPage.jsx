@@ -12,7 +12,7 @@ import axios from "axios";
 
 function CratesPage() {
 	const [crateList, setCrateList] = useState(null);
-	const [defaultCrate, setDefaultCrate] = useState(null);
+	const [defaultCrate, setDefaultCrate] = useState(false);
 
 	const user_id = localStorage.getItem("audioFileId");
 
@@ -22,7 +22,6 @@ function CratesPage() {
 		try {
 			const response = await axios.get(`${baseUrl}/crates/${user_id}`);
 			setCrateList(response.data);
-			setDefaultCrate(response.data[0].default_crate);
 		} catch (error) {
 			console.log(error);
 		}
@@ -38,6 +37,10 @@ function CratesPage() {
 
 	if (!crateList) {
 		return <>Loading...</>;
+	}
+
+	if (crateList.length === 1 && crateList[0].default_crate) {
+		setDefaultCrate(true);
 	}
 
 	return (
