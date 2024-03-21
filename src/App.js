@@ -1,6 +1,7 @@
 import "./App.scss";
 
 // pages & components
+import AddCratePage from "./pages/AddCratePage/AddCratePage";
 import CratesPage from "./pages/CratesPage/CratesPage";
 import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -22,6 +23,7 @@ function App() {
 					path='/users'
 					element={<UsersPage setIsLoggedIn={setIsLoggedIn} />}
 				/>
+				<Route path='/crates' element={<AddCratePage />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>
