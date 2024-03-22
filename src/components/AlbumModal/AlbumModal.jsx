@@ -5,6 +5,8 @@ import Divider from "../Divider/Divider";
 
 function AlbumModal({ album, setActiveAlbum }) {
 	const regex = /\(fea.*/;
+	const duration = `${Math.round(album.duration_ms / 60000)} minutes`;
+	const count = album.tracks.length;
 
 	function handleClose() {
 		setActiveAlbum(null);
@@ -30,6 +32,9 @@ function AlbumModal({ album, setActiveAlbum }) {
 					src={album.image}
 					alt={`${album.name} cover art`}
 				/>
+				<p className='album-modal__metadata'>
+					{`${album.release_date} · ${count} songs · ${duration}`}
+				</p>
 				<div className='album-modal__table-header'>
 					<div className='album-modal__row'>
 						<p className='album-modal__column--num album-modal__heading'>#</p>
@@ -46,6 +51,7 @@ function AlbumModal({ album, setActiveAlbum }) {
 					{album.tracks.map((track, index) => {
 						return (
 							<div
+								key={track.name}
 								className={`album-modal__row ${
 									index === 0 ? "album-modal__row--first" : ""
 								}`}
