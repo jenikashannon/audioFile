@@ -1,0 +1,7 @@
+@use "../../styles/partials/colors";
+
+.divider {
+	background-color: colors.$black-light;
+	width: 85%;
+	height: 1px;
+}

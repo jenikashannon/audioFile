@@ -76,7 +76,9 @@ function CrateDetailsPage() {
 				/>
 			)}
 
-			{activeAlbum && <AlbumModal album={activeAlbum} />}
+			{activeAlbum && (
+				<AlbumModal album={activeAlbum} setActiveAlbum={setActiveAlbum} />
+			)}
 		</main>
 	);
 }

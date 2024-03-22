@@ -1,4 +1,5 @@
 @use "../../styles/partials/mixins";
+@use "../../styles/partials/colors";
 
 .album-modal {
 	@include mixins.modal;
@@ -6,12 +7,68 @@
 	&__card {
 		width: 90%;
 		height: 90vh;
-		padding: 2rem;
+		padding: 0.5rem;
 		align-items: center;
 		z-index: 3;
+		justify-content: flex-start;
 	}
 
 	&__image {
 		width: 50%;
+		margin-bottom: 1.5rem;
+	}
+
+	&__row {
+		display: flex;
+		width: 100%;
+		justify-content: flex-start;
+		gap: 0.5rem;
+
+		&--first {
+			margin-top: 0.25rem;
+		}
+	}
+
+	&__container {
+		display: flex;
+		width: 100%;
+		gap: 1rem;
+
+		&--close {
+			justify-content: flex-end;
+			margin-bottom: 1rem;
+		}
+	}
+
+	&__column {
+		flex-basis: 50%;
+		text-wrap: wrap;
+
+		&--num {
+			flex-basis: 7%;
+		}
+	}
+
+	&__table-header,
+	&__tracks {
+		width: 85%;
+	}
+
+	&__tracks {
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
+		overflow-x: scroll;
+		scrollbar-width: none;
+	}
+
+	&__heading {
+		margin-bottom: 0.25rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+	}
+
+	&__detail {
+		font-size: 10px;
 	}
 }
