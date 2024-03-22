@@ -1,0 +1,17 @@
+@use "../../styles/partials/mixins";
+
+.album-modal {
+	@include mixins.modal;
+
+	&__card {
+		width: 90%;
+		height: 90vh;
+		padding: 2rem;
+		align-items: center;
+		z-index: 3;
+	}
+
+	&__image {
+		width: 50%;
+	}
+}

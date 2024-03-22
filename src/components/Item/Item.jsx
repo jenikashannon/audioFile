@@ -4,13 +4,15 @@ import "./Item.scss";
 import HeaderIcon from "../HeaderIcon/HeaderIcon";
 
 // libraries
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Item({ item, type, mode }) {
+function Item({ item, type, mode, setActiveAlbum }) {
 	let albumCount;
 	let details;
 	let image;
-	let path;
+	let handleClick;
+
+	const navigate = useNavigate();
 
 	if (type === "crate") {
 		albumCount =
@@ -20,16 +22,23 @@ function Item({ item, type, mode }) {
 
 		details = [item.name, albumCount];
 		image = item.cover_art;
-		path = `/crates/${item.id}`;
+
+		handleClick = () => {
+			navigate(`/crates/${item.id}`);
+		};
 	}
 
 	if (type === "album") {
 		details = [item.name, item.artists.join(", ")];
 		image = item.image;
+
+		handleClick = () => {
+			setActiveAlbum(item);
+		};
 	}
 
 	return (
-		<Link to={path} className='item'>
+		<article className='item' onClick={handleClick}>
 			<img src={image} className='item__image' />
 			<div className='item__container'>
 				<div className='item__container--text'>
@@ -38,7 +47,7 @@ function Item({ item, type, mode }) {
 				</div>
 				{type === "" ? <HeaderIcon /> : null}
 			</div>
-		</Link>
+		</article>
 	);
 }
 

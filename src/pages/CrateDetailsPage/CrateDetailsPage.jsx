@@ -2,6 +2,7 @@ import "./CrateDetailsPage.scss";
 import { baseUrl } from "../../utils/consts";
 
 // components
+import AlbumModal from "../../components/AlbumModal/AlbumModal";
 import Button from "../../components/Button/Button";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import Header from "../../components/Header/Header";
@@ -16,6 +17,7 @@ function CrateDetailsPage() {
 	const [crate, setCrate] = useState(null);
 	const [editMode, setEditMode] = useState(false);
 	const [deleteMode, setDeleteMode] = useState(false);
+	const [activeAlbum, setActiveAlbum] = useState(null);
 
 	const crate_id = useParams().crate_id;
 	const user_id = localStorage.getItem("audioFileId");
@@ -63,8 +65,9 @@ function CrateDetailsPage() {
 			/>
 			<div className='crate-details-page__container'>
 				{editMode && <Button text='add albums' />}
-				<ItemList albumList={crate.albums} />
+				<ItemList albumList={crate.albums} setActiveAlbum={setActiveAlbum} />
 			</div>
+
 			{deleteMode && (
 				<DeleteModal
 					deleteCrate={deleteCrate}
@@ -72,6 +75,8 @@ function CrateDetailsPage() {
 					name={crate.name}
 				/>
 			)}
+
+			{activeAlbum && <AlbumModal album={activeAlbum} />}
 		</main>
 	);
 }

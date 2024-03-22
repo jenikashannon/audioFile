@@ -1,7 +1,7 @@
 // components
 import Item from "../Item/Item";
 
-function ItemList({ crateList, albumList }) {
+function ItemList({ crateList, albumList, setActiveAlbum }) {
 	let itemList;
 	let type;
 	let mode;
@@ -22,7 +22,15 @@ function ItemList({ crateList, albumList }) {
 				<p>no albums yet. click the edit icon to add records to your crate.</p>
 			)}
 			{itemList.map((item) => {
-				return <Item key={item.id} item={item} type={type} mode={mode} />;
+				return (
+					<Item
+						key={item.id}
+						item={item}
+						type={type}
+						mode={mode}
+						setActiveAlbum={setActiveAlbum}
+					/>
+				);
 			})}
 		</section>
 	);
