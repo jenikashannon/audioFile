@@ -89,7 +89,12 @@ function CrateDetailsPage() {
 				/>
 			)}
 
-			{addMode && <AddAlbumModal setAddMode={setAddMode} />}
+			{addMode && (
+				<AddAlbumModal
+					setAddMode={setAddMode}
+					setActiveAlbum={setActiveAlbum}
+				/>
+			)}
 		</main>
 	);
 }

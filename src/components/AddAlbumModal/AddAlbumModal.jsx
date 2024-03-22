@@ -10,7 +10,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { useState } from "react";
 import axios from "axios";
 
-function AddAlbumModal({ setAddMode }) {
+function AddAlbumModal({ setAddMode, setActiveAlbum }) {
 	const [resultList, setResultList] = useState([]);
 
 	const user_id = localStorage.getItem("audioFileId");
@@ -42,7 +42,7 @@ function AddAlbumModal({ setAddMode }) {
 					{resultList.length === 0 && (
 						<h2 className='add-album-modal__sub-header'>no results...</h2>
 					)}
-					<ItemList resultList={resultList} />
+					<ItemList resultList={resultList} setActiveAlbum={setActiveAlbum} />
 				</div>
 			</div>
 		</article>

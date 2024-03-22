@@ -3,6 +3,7 @@
 
 .album-details-modal {
 	@include mixins.modal;
+	z-index: 4;
 
 	&__image {
 		width: 50%;
