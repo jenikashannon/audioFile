@@ -8,15 +8,30 @@ import SearchBar from "../SearchBar/SearchBar";
 
 // libraries
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
-function AddAlbumModal({ setAddMode, setActiveAlbum }) {
+function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 	const [resultList, setResultList] = useState([]);
 
 	const user_id = localStorage.getItem("audioFileId");
+	const crate_id = useParams().crate_id;
 
 	function handleClose() {
 		setAddMode(false);
+	}
+
+	async function addAlbum(album_id) {
+		try {
+			await axios.post(`${baseUrl}/crates/${crate_id}`, {
+				album_id,
+			});
+			setAlbumIds((prev) => {
+				return [...prev, album_id];
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	async function searchSpotify(term) {
@@ -40,9 +55,16 @@ function AddAlbumModal({ setAddMode, setActiveAlbum }) {
 				<SearchBar handleSearch={searchSpotify} />
 				<div className='add-album-modal__results'>
 					{resultList.length === 0 && (
-						<h2 className='add-album-modal__sub-header'>no results...</h2>
+						<h2 className='add-album-modal__sub-header'>
+							search results will appear here
+						</h2>
 					)}
-					<ItemList resultList={resultList} setActiveAlbum={setActiveAlbum} />
+					<ItemList
+						resultList={resultList}
+						setActiveAlbum={setActiveAlbum}
+						addAlbum={addAlbum}
+						albumIds={albumIds}
+					/>
 				</div>
 			</div>
 		</article>

@@ -1,0 +1,9 @@
+.add-icon {
+	width: 20px;
+	flex-shrink: 0;
+
+	&--disable {
+		fill: rgb(36, 36, 36, 0.5);
+		pointer-events: none;
+	}
+}

@@ -16,6 +16,7 @@ import axios from "axios";
 
 function CrateDetailsPage() {
 	const [crate, setCrate] = useState(null);
+	const [albumIds, setAlbumIds] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [deleteMode, setDeleteMode] = useState(false);
 	const [addMode, setAddMode] = useState(false);
@@ -32,6 +33,12 @@ function CrateDetailsPage() {
 				`${baseUrl}/crates/${crate_id}?user_id=${user_id}`
 			);
 			setCrate(response.data);
+
+			const albums = response.data.albums.map((album) => {
+				return album.id;
+			});
+
+			setAlbumIds(albums);
 		} catch (error) {
 			console.log(error);
 		}
@@ -53,7 +60,7 @@ function CrateDetailsPage() {
 
 	useEffect(() => {
 		getCrateDetails();
-	}, []);
+	}, [addMode]);
 
 	if (!crate) {
 		return <>Loading...</>;
@@ -93,6 +100,8 @@ function CrateDetailsPage() {
 				<AddAlbumModal
 					setAddMode={setAddMode}
 					setActiveAlbum={setActiveAlbum}
+					albumIds={albumIds}
+					setAlbumIds={setAlbumIds}
 				/>
 			)}
 		</main>

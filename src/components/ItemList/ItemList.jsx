@@ -1,7 +1,17 @@
 // components
 import Item from "../Item/Item";
 
-function ItemList({ crateList, albumList, setActiveAlbum, resultList }) {
+// libraries
+import { useEffect } from "react";
+
+function ItemList({
+	crateList,
+	albumList,
+	setActiveAlbum,
+	resultList,
+	addAlbum,
+	albumIds,
+}) {
 	let itemList;
 	let type;
 	let mode;
@@ -21,6 +31,8 @@ function ItemList({ crateList, albumList, setActiveAlbum, resultList }) {
 		type = "album-result";
 	}
 
+	useEffect(() => {}, [albumIds]);
+
 	return (
 		<section className='item-list'>
 			{itemList.length === 0 && type === "album" && (
@@ -34,6 +46,8 @@ function ItemList({ crateList, albumList, setActiveAlbum, resultList }) {
 						type={type}
 						mode={mode}
 						setActiveAlbum={setActiveAlbum}
+						addAlbum={addAlbum}
+						albumIds={albumIds}
 					/>
 				);
 			})}

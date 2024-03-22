@@ -13,8 +13,9 @@
 
 	&__container {
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		width: 100%;
+		gap: 0.75rem;
 
 		&--text {
 			flex-direction: column;
@@ -23,7 +24,7 @@
 	}
 
 	&__name {
-		font-size: 1rem;
+		font-size: 0.7rem;
 		font-weight: 600;
 		color: colors.$black;
 	}

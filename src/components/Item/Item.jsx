@@ -1,12 +1,12 @@
 import "./Item.scss";
 
 // components
-import HeaderIcon from "../HeaderIcon/HeaderIcon";
+import AddIcon from "../AddIcon/AddIcon";
 
 // libraries
 import { useNavigate } from "react-router-dom";
 
-function Item({ item, type, mode, setActiveAlbum }) {
+function Item({ item, type, mode, setActiveAlbum, addAlbum, albumIds }) {
 	let albumCount;
 	let details;
 	let image;
@@ -28,7 +28,7 @@ function Item({ item, type, mode, setActiveAlbum }) {
 		};
 	}
 
-	if (type === "album" || type === "album-result") {
+	if (["album", "album-result"].includes(type)) {
 		details = [item.name, item.artists.join(", ")];
 		image = item.image;
 
@@ -38,15 +38,21 @@ function Item({ item, type, mode, setActiveAlbum }) {
 	}
 
 	return (
-		<article className='item' onClick={handleClick}>
-			<img src={image} className='item__image' />
-			<div className='item__container'>
+		<article className='item'>
+			<div className='item__container' onClick={handleClick}>
+				<img src={image} className='item__image' />
 				<div className='item__container--text'>
 					<p className='item__name'>{details[0]}</p>
-					{<p className='item__details'>{details[1]}</p>}
+					<p className='item__details'>{details[1]}</p>
 				</div>
-				{type === "" ? <HeaderIcon /> : null}
 			</div>
+			{type === "album-result" && (
+				<AddIcon
+					addAlbum={addAlbum}
+					id={item.id}
+					disable={albumIds.includes(item.id)}
+				/>
+			)}
 		</article>
 	);
 }
