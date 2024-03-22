@@ -2,6 +2,7 @@ import "./AddAlbumModal.scss";
 import { baseUrl } from "../../utils/consts";
 
 // components
+import Button from "../Button/Button";
 import CloseIcon from "../CloseIcon/CloseIcon";
 import ItemList from "../ItemList/ItemList";
 import SearchBar from "../SearchBar/SearchBar";
@@ -66,6 +67,7 @@ function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 						albumIds={albumIds}
 					/>
 				</div>
+				<Button text='done' handleClick={handleClose} />
 			</div>
 		</article>
 	);

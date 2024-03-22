@@ -31,6 +31,7 @@ function ItemList({
 		type = "album-result";
 	}
 
+	// re-render list whenever album is added
 	useEffect(() => {}, [albumIds]);
 
 	return (

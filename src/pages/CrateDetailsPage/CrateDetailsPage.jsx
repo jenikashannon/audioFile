@@ -77,8 +77,10 @@ function CrateDetailsPage() {
 				setDeleteMode={setDeleteMode}
 			/>
 			<div className='crate-details-page__container'>
-				{editMode && <Button text='add albums' handleClick={toggleAddMode} />}
-				<ItemList albumList={crate.albums} setActiveAlbum={setActiveAlbum} />
+				<div className='crate-details-page__albums'>
+					<ItemList albumList={crate.albums} setActiveAlbum={setActiveAlbum} />
+				</div>
+				<Button text='add albums' handleClick={toggleAddMode} />
 			</div>
 
 			{deleteMode && (
