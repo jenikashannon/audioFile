@@ -28,7 +28,7 @@ function Item({ item, type, mode, setActiveAlbum }) {
 		};
 	}
 
-	if (type === "album") {
+	if (type === "album" || type === "album-result") {
 		details = [item.name, item.artists.join(", ")];
 		image = item.image;
 

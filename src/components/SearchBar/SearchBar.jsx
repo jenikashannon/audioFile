@@ -3,16 +3,12 @@ import "./SearchBar.scss";
 // libraries
 import { useState } from "react";
 
-function SearchBar({ scope }) {
+function SearchBar({ handleSearch }) {
 	const [term, setTerm] = useState("");
-	let search;
-
-	if (scope === "spotify") {
-		search = (term) => {};
-	}
 
 	async function handleChange(event) {
 		setTerm(event.target.value);
+		handleSearch(term);
 	}
 
 	return (

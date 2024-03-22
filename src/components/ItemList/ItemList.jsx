@@ -18,7 +18,7 @@ function ItemList({ crateList, albumList, setActiveAlbum, resultList }) {
 
 	if (resultList) {
 		itemList = resultList;
-		type = "album-list";
+		type = "album-result";
 	}
 
 	return (
