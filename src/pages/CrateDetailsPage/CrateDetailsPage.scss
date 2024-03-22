@@ -1,0 +1,7 @@
+@use "../../styles/partials/mixins";
+
+.crate-details-page {
+	&__container {
+		@include mixins.page;
+	}
+}

@@ -3,6 +3,7 @@ import { baseUrl } from "../../utils/consts";
 
 // components
 import Header from "../../components/Header/Header";
+import ItemList from "../../components/ItemList/ItemList";
 
 // libraries
 import { useParams } from "react-router-dom";
@@ -37,6 +38,9 @@ function CrateDetailsPage() {
 	return (
 		<main className='crate-details-page'>
 			<Header text={crate.name} />
+			<div className='crate-details-page__container'>
+				<ItemList albumList={crate.albums} />
+			</div>
 		</main>
 	);
 }

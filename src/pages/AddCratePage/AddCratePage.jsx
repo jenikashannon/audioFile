@@ -22,7 +22,7 @@ function AddCratePage() {
 	async function handleSubmit(event) {
 		event.preventDefault();
 		try {
-			await axios.post(`${baseUrl}/crates/${user_id}`, {
+			await axios.post(`${baseUrl}/crates?user_id=${user_id}`, {
 				name: event.target.crate_name.value,
 				user_id,
 			});

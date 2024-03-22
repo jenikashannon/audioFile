@@ -1,7 +1,7 @@
 // components
 import Item from "../Item/Item";
 
-function ItemList({ crateList }) {
+function ItemList({ crateList, albumList }) {
 	let itemList;
 	let type;
 	let mode;
@@ -9,6 +9,11 @@ function ItemList({ crateList }) {
 	if (crateList) {
 		itemList = crateList;
 		type = "crate";
+	}
+
+	if (albumList) {
+		itemList = albumList;
+		type = "album";
 	}
 
 	return (
