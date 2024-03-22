@@ -1,7 +1,7 @@
 // components
 import Item from "../Item/Item";
 
-function ItemList({ crateList, albumList, setActiveAlbum }) {
+function ItemList({ crateList, albumList, setActiveAlbum, resultList }) {
 	let itemList;
 	let type;
 	let mode;
@@ -14,6 +14,11 @@ function ItemList({ crateList, albumList, setActiveAlbum }) {
 	if (albumList) {
 		itemList = albumList;
 		type = "album";
+	}
+
+	if (resultList) {
+		itemList = resultList;
+		type = "album-list";
 	}
 
 	return (
