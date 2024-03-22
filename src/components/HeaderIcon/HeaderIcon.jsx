@@ -2,7 +2,6 @@ import "./HeaderIcon.scss";
 
 function HeaderIcon({ setEditMode, editMode, deleteMode, setDeleteMode }) {
 	function handleClick() {
-		console.log(editMode);
 		if (editMode) {
 			setDeleteMode(true);
 			return;
