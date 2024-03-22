@@ -1,7 +1,23 @@
+@use "../../styles/partials/colors";
 @use "../../styles/partials/mixins";
 
 .crate-details-page {
 	&__container {
 		@include mixins.page;
+
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__button {
+		border: none;
+		background-color: colors.$green-mid;
+		font-weight: 600;
+		border-radius: 20px;
+		padding: 0.5rem;
+
+		&--add {
+			color: colors.$green-main;
+		}
 	}
 }
