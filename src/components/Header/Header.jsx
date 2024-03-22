@@ -3,7 +3,14 @@ import "./Header.scss";
 // components
 import HeaderIcon from "../HeaderIcon/HeaderIcon";
 
-function Header({ text, mode, setEditMode, editMode, setDeleting }) {
+function Header({
+	text,
+	mode,
+	setEditMode,
+	editMode,
+	deleteMode,
+	setDeleteMode,
+}) {
 	return (
 		<header className='header'>
 			<h1 className='header__title'>{text}</h1>
@@ -11,7 +18,8 @@ function Header({ text, mode, setEditMode, editMode, setDeleting }) {
 				<HeaderIcon
 					setEditMode={setEditMode}
 					editMode={editMode}
-					setDeleting={setDeleting}
+					deleteMode={deleteMode}
+					setDeleteMode={setDeleteMode}
 				/>
 			) : null}
 		</header>

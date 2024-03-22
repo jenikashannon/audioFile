@@ -1,0 +1,21 @@
+@use "../../styles/partials/colors";
+
+.button {
+	border: none;
+	background-color: colors.$green-mid;
+	font-weight: 600;
+	border-radius: 20px;
+	padding: 0.5rem;
+	margin-top: 1rem;
+	color: colors.$green-main;
+
+	&--delete {
+		background-color: colors.$red;
+		color: colors.$white;
+	}
+
+	&--cancel {
+		background-color: colors.$grey;
+		color: colors.$white;
+	}
+}
