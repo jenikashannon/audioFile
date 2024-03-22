@@ -1,6 +1,6 @@
-import "./EditIcon.scss";
+import "./HeaderIcon.scss";
 
-function EditIcon({ setEditMode, editMode, setDeleting }) {
+function HeaderIcon({ setEditMode, editMode, setDeleting }) {
 	function handleClick() {
 		if (editMode) {
 			setDeleting(true);
@@ -14,7 +14,7 @@ function EditIcon({ setEditMode, editMode, setDeleting }) {
 			{editMode ? (
 				<svg
 					onClick={handleClick}
-					className='edit-icon'
+					className='header-icon'
 					xmlns='http://www.w3.org/2000/svg'
 					height='24'
 					viewBox='0 -960 960 960'
@@ -25,7 +25,7 @@ function EditIcon({ setEditMode, editMode, setDeleting }) {
 			) : (
 				<svg
 					onClick={handleClick}
-					className='edit-icon'
+					className='header-icon'
 					xmlns='http://www.w3.org/2000/svg'
 					height='24'
 					viewBox='0 -960 960 960'
@@ -38,4 +38,4 @@ function EditIcon({ setEditMode, editMode, setDeleting }) {
 	);
 }
 
-export default EditIcon;
+export default HeaderIcon;

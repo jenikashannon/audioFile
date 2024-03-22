@@ -1,7 +1,7 @@
 import "./Item.scss";
 
 // components
-import EditIcon from "../EditIcon/EditIcon";
+import HeaderIcon from "../HeaderIcon/HeaderIcon";
 
 // libraries
 import { Link } from "react-router-dom";
@@ -36,7 +36,7 @@ function Item({ item, type, mode }) {
 					<p className='item__name'>{details[0]}</p>
 					{<p className='item__details'>{details[1]}</p>}
 				</div>
-				{type === "" ? <EditIcon /> : null}
+				{type === "" ? <HeaderIcon /> : null}
 			</div>
 		</Link>
 	);
