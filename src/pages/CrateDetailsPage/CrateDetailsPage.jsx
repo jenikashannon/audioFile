@@ -2,7 +2,8 @@ import "./CrateDetailsPage.scss";
 import { baseUrl } from "../../utils/consts";
 
 // components
-import AlbumModal from "../../components/AlbumModal/AlbumModal";
+import AddAlbumModal from "../../components/AddAlbumModal/AddAlbumModal";
+import AlbumDetailsModal from "../../components/AlbumDetailsModal/AlbumDetailsModal";
 import Button from "../../components/Button/Button";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import Header from "../../components/Header/Header";
@@ -17,6 +18,7 @@ function CrateDetailsPage() {
 	const [crate, setCrate] = useState(null);
 	const [editMode, setEditMode] = useState(false);
 	const [deleteMode, setDeleteMode] = useState(false);
+	const [addMode, setAddMode] = useState(false);
 	const [activeAlbum, setActiveAlbum] = useState(null);
 
 	const crate_id = useParams().crate_id;
@@ -45,6 +47,10 @@ function CrateDetailsPage() {
 		navigate("/");
 	}
 
+	async function toggleAddMode() {
+		setAddMode(true);
+	}
+
 	useEffect(() => {
 		getCrateDetails();
 	}, []);
@@ -64,7 +70,7 @@ function CrateDetailsPage() {
 				setDeleteMode={setDeleteMode}
 			/>
 			<div className='crate-details-page__container'>
-				{editMode && <Button text='add albums' />}
+				{editMode && <Button text='add albums' handleClick={toggleAddMode} />}
 				<ItemList albumList={crate.albums} setActiveAlbum={setActiveAlbum} />
 			</div>
 
@@ -77,8 +83,13 @@ function CrateDetailsPage() {
 			)}
 
 			{activeAlbum && (
-				<AlbumModal album={activeAlbum} setActiveAlbum={setActiveAlbum} />
+				<AlbumDetailsModal
+					album={activeAlbum}
+					setActiveAlbum={setActiveAlbum}
+				/>
 			)}
+
+			{addMode && <AddAlbumModal setAddMode={setAddMode} />}
 		</main>
 	);
 }

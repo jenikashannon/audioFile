@@ -1,17 +1,8 @@
 @use "../../styles/partials/mixins";
 @use "../../styles/partials/colors";
 
-.album-modal {
+.album-details-modal {
 	@include mixins.modal;
-
-	&__card {
-		width: 90%;
-		height: 90vh;
-		padding: 0.5rem;
-		align-items: center;
-		z-index: 3;
-		justify-content: flex-start;
-	}
 
 	&__image {
 		width: 50%;
@@ -40,11 +31,6 @@
 		display: flex;
 		width: 100%;
 		gap: 1rem;
-
-		&--close {
-			justify-content: flex-end;
-			margin-bottom: 1rem;
-		}
 	}
 
 	&__column {

@@ -1,10 +1,10 @@
 import "./Button.scss";
 
-function Button({ text, type, onClick }) {
+function Button({ text, type, handleClick }) {
 	return (
 		<button
 			className={`button ${type ? `button--${type}` : ""}`}
-			onClick={onClick}
+			onClick={handleClick}
 		>
 			{text}
 		</button>

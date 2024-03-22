@@ -1,0 +1,11 @@
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colors";
+
+.add-album-modal {
+	@include mixins.modal;
+
+	&__title {
+		width: 100%;
+		text-align: left;
+	}
+}

@@ -27,11 +27,11 @@ function DeleteModal({ deleteCrate, setDeleteMode, name }) {
 				</p>
 
 				<div className='delete-modal__button-container'>
-					<Button text='cancel' type='cancel' onClick={handleCancel} />
+					<Button text='cancel' type='cancel' handleClick={handleCancel} />
 					<Button
 						text='permanently delete'
 						type='delete'
-						onClick={handleDelete}
+						handleClick={handleDelete}
 					/>
 				</div>
 			</div>
