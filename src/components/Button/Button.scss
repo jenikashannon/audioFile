@@ -13,10 +13,14 @@
 	&--delete {
 		background-color: colors.$red;
 		color: colors.$white;
+		border-radius: 20px;
+		flex-grow: 1;
 	}
 
 	&--cancel {
 		background-color: colors.$grey;
 		color: colors.$white;
+		border-radius: 20px;
+		flex-shrink: 2;
 	}
 }
