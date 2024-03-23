@@ -27,6 +27,7 @@ function CrateDetailsPage() {
 	const [sortMode, setSortMode] = useState(false);
 	const [activeAlbum, setActiveAlbum] = useState(null);
 	const [sortBy, setSortBy] = useState("");
+	const [sortOrder, setSortOrder] = useState("asc");
 	const [sortedAlbums, setSortedAlbums] = useState(null);
 
 	const crate_id = useParams().crate_id;
@@ -98,12 +99,12 @@ function CrateDetailsPage() {
 	}
 
 	function sortAlbums() {
-		setSortedAlbums(sortList(crate.albums, sortBy));
+		setSortedAlbums(sortList(crate.albums, sortBy, sortOrder));
 	}
 
 	useEffect(() => {
 		getCrateDetails();
-	}, [addMode, sortBy]);
+	}, [addMode, sortBy, sortOrder]);
 
 	useEffect(() => {
 		if (crate) {
@@ -129,7 +130,11 @@ function CrateDetailsPage() {
 				setCrateName={setCrateName}
 			/>
 			<div className='crate-details-page__container'>
-				<Sorter sortBy={sortBy} setSortMode={setSortMode} />
+				<Sorter
+					sortBy={sortBy}
+					setSortMode={setSortMode}
+					setSortOrder={setSortOrder}
+				/>
 				<div className='crate-details-page__albums'>
 					<ItemList
 						albumList={sortedAlbums}
@@ -174,6 +179,7 @@ function CrateDetailsPage() {
 					sortBy={sortBy}
 					setSortBy={setSortBy}
 					setSortMode={setSortMode}
+					setSortOrder={setSortOrder}
 				/>
 			)}
 		</main>

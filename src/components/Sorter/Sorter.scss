@@ -1,6 +1,7 @@
 .sorter {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 
 	&__icon {
 		height: 16px;
@@ -8,5 +9,9 @@
 
 	&__label {
 		font-size: 0.75rem;
+	}
+
+	&__type {
+		font-weight: 600;
 	}
 }

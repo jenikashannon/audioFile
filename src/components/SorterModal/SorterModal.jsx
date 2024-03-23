@@ -1,31 +1,43 @@
 import "./SorterModal.scss";
+import { sorts } from "../../utils/sort";
 
-function SorterModal({ sortBy, setSortBy, setSortMode }) {
-	const sorts = [
-		{ sortBy: "", label: "recently added" },
-		{ sortBy: "name", label: "album name" },
-		{ sortBy: "artists", label: "artist" },
-		{ sortBy: "release_date", label: "release date" },
-		{ sortBy: "duration_ms", label: "duration" },
-	];
-
+function SorterModal({ sortBy, setSortBy, setSortMode, setSortOrder }) {
 	return (
 		<article className='sorter-modal'>
 			<div className='sorter-modal__card'>
-				{sorts.map((sort) => {
-					return (
-						<div
-							className='sorter-modal__container'
-							onClick={() => {
-								setSortBy(sort.sortBy);
-								setSortMode(false);
-							}}
-						>
-							<p className='sorter-modal__option'>{sort.label}</p>
-							{sort.sortBy === sortBy && "✔️"}
-						</div>
-					);
-				})}
+				<p className='sorter-modal__title'>sort by</p>
+				<div className='sorter-modal__container'>
+					{sorts.map((sort) => {
+						return (
+							<div
+								key={sort.sortBy}
+								className='sorter-modal__link'
+								onClick={() => {
+									setSortBy(sort.sortBy);
+									setSortOrder("asc");
+									setSortMode(false);
+								}}
+							>
+								<p
+									className={`sorter-modal__option ${
+										sort.sortBy === sortBy && "sorter-modal__option--active"
+									}`}
+								>
+									{sort.label}
+								</p>
+								{sort.sortBy === sortBy && "✔️"}
+							</div>
+						);
+					})}
+					<button
+						className='sorter-modal__cancel'
+						onClick={() => {
+							setSortMode(false);
+						}}
+					>
+						cancel
+					</button>
+				</div>
 			</div>
 		</article>
 	);

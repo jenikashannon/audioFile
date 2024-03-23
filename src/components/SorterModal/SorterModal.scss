@@ -1,4 +1,5 @@
 @use "../../styles/partials/mixins";
+@use "../../styles/partials/colors";
 
 .sorter-modal {
 	@include mixins.modal;
@@ -8,12 +9,40 @@
 		bottom: 3.7rem;
 		width: 100%;
 		padding: 2rem;
-		gap: 0.5rem;
+		gap: 1rem;
 		border-radius: 20px;
+		justify-content: flex-start;
+		height: 18rem;
+	}
+
+	&__title {
+		font-size: 0.75rem;
+		font-weight: 600;
 	}
 
 	&__container {
 		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	&__link {
+		display: flex;
 		justify-content: space-between;
+	}
+
+	&__option {
+		&--active {
+			color: colors.$green-main;
+			font-weight: 600;
+		}
+	}
+
+	&__cancel {
+		border: none;
+		background-color: colors.$white;
+		color: colors.$red;
+		margin-top: 1rem;
+		font-weight: 600;
 	}
 }
