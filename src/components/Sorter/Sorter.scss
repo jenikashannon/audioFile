@@ -1,0 +1,12 @@
+.sorter {
+	display: flex;
+	align-items: center;
+
+	&__icon {
+		height: 16px;
+	}
+
+	&__label {
+		font-size: 0.75rem;
+	}
+}

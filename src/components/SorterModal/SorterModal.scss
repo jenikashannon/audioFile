@@ -1,0 +1,18 @@
+@use "../../styles/partials/mixins";
+
+.sorter-modal {
+	@include mixins.modal;
+
+	&__card {
+		position: fixed;
+		bottom: 4.5rem;
+		width: 100%;
+		padding: 2rem;
+		gap: 0.5rem;
+	}
+
+	&__container {
+		display: flex;
+		justify-content: space-between;
+	}
+}

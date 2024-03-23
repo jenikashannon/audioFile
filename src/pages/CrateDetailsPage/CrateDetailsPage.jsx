@@ -9,6 +9,8 @@ import Button from "../../components/Button/Button";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
+import Sorter from "../../components/Sorter/Sorter";
+import SorterModal from "../../components/SorterModal/SorterModal";
 
 // libraries
 import { useParams, useNavigate } from "react-router-dom";
@@ -22,6 +24,7 @@ function CrateDetailsPage() {
 	const [editMode, setEditMode] = useState(false);
 	const [deleteMode, setDeleteMode] = useState(false);
 	const [addMode, setAddMode] = useState(false);
+	const [sortMode, setSortMode] = useState(false);
 	const [activeAlbum, setActiveAlbum] = useState(null);
 	const [sortBy, setSortBy] = useState("");
 	const [sortedAlbums, setSortedAlbums] = useState(null);
@@ -126,6 +129,7 @@ function CrateDetailsPage() {
 				setCrateName={setCrateName}
 			/>
 			<div className='crate-details-page__container'>
+				<Sorter sortBy={sortBy} setSortMode={setSortMode} />
 				<div className='crate-details-page__albums'>
 					<ItemList
 						albumList={sortedAlbums}
@@ -162,6 +166,14 @@ function CrateDetailsPage() {
 					setActiveAlbum={setActiveAlbum}
 					albumIds={albumIds}
 					setAlbumIds={setAlbumIds}
+				/>
+			)}
+
+			{sortMode && (
+				<SorterModal
+					sortBy={sortBy}
+					setSortBy={setSortBy}
+					setSortMode={setSortMode}
 				/>
 			)}
 		</main>
