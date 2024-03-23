@@ -20,7 +20,7 @@ function sortList(list, sortBy, orderBy) {
 	return sortedList;
 }
 
-const sorts = [
+const sortsAlbum = [
 	{ sortBy: "", label: "date added" },
 	{ sortBy: "name", label: "album name" },
 	{ sortBy: "artists", label: "artist" },
@@ -28,4 +28,9 @@ const sorts = [
 	{ sortBy: "duration_ms", label: "duration" },
 ];
 
-export { sortList, sorts };
+const sortsCrate = [
+	{ sortBy: "", label: "date added" },
+	{ sortBy: "name", label: "crate name" },
+];
+
+export { sortList, sortsAlbum, sortsCrate };

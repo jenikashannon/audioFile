@@ -1,7 +1,9 @@
 import "./SorterModal.scss";
-import { sorts } from "../../utils/sort";
+import { sortsAlbum, sortsCrate } from "../../utils/sort";
 
-function SorterModal({ sortBy, setSortBy, setSortMode, setSortOrder }) {
+function SorterModal({ sortBy, setSortBy, setSortMode, setSortOrder, mode }) {
+	const sorts = mode === "album" ? sortsAlbum : sortsCrate;
+
 	return (
 		<article className='sorter-modal'>
 			<div className='sorter-modal__card'>

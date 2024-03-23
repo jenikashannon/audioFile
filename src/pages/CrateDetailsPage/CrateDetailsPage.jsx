@@ -134,6 +134,7 @@ function CrateDetailsPage() {
 					sortBy={sortBy}
 					setSortMode={setSortMode}
 					setSortOrder={setSortOrder}
+					mode='album'
 				/>
 				<div className='crate-details-page__albums'>
 					<ItemList
@@ -180,6 +181,7 @@ function CrateDetailsPage() {
 					setSortBy={setSortBy}
 					setSortMode={setSortMode}
 					setSortOrder={setSortOrder}
+					mode='album'
 				/>
 			)}
 		</main>

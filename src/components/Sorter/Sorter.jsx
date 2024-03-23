@@ -1,7 +1,7 @@
 import "./Sorter.scss";
-import { sorts } from "../../utils/sort";
+import { sortsAlbum, sortsCrate } from "../../utils/sort";
 
-function Sorter({ sortBy, setSortMode, setSortOrder }) {
+function Sorter({ sortBy, setSortMode, setSortOrder, mode }) {
 	function handleSort() {
 		setSortMode(true);
 	}
@@ -16,6 +16,7 @@ function Sorter({ sortBy, setSortMode, setSortOrder }) {
 		});
 	}
 
+	const sorts = mode === "album" ? sortsAlbum : sortsCrate;
 	const currentSort = sorts.find((sort) => sort.sortBy === sortBy);
 
 	return (
