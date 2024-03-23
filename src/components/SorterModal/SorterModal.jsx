@@ -14,7 +14,13 @@ function SorterModal({ sortBy, setSortBy, setSortMode }) {
 			<div className='sorter-modal__card'>
 				{sorts.map((sort) => {
 					return (
-						<div className='sorter-modal__container'>
+						<div
+							className='sorter-modal__container'
+							onClick={() => {
+								setSortBy(sort.sortBy);
+								setSortMode(false);
+							}}
+						>
 							<p className='sorter-modal__option'>{sort.label}</p>
 							{sort.sortBy === sortBy && "✔️"}
 						</div>

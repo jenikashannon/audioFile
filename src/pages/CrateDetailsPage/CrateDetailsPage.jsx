@@ -103,7 +103,7 @@ function CrateDetailsPage() {
 
 	useEffect(() => {
 		getCrateDetails();
-	}, [addMode]);
+	}, [addMode, sortBy]);
 
 	useEffect(() => {
 		if (crate) {
