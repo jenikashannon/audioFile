@@ -54,8 +54,21 @@ function CrateDetailsPage() {
 		navigate("/");
 	}
 
+	async function removeAlbum(album_id) {
+		try {
+			await axios.delete(`${baseUrl}/crates/${crate_id}/${album_id}`);
+			getCrateDetails();
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	async function toggleAddMode() {
 		setAddMode(true);
+	}
+
+	async function toggleEditMode() {
+		setEditMode(false);
 	}
 
 	useEffect(() => {
@@ -78,9 +91,18 @@ function CrateDetailsPage() {
 			/>
 			<div className='crate-details-page__container'>
 				<div className='crate-details-page__albums'>
-					<ItemList albumList={crate.albums} setActiveAlbum={setActiveAlbum} />
+					<ItemList
+						albumList={crate.albums}
+						setActiveAlbum={setActiveAlbum}
+						editMode={editMode}
+						removeAlbum={removeAlbum}
+						albumIds={albumIds}
+					/>
 				</div>
-				<Button text='add albums' handleClick={toggleAddMode} />
+				<Button
+					text={editMode ? "save" : "add albums"}
+					handleClick={editMode ? toggleEditMode : toggleAddMode}
+				/>
 			</div>
 
 			{deleteMode && (

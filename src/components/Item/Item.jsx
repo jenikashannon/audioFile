@@ -6,7 +6,16 @@ import AddIcon from "../AddIcon/AddIcon";
 // libraries
 import { useNavigate } from "react-router-dom";
 
-function Item({ item, type, mode, setActiveAlbum, addAlbum, albumIds }) {
+function Item({
+	item,
+	type,
+	mode,
+	setActiveAlbum,
+	addAlbum,
+	albumIds,
+	editMode,
+	removeAlbum,
+}) {
 	let albumCount;
 	let details;
 	let image;
@@ -48,10 +57,14 @@ function Item({ item, type, mode, setActiveAlbum, addAlbum, albumIds }) {
 			</div>
 			{type === "album-result" && (
 				<AddIcon
-					addAlbum={addAlbum}
+					changeAlbum={addAlbum}
 					id={item.id}
 					disable={albumIds.includes(item.id)}
+					mode='add'
 				/>
+			)}
+			{editMode && (
+				<AddIcon changeAlbum={removeAlbum} id={item.id} mode='remove' />
 			)}
 		</article>
 	);
