@@ -14,6 +14,17 @@
 
 	&__title {
 		color: colors.$white;
+		background-color: colors.$green-main;
 		font-size: 1.5rem;
+		border: none;
+
+		&--active {
+			border-bottom: 1px colors.$white solid;
+
+			&:focus {
+				border: none;
+				border-bottom: 2px colors.$accent-light solid;
+			}
+		}
 	}
 }

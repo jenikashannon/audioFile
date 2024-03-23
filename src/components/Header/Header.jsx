@@ -4,16 +4,36 @@ import "./Header.scss";
 import HeaderIcon from "../HeaderIcon/HeaderIcon";
 
 function Header({
-	text,
 	mode,
 	setEditMode,
 	editMode,
 	deleteMode,
 	setDeleteMode,
+	crateName,
+	setCrateName,
 }) {
+	function handleChange(event) {
+		setCrateName(event.target.value);
+	}
+
 	return (
 		<header className='header'>
-			<h1 className='header__title'>{text}</h1>
+			{editMode ? (
+				<input
+					className='header__title header__title--active'
+					type='text'
+					value={crateName}
+					onChange={handleChange}
+					autoFocus
+				></input>
+			) : (
+				<input
+					className='header__title'
+					type='text'
+					value={crateName}
+					disabled
+				></input>
+			)}
 			{mode === "edit-icon" ? (
 				<HeaderIcon
 					setEditMode={setEditMode}

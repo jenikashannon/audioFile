@@ -16,6 +16,7 @@ import axios from "axios";
 
 function CrateDetailsPage() {
 	const [crate, setCrate] = useState(null);
+	const [crateName, setCrateName] = useState(null);
 	const [albumIds, setAlbumIds] = useState([]);
 	const [editMode, setEditMode] = useState(false);
 	const [deleteMode, setDeleteMode] = useState(false);
@@ -39,6 +40,8 @@ function CrateDetailsPage() {
 			});
 
 			setAlbumIds(albums);
+
+			setCrateName(response.data.name);
 		} catch (error) {
 			console.log(error);
 		}
@@ -63,12 +66,28 @@ function CrateDetailsPage() {
 		}
 	}
 
+	async function updateCrateName(name) {
+		try {
+			await axios.patch(`${baseUrl}/crates/${crate_id}/`, {
+				name: crateName,
+			});
+			getCrateDetails();
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	async function toggleAddMode() {
 		setAddMode(true);
 	}
 
 	async function toggleEditMode() {
 		setEditMode(false);
+
+		// if new crate name, update crate
+		if (crateName !== crate.name) {
+			updateCrateName(crateName);
+		}
 	}
 
 	useEffect(() => {
@@ -82,12 +101,13 @@ function CrateDetailsPage() {
 	return (
 		<main className='crate-details-page'>
 			<Header
-				text={crate.name}
 				mode='edit-icon'
 				setEditMode={setEditMode}
 				editMode={editMode}
 				deleteMode={deleteMode}
 				setDeleteMode={setDeleteMode}
+				crateName={crateName}
+				setCrateName={setCrateName}
 			/>
 			<div className='crate-details-page__container'>
 				<div className='crate-details-page__albums'>
