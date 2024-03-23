@@ -6,6 +6,10 @@
 		@include mixins.page;
 	}
 
+	&__crates {
+		@include mixins.scroll-view;
+	}
+
 	&__default-text {
 		font-size: 0.7rem;
 		width: 75%;

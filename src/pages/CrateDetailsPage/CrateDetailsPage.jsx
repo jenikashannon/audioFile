@@ -24,8 +24,8 @@ function CrateDetailsPage() {
 	const [editMode, setEditMode] = useState(false);
 	const [deleteMode, setDeleteMode] = useState(false);
 	const [addMode, setAddMode] = useState(false);
-	const [sortMode, setSortMode] = useState(false);
 	const [activeAlbum, setActiveAlbum] = useState(null);
+	const [sortMode, setSortMode] = useState(false);
 	const [sortBy, setSortBy] = useState("");
 	const [sortOrder, setSortOrder] = useState("asc");
 	const [sortedAlbums, setSortedAlbums] = useState(null);
@@ -112,8 +112,6 @@ function CrateDetailsPage() {
 		}
 	}, [crate]);
 
-	useEffect(() => {}, [sortBy, sortedAlbums]);
-
 	if (!sortedAlbums) {
 		return <>Loading...</>;
 	}
@@ -121,7 +119,7 @@ function CrateDetailsPage() {
 	return (
 		<main className='crate-details-page'>
 			<Header
-				mode='edit-icon'
+				mode='crate-details'
 				setEditMode={setEditMode}
 				editMode={editMode}
 				deleteMode={deleteMode}

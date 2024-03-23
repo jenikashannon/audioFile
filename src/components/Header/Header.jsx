@@ -5,6 +5,7 @@ import HeaderIcon from "../HeaderIcon/HeaderIcon";
 
 function Header({
 	mode,
+	text,
 	setEditMode,
 	editMode,
 	deleteMode,
@@ -18,6 +19,7 @@ function Header({
 
 	return (
 		<header className='header'>
+			{mode !== "crate-details" && <h1 className='header__title'>{text}</h1>}
 			{editMode ? (
 				<input
 					className='header__title header__title--active'
@@ -34,14 +36,14 @@ function Header({
 					disabled
 				></input>
 			)}
-			{mode === "edit-icon" ? (
+			{mode === "crate-details" && (
 				<HeaderIcon
 					setEditMode={setEditMode}
 					editMode={editMode}
 					deleteMode={deleteMode}
 					setDeleteMode={setDeleteMode}
 				/>
-			) : null}
+			)}
 		</header>
 	);
 }

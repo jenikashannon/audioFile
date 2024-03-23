@@ -1,9 +1,12 @@
 import "./CratesPage.scss";
 import { baseUrl } from "../../utils/consts";
+import { sortList } from "../../utils/sort";
 
 // components
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
+import Sorter from "../../components/Sorter/Sorter";
+import SorterModal from "../../components/SorterModal/SorterModal";
 
 // libraries
 import { useEffect, useState } from "react";
@@ -13,6 +16,10 @@ import axios from "axios";
 function CratesPage() {
 	const [crateList, setCrateList] = useState(null);
 	const [defaultCrate, setDefaultCrate] = useState(false);
+	const [sortMode, setSortMode] = useState(false);
+	const [sortBy, setSortBy] = useState("");
+	const [sortOrder, setSortOrder] = useState("asc");
+	const [sortedCrates, setSortedCrates] = useState(null);
 
 	const user_id = localStorage.getItem("audioFileId");
 
@@ -25,6 +32,10 @@ function CratesPage() {
 		} catch (error) {
 			console.log(error);
 		}
+	}
+
+	function sortCrates() {
+		setSortedCrates(sortList(crateList, sortBy, sortOrder));
 	}
 
 	useEffect(() => {
@@ -40,10 +51,16 @@ function CratesPage() {
 			if (crateList.length === 1 && crateList[0].default_crate) {
 				setDefaultCrate(true);
 			}
+
+			sortCrates();
 		}
 	}, [crateList]);
 
-	if (!crateList) {
+	useEffect(() => {
+		getUserCrates();
+	}, [sortBy, sortOrder]);
+
+	if (!sortedCrates) {
 		return <>Loading...</>;
 	}
 
@@ -51,7 +68,15 @@ function CratesPage() {
 		<main className='crates-page'>
 			<Header text='my crates' />
 			<div className='crates-page__container'>
-				<ItemList crateList={crateList} />
+				<Sorter
+					sortBy={sortBy}
+					setSortMode={setSortMode}
+					setSortOrder={setSortOrder}
+					mode='crate'
+				/>
+				<div className='crates-page__crates'>
+					<ItemList crateList={sortedCrates} />
+				</div>
 				{defaultCrate ? (
 					<p className='crates-page__default-text'>
 						We've created your first crate for you, just click the edit icon to
@@ -59,6 +84,16 @@ function CratesPage() {
 					</p>
 				) : null}
 			</div>
+
+			{sortMode && (
+				<SorterModal
+					sortBy={sortBy}
+					setSortBy={setSortBy}
+					setSortMode={setSortMode}
+					setSortOrder={setSortOrder}
+					mode='crate'
+				/>
+			)}
 		</main>
 	);
 }
