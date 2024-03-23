@@ -1,5 +1,6 @@
 import "./CrateDetailsPage.scss";
 import { baseUrl } from "../../utils/consts";
+import { sortList } from "../../utils/sort";
 
 // components
 import AddAlbumModal from "../../components/AddAlbumModal/AddAlbumModal";
@@ -22,6 +23,8 @@ function CrateDetailsPage() {
 	const [deleteMode, setDeleteMode] = useState(false);
 	const [addMode, setAddMode] = useState(false);
 	const [activeAlbum, setActiveAlbum] = useState(null);
+	const [sortBy, setSortBy] = useState("");
+	const [sortedAlbums, setSortedAlbums] = useState(null);
 
 	const crate_id = useParams().crate_id;
 	const user_id = localStorage.getItem("audioFileId");
@@ -40,7 +43,6 @@ function CrateDetailsPage() {
 			});
 
 			setAlbumIds(albums);
-
 			setCrateName(response.data.name);
 		} catch (error) {
 			console.log(error);
@@ -66,6 +68,8 @@ function CrateDetailsPage() {
 		}
 	}
 
+	// name, artist, duration, release year
+
 	async function updateCrateName(name) {
 		try {
 			await axios.patch(`${baseUrl}/crates/${crate_id}/`, {
@@ -90,11 +94,23 @@ function CrateDetailsPage() {
 		}
 	}
 
+	function sortAlbums() {
+		setSortedAlbums(sortList(crate.albums, sortBy));
+	}
+
 	useEffect(() => {
 		getCrateDetails();
 	}, [addMode]);
 
-	if (!crate) {
+	useEffect(() => {
+		if (crate) {
+			sortAlbums();
+		}
+	}, [crate]);
+
+	useEffect(() => {}, [sortBy, sortedAlbums]);
+
+	if (!sortedAlbums) {
 		return <>Loading...</>;
 	}
 
@@ -112,7 +128,7 @@ function CrateDetailsPage() {
 			<div className='crate-details-page__container'>
 				<div className='crate-details-page__albums'>
 					<ItemList
-						albumList={crate.albums}
+						albumList={sortedAlbums}
 						setActiveAlbum={setActiveAlbum}
 						editMode={editMode}
 						removeAlbum={removeAlbum}

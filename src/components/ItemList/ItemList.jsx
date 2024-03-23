@@ -2,7 +2,7 @@
 import Item from "../Item/Item";
 
 // libraries
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 function ItemList({
 	crateList,
@@ -14,9 +14,6 @@ function ItemList({
 	editMode,
 	removeAlbum,
 }) {
-	const [sortBy, setSortBy] = useState("release_date");
-	const [sortedItemList, setSortedItemList] = useState(null);
-
 	let itemList;
 	let type;
 	let mode;
@@ -36,45 +33,15 @@ function ItemList({
 		type = "album-result";
 	}
 
-	// name, artist, duration, release year
-
-	function sortList() {
-		if (sortBy) {
-			if (typeof itemList[0][sortBy] === "string") {
-				setSortedItemList(
-					itemList.sort((a, b) => {
-						return a[sortBy].localeCompare(b[sortBy]);
-					})
-				);
-			} else if (sortBy === "artists") {
-				setSortedItemList(
-					itemList.sort((a, b) => {
-						return a[sortBy][0].localeCompare(b[sortBy][0]);
-					})
-				);
-			} else {
-				setSortedItemList(itemList.sort((a, b) => a[sortBy] - b[sortBy]));
-			}
-		}
-	}
-
-	useEffect(() => {
-		sortList();
-	}, []);
-
 	// re-render list whenever album is added
 	useEffect(() => {}, [albumIds]);
-
-	if (!sortedItemList) {
-		return <>Load..</>;
-	}
 
 	return (
 		<section className='item-list'>
 			{itemList.length === 0 && type === "album" && (
 				<p>no albums yet. click the edit icon to add records to your crate.</p>
 			)}
-			{sortedItemList.map((item) => {
+			{itemList.map((item) => {
 				return (
 					<Item
 						key={item.id}
