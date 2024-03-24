@@ -50,6 +50,8 @@ function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 	useEffect(() => {
 		if (term) {
 			searchSpotify(term);
+		} else {
+			setResultList([]);
 		}
 	}, [term]);
 

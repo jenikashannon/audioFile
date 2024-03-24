@@ -115,7 +115,11 @@ function CrateDetailsPage() {
 	}
 
 	return (
-		<main className='crate-details-page'>
+		<main
+			className={`crate-details-page ${
+				deleteMode && "crate-details-page--deactivated"
+			}`}
+		>
 			<Header
 				mode='crate-details'
 				setEditMode={setEditMode}

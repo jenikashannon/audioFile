@@ -2,6 +2,10 @@
 @use "../../styles/partials/mixins";
 
 .crate-details-page {
+	&--deactivated {
+		pointer-events: none;
+	}
+
 	&__container {
 		@include mixins.page;
 	}
