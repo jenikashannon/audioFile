@@ -1,12 +1,18 @@
 import "./HeaderIcon.scss";
 
-import { useState } from "react";
+import { useRef } from "react";
+import { useClickAway } from "react-use";
 
-function HeaderIcon({ setEditMode, editMode, deleteMode, setDeleteMode }) {
-	const [menuMode, setMenuMode] = useState(false);
+function HeaderIcon({ setEditMode, setDeleteMode, menuMode, setMenuMode }) {
+	const ref = useRef(null);
+	// useClickAway(ref, () => {
+	// 	setMenuMode(false);
+	// });
 
 	function handleClick() {
-		setMenuMode(true);
+		setMenuMode((prev) => {
+			return !prev;
+		});
 	}
 
 	function handleEdit() {
@@ -21,7 +27,6 @@ function HeaderIcon({ setEditMode, editMode, deleteMode, setDeleteMode }) {
 
 	return (
 		<div className='header-icon'>
-			{/* {!editMode && !deleteMode && ( */}
 			<svg
 				onClick={handleClick}
 				className='header-icon__button'
@@ -32,10 +37,9 @@ function HeaderIcon({ setEditMode, editMode, deleteMode, setDeleteMode }) {
 			>
 				<path d='M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z' />
 			</svg>
-			{/* )} */}
 
 			{menuMode && (
-				<div className='header-icon__menu'>
+				<div className='header-icon__menu' ref={ref}>
 					<div className='header-icon__option' onClick={handleEdit}>
 						<svg
 							className='header-icon__button--dark'

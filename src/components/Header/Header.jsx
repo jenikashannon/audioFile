@@ -8,10 +8,11 @@ function Header({
 	text,
 	setEditMode,
 	editMode,
-	deleteMode,
 	setDeleteMode,
 	crateName,
 	setCrateName,
+	menuMode,
+	setMenuMode,
 }) {
 	function handleChange(event) {
 		setCrateName(event.target.value);
@@ -39,9 +40,9 @@ function Header({
 			{mode === "crate-details" && (
 				<HeaderIcon
 					setEditMode={setEditMode}
-					editMode={editMode}
-					deleteMode={deleteMode}
 					setDeleteMode={setDeleteMode}
+					menuMode={menuMode}
+					setMenuMode={setMenuMode}
 				/>
 			)}
 		</header>

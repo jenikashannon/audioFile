@@ -5,6 +5,7 @@
 
 	&__button {
 		fill: colors.$white;
+		pointer-events: all;
 
 		&--dark {
 			fill: colors.$black;
@@ -29,6 +30,7 @@
 		display: flex;
 		gap: 0.25rem;
 		align-items: center;
+		pointer-events: all;
 
 		&-text {
 			font-size: 14px;

@@ -29,6 +29,7 @@ function CrateDetailsPage() {
 	const [sortBy, setSortBy] = useState("");
 	const [sortOrder, setSortOrder] = useState("asc");
 	const [sortedAlbums, setSortedAlbums] = useState(null);
+	const [menuMode, setMenuMode] = useState(false);
 
 	const crate_id = useParams().crate_id;
 	const user_id = localStorage.getItem("audioFileId");
@@ -117,17 +118,18 @@ function CrateDetailsPage() {
 	return (
 		<main
 			className={`crate-details-page ${
-				deleteMode && "crate-details-page--deactivated"
+				deleteMode || menuMode ? "crate-details-page--deactivated" : ""
 			}`}
 		>
 			<Header
 				mode='crate-details'
 				setEditMode={setEditMode}
 				editMode={editMode}
-				deleteMode={deleteMode}
 				setDeleteMode={setDeleteMode}
 				crateName={crateName}
 				setCrateName={setCrateName}
+				menuMode={menuMode}
+				setMenuMode={setMenuMode}
 			/>
 			<div className='crate-details-page__container'>
 				<Sorter
