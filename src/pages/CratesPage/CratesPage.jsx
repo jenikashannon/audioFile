@@ -5,6 +5,7 @@ import { sortList } from "../../utils/sort";
 // components
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import Sorter from "../../components/Sorter/Sorter";
 import SorterModal from "../../components/SorterModal/SorterModal";
 
@@ -12,6 +13,7 @@ import SorterModal from "../../components/SorterModal/SorterModal";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import FuzzySearch from "fuzzy-search";
 
 function CratesPage() {
 	const [crateList, setCrateList] = useState(null);
@@ -19,23 +21,36 @@ function CratesPage() {
 	const [sortMode, setSortMode] = useState(false);
 	const [sortBy, setSortBy] = useState("");
 	const [sortOrder, setSortOrder] = useState("asc");
-	const [sortedCrates, setSortedCrates] = useState(null);
+	const [sortedCrateList, setSortedCrateList] = useState(null);
+	const [filteredCrateList, setFilteredCrateList] = useState(null);
+	const [term, setTerm] = useState("");
 
 	const user_id = localStorage.getItem("audioFileId");
 
 	const navigate = useNavigate();
+	const searcher = new FuzzySearch(crateList, [
+		"name",
+		"albums",
+		"tracks",
+		"artists",
+	]);
 
 	async function getUserCrates() {
 		try {
 			const response = await axios.get(`${baseUrl}/crates?user_id=${user_id}`);
 			setCrateList(response.data);
+			setFilteredCrateList(response.data);
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
 	function sortCrates() {
-		setSortedCrates(sortList(crateList, sortBy, sortOrder));
+		setSortedCrateList(sortList(filteredCrateList, sortBy, sortOrder));
+	}
+
+	function searchCrates(term) {
+		setFilteredCrateList(searcher.search(term), { sort: true });
 	}
 
 	useEffect(() => {
@@ -48,19 +63,28 @@ function CratesPage() {
 
 	useEffect(() => {
 		if (crateList) {
-			if (crateList.length === 1 && crateList[0].default_crate) {
+			if (
+				filteredCrateList.length === 1 &&
+				filteredCrateList[0].default_crate
+			) {
 				setDefaultCrate(true);
 			}
 
 			sortCrates();
 		}
-	}, [crateList]);
+	}, [filteredCrateList]);
 
 	useEffect(() => {
 		getUserCrates();
 	}, [sortBy, sortOrder]);
 
-	if (!sortedCrates) {
+	useEffect(() => {
+		if (term) {
+			searchCrates(term);
+		}
+	}, [term]);
+
+	if (!sortedCrateList) {
 		return <>Loading...</>;
 	}
 
@@ -68,6 +92,7 @@ function CratesPage() {
 		<main className='crates-page'>
 			<Header text='my crates' />
 			<div className='crates-page__container'>
+				<SearchBar handleSearch={searchCrates} setTerm={setTerm} term={term} />
 				<Sorter
 					sortBy={sortBy}
 					setSortMode={setSortMode}
@@ -75,7 +100,7 @@ function CratesPage() {
 					mode='crate'
 				/>
 				<div className='crates-page__crates'>
-					<ItemList crateList={sortedCrates} />
+					<ItemList crateList={sortedCrateList} />
 				</div>
 				{defaultCrate ? (
 					<p className='crates-page__default-text'>

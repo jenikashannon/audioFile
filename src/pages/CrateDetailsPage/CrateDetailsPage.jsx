@@ -72,8 +72,6 @@ function CrateDetailsPage() {
 		}
 	}
 
-	// name, artist, duration, release year
-
 	async function updateCrateName(name) {
 		try {
 			await axios.patch(`${baseUrl}/crates/${crate_id}/`, {

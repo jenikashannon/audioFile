@@ -4,10 +4,6 @@
 .crate-details-page {
 	&__container {
 		@include mixins.page;
-
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
 	}
 
 	&__albums {

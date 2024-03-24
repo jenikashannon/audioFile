@@ -1,14 +1,8 @@
 import "./SearchBar.scss";
 
-// libraries
-import { useState } from "react";
-
-function SearchBar({ handleSearch }) {
-	const [term, setTerm] = useState("");
-
+function SearchBar({ term, setTerm }) {
 	async function handleChange(event) {
 		setTerm(event.target.value);
-		handleSearch(term);
 	}
 
 	return (

@@ -1,6 +1,10 @@
 function sortList(list, sortBy, orderBy) {
 	let sortedList;
 
+	if (list.length === 0) {
+		return [];
+	}
+
 	if (typeof list[0][sortBy] === "string") {
 		sortedList = list.sort((a, b) => {
 			return a[sortBy].localeCompare(b[sortBy]);

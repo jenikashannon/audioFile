@@ -8,12 +8,13 @@ import ItemList from "../ItemList/ItemList";
 import SearchBar from "../SearchBar/SearchBar";
 
 // libraries
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 	const [resultList, setResultList] = useState([]);
+	const [term, setTerm] = useState("");
 
 	const user_id = localStorage.getItem("audioFileId");
 	const crate_id = useParams().crate_id;
@@ -36,24 +37,28 @@ function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 	}
 
 	async function searchSpotify(term) {
-		if (term) {
-			try {
-				const response = await axios.get(
-					`${baseUrl}/spotify/search?term=${term}&user_id=${user_id}`
-				);
-				setResultList(response.data);
-			} catch (error) {
-				console.log(error);
-			}
+		try {
+			const response = await axios.get(
+				`${baseUrl}/spotify/search?term=${term}&user_id=${user_id}`
+			);
+			setResultList(response.data);
+		} catch (error) {
+			console.log(error);
 		}
 	}
+
+	useEffect(() => {
+		if (term) {
+			searchSpotify(term);
+		}
+	}, [term]);
 
 	return (
 		<article className='add-album-modal'>
 			<div className='add-album-modal__card add-album-modal__card--long'>
 				<CloseIcon handleClose={handleClose} />
 				<h1 className='add-album-modal__title'>search for albums</h1>
-				<SearchBar handleSearch={searchSpotify} />
+				<SearchBar term={term} setTerm={setTerm} />
 				<div className='add-album-modal__results'>
 					{resultList.length === 0 && (
 						<h2 className='add-album-modal__sub-header'>
