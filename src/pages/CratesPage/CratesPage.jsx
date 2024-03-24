@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import FuzzySearch from "fuzzy-search";
+import Fuse from "fuse.js";
 
 function CratesPage() {
 	const [crateList, setCrateList] = useState(null);
@@ -28,12 +29,14 @@ function CratesPage() {
 	const user_id = localStorage.getItem("audioFileId");
 
 	const navigate = useNavigate();
-	const searcher = new FuzzySearch(crateList, [
-		"name",
-		"albums",
-		"tracks",
-		"artists",
-	]);
+
+	const options = {
+		keys: ["name", "albums", "tracks", "artists"],
+		threshold: 0.2,
+		includeMatches: true,
+		findAllMatches: true,
+		ignoreLocation: true,
+	};
 
 	async function getUserCrates() {
 		try {
@@ -50,7 +53,15 @@ function CratesPage() {
 	}
 
 	function searchCrates(term) {
-		setFilteredCrateList(searcher.search(term), { sort: true });
+		const fuse = new Fuse(crateList, options);
+		const results = fuse.search(term);
+		console.log(results);
+
+		const formattedResults = results.map((result) => {
+			return result.item;
+		});
+
+		setFilteredCrateList(formattedResults);
 	}
 
 	useEffect(() => {
@@ -62,7 +73,7 @@ function CratesPage() {
 	}, []);
 
 	useEffect(() => {
-		if (crateList) {
+		if (filteredCrateList) {
 			if (
 				filteredCrateList.length === 1 &&
 				filteredCrateList[0].default_crate
