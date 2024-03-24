@@ -36,6 +36,7 @@ function CratesPage() {
 		includeMatches: true,
 		findAllMatches: true,
 		ignoreLocation: true,
+		minMatchCharLength: 2,
 	};
 
 	async function getUserCrates() {
@@ -53,14 +54,20 @@ function CratesPage() {
 	}
 
 	function searchCrates(term) {
+		if (!term) {
+			return setFilteredCrateList(crateList);
+		}
+
 		const fuse = new Fuse(crateList, options);
 		const results = fuse.search(term);
-		console.log(results);
 
 		const formattedResults = results.map((result) => {
-			return result.item;
+			const item = { ...result.item, matches: result.matches };
+
+			return item;
 		});
 
+		console.log(formattedResults);
 		setFilteredCrateList(formattedResults);
 	}
 
@@ -71,6 +78,10 @@ function CratesPage() {
 			getUserCrates();
 		}
 	}, []);
+
+	useEffect(() => {
+		getUserCrates();
+	}, [sortBy, sortOrder]);
 
 	useEffect(() => {
 		if (filteredCrateList) {
@@ -86,13 +97,7 @@ function CratesPage() {
 	}, [filteredCrateList]);
 
 	useEffect(() => {
-		getUserCrates();
-	}, [sortBy, sortOrder]);
-
-	useEffect(() => {
-		if (term) {
-			searchCrates(term);
-		}
+		searchCrates(term);
 	}, [term]);
 
 	if (!sortedCrateList) {

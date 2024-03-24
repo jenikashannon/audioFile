@@ -2,6 +2,8 @@
 
 .searchbar {
 	width: 100%;
+	display: flex;
+	position: relative;
 
 	&__field {
 		width: 100%;
@@ -14,5 +16,12 @@
 		&:focus {
 			border: 2px colors.$accent-light solid;
 		}
+	}
+
+	&__close {
+		position: absolute;
+		width: 15px;
+		right: 8px;
+		top: 4px;
 	}
 }
