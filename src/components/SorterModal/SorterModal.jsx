@@ -1,21 +1,16 @@
 import "./SorterModal.scss";
 import { sortsAlbum, sortsCrate } from "../../utils/sort";
 
-// libraries
-import { useRef } from "react";
-import { useClickAway } from "react-use";
-
 function SorterModal({ sortBy, setSortBy, setSortMode, setSortOrder, mode }) {
 	const sorts = mode === "album" ? sortsAlbum : sortsCrate;
 
-	const ref = useRef(null);
-	useClickAway(ref, () => {
+	function closeModal() {
 		setSortMode(false);
-	});
+	}
 
 	return (
-		<article className='sorter-modal'>
-			<div className='sorter-modal__card' ref={ref}>
+		<article className='sorter-modal' onClick={closeModal}>
+			<div className='sorter-modal__card'>
 				<p className='sorter-modal__title'>sort by</p>
 				<div className='sorter-modal__container'>
 					{sorts.map((sort) => {
@@ -40,12 +35,7 @@ function SorterModal({ sortBy, setSortBy, setSortMode, setSortOrder, mode }) {
 							</div>
 						);
 					})}
-					<button
-						className='sorter-modal__close'
-						onClick={() => {
-							setSortMode(false);
-						}}
-					>
+					<button className='sorter-modal__close' onClick={closeModal}>
 						close
 					</button>
 				</div>
