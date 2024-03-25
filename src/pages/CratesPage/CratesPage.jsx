@@ -13,7 +13,6 @@ import SorterModal from "../../components/SorterModal/SorterModal";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import FuzzySearch from "fuzzy-search";
 import Fuse from "fuse.js";
 
 function CratesPage() {
@@ -73,7 +72,7 @@ function CratesPage() {
 
 	useEffect(() => {
 		if (!user_id) {
-			navigate("/login");
+			navigate("/authorize");
 		} else {
 			getUserCrates();
 		}

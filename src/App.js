@@ -2,6 +2,7 @@ import "./App.scss";
 
 // pages & components
 import AddCratePage from "./pages/AddCratePage/AddCratePage";
+import AuthorizeSpotifyPage from "./pages/AuthorizeSpotifyPage/AuthorizeSpotifyPage";
 import CrateDetailsPage from "./pages/CrateDetailsPage/CrateDetailsPage";
 import CratesPage from "./pages/CratesPage/CratesPage";
 import Footer from "./components/Footer/Footer";
@@ -20,6 +21,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<CratesPage isLoggedIn={isLoggedIn} />} />
 				<Route path='/login' element={<LoginPage />} />
+				<Route path='/authorize' element={<AuthorizeSpotifyPage />} />
 				<Route
 					path='/users'
 					element={<UsersPage setIsLoggedIn={setIsLoggedIn} />}
