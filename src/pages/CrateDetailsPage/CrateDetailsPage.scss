@@ -13,4 +13,9 @@
 	&__albums {
 		@include mixins.scroll-view;
 	}
+
+	&__button-container {
+		display: flex;
+		gap: 1rem;
+	}
 }

@@ -12,7 +12,8 @@ function ItemList({
 	addAlbum,
 	albumIds,
 	editMode,
-	removeAlbum,
+	setDeletedAlbumIds,
+	deletedAlbumIds,
 }) {
 	let itemList;
 	let type;
@@ -50,7 +51,8 @@ function ItemList({
 						addAlbum={addAlbum}
 						albumIds={albumIds}
 						editMode={editMode}
-						removeAlbum={removeAlbum}
+						setDeletedAlbumIds={setDeletedAlbumIds}
+						deletedAlbumIds={deletedAlbumIds}
 					/>
 				);
 			})}

@@ -40,29 +40,23 @@ function Header({
 					<path d='M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z' />
 				</svg>
 			)}
-			{editMode ? (
-				<input
-					className='header__title header__title--active'
-					type='text'
-					value={crateName}
-					onChange={handleChange}
-					autoFocus
-				></input>
-			) : (
-				<input
-					className='header__title'
-					type='text'
-					value={crateName}
-					disabled
-				></input>
-			)}
 			{mode === "crate-details" && (
-				<HeaderIcon
-					setEditMode={setEditMode}
-					setDeleteMode={setDeleteMode}
-					menuMode={menuMode}
-					setMenuMode={setMenuMode}
-				/>
+				<>
+					<input
+						className={`header__title ${
+							editMode ? "header__title--active" : ""
+						}`}
+						type='text'
+						value={crateName}
+						onChange={handleChange}
+					></input>
+					<HeaderIcon
+						setEditMode={setEditMode}
+						setDeleteMode={setDeleteMode}
+						menuMode={menuMode}
+						setMenuMode={setMenuMode}
+					/>
+				</>
 			)}
 		</header>
 	);

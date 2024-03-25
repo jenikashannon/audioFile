@@ -13,14 +13,18 @@
 	&--delete {
 		background-color: colors.$red;
 		color: colors.$white;
-		border-radius: 20px;
 		flex-grow: 1;
+		flex-basis: 50%;
 	}
 
 	&--cancel {
 		background-color: colors.$grey;
 		color: colors.$white;
-		border-radius: 20px;
 		flex-shrink: 2;
+		flex-basis: 50%;
+	}
+
+	&--save {
+		flex-basis: 50%;
 	}
 }

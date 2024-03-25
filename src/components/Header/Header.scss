@@ -18,9 +18,12 @@
 		font-size: 1.5rem;
 		border: none;
 		width: 80%;
+		pointer-events: none;
 
 		&--active {
 			border-bottom: 1px colors.$white solid;
+			pointer-events: all;
+			padding: 0 4px;
 
 			&:focus {
 				border: none;

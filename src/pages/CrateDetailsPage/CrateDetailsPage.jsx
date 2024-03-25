@@ -30,6 +30,7 @@ function CrateDetailsPage() {
 	const [sortOrder, setSortOrder] = useState("asc");
 	const [sortedAlbums, setSortedAlbums] = useState(null);
 	const [menuMode, setMenuMode] = useState(false);
+	const [deletedAlbumIds, setDeletedAlbumIds] = useState([]);
 
 	const crate_id = useParams().crate_id;
 	const user_id = localStorage.getItem("audioFileId");
@@ -73,7 +74,7 @@ function CrateDetailsPage() {
 		}
 	}
 
-	async function updateCrateName(name) {
+	async function updateCrateName() {
 		try {
 			await axios.patch(`${baseUrl}/crates/${crate_id}/`, {
 				name: crateName,
@@ -84,21 +85,37 @@ function CrateDetailsPage() {
 		}
 	}
 
-	async function toggleAddMode() {
+	function toggleAddMode() {
 		setAddMode(true);
 	}
 
-	async function toggleEditMode() {
+	function saveEdits() {
 		setEditMode(false);
 
 		// if new crate name, update crate
 		if (crateName !== crate.name) {
 			updateCrateName(crateName);
 		}
+
+		if (deletedAlbumIds.length > 0) {
+			deletedAlbumIds.forEach((albumId) => {
+				removeAlbum(albumId);
+			});
+		}
+	}
+
+	function abortEdits() {
+		setEditMode(false);
+		setDeletedAlbumIds([]);
+		setCrateName(crate.name);
 	}
 
 	function sortAlbums() {
-		setSortedAlbums(sortList(crate.albums, sortBy, sortOrder));
+		setSortedAlbums(
+			sortList(crate.albums, sortBy, sortOrder).filter(
+				(album) => !deletedAlbumIds.includes(album.id)
+			)
+		);
 	}
 
 	useEffect(() => {
@@ -109,7 +126,7 @@ function CrateDetailsPage() {
 		if (crate) {
 			sortAlbums();
 		}
-	}, [crate]);
+	}, [crate, deletedAlbumIds]);
 
 	if (!sortedAlbums) {
 		return <>Loading...</>;
@@ -139,14 +156,21 @@ function CrateDetailsPage() {
 						albumList={sortedAlbums}
 						setActiveAlbum={setActiveAlbum}
 						editMode={editMode}
-						removeAlbum={removeAlbum}
+						deletedAlbumIds={deletedAlbumIds}
+						setDeletedAlbumIds={setDeletedAlbumIds}
 						albumIds={albumIds}
 					/>
 				</div>
-				<Button
-					text={editMode ? "save" : "add albums"}
-					handleClick={editMode ? toggleEditMode : toggleAddMode}
-				/>
+				<div className='crate-details-page__button-container'>
+					{editMode && (
+						<Button text='cancel' type='cancel' handleClick={abortEdits} />
+					)}
+					<Button
+						text={editMode ? "save" : "add albums"}
+						type={editMode ? "save" : ""}
+						handleClick={editMode ? saveEdits : toggleAddMode}
+					/>
+				</div>
 			</div>
 
 			{deleteMode && (

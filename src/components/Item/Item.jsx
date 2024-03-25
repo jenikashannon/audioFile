@@ -9,12 +9,12 @@ import { useNavigate } from "react-router-dom";
 function Item({
 	item,
 	type,
-	mode,
 	setActiveAlbum,
 	addAlbum,
 	albumIds,
 	editMode,
-	removeAlbum,
+	deletedAlbumIds,
+	setDeletedAlbumIds,
 }) {
 	let albumCount;
 	let details;
@@ -22,6 +22,12 @@ function Item({
 	let handleClick;
 
 	const navigate = useNavigate();
+
+	function removeAlbum(id) {
+		const newIds = [...deletedAlbumIds];
+		newIds.push(id);
+		setDeletedAlbumIds(newIds);
+	}
 
 	if (type === "crate") {
 		albumCount =
