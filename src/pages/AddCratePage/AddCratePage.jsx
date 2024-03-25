@@ -8,6 +8,7 @@ import Header from "../../components/Header/Header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import uniqid from "uniqid";
 
 function AddCratePage() {
 	const [crateName, setCrateName] = useState("new crate");
@@ -20,14 +21,16 @@ function AddCratePage() {
 	}
 
 	async function handleSubmit(event) {
+		const id = uniqid();
 		event.preventDefault();
 		try {
 			await axios.post(`${baseUrl}/crates?user_id=${user_id}`, {
 				name: event.target.crate_name.value,
 				user_id,
+				id,
 			});
 
-			navigate("/");
+			navigate(`/crates/${id}`);
 		} catch (error) {
 			console.log(error);
 		}
