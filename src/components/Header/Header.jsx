@@ -9,13 +9,13 @@ import { useNavigate } from "react-router-dom";
 function Header({
 	mode,
 	text,
-	setEditMode,
 	editMode,
-	setDeleteMode,
 	crateName,
 	setCrateName,
 	menuMode,
 	setMenuMode,
+	handleEdit,
+	handleDelete,
 }) {
 	const navigate = useNavigate();
 
@@ -51,10 +51,11 @@ function Header({
 						onChange={handleChange}
 					></input>
 					<HeaderIcon
-						setEditMode={setEditMode}
-						setDeleteMode={setDeleteMode}
+						handleEdit={handleEdit}
+						handleDelete={handleDelete}
 						menuMode={menuMode}
 						setMenuMode={setMenuMode}
+						type='header'
 					/>
 				</>
 			)}

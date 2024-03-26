@@ -1,48 +1,10 @@
 @use "../../styles/partials/colors";
 
 .header-icon {
+	position: relative;
+
 	&__button {
-		fill: colors.$white;
+		// fill: colors.$white;
 		pointer-events: all;
-
-		&--dark {
-			fill: colors.$black;
-			height: 16px;
-		}
-	}
-
-	&__menu {
-		background-color: rgba(0, 0, 0, 0);
-		width: 100vw;
-		height: 100vh;
-		position: absolute;
-		top: 0;
-		right: 0;
-		z-index: 5;
-	}
-
-	&__card {
-		top: 44px;
-		right: 28px;
-		position: absolute;
-		background-color: colors.$white;
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		width: 9rem;
-		padding: 0.5rem;
-		border-radius: 4px;
-		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
-	}
-
-	&__option {
-		display: flex;
-		gap: 0.25rem;
-		align-items: center;
-		pointer-events: all;
-
-		&-text {
-			font-size: 14px;
-		}
 	}
 }

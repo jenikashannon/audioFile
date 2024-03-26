@@ -118,6 +118,16 @@ function CrateDetailsPage() {
 		);
 	}
 
+	function handleEdit() {
+		setMenuMode(false);
+		setEditMode(true);
+	}
+
+	function handleDelete() {
+		setMenuMode(false);
+		setDeleteMode(true);
+	}
+
 	useEffect(() => {
 		getCrateDetails();
 	}, [addMode, sortBy, sortOrder]);
@@ -143,6 +153,8 @@ function CrateDetailsPage() {
 				setCrateName={setCrateName}
 				menuMode={menuMode}
 				setMenuMode={setMenuMode}
+				handleEdit={handleEdit}
+				handleDelete={handleDelete}
 			/>
 			<div className='crate-details-page__container'>
 				<Sorter

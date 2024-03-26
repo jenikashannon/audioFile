@@ -21,6 +21,7 @@ function CratesPage() {
 	const [sortMode, setSortMode] = useState(false);
 	const [sortBy, setSortBy] = useState("");
 	const [sortOrder, setSortOrder] = useState("asc");
+	const [pinnedCrateList, setPinnedCrateList] = useState(null);
 	const [sortedCrateList, setSortedCrateList] = useState(null);
 	const [filteredCrateList, setFilteredCrateList] = useState(null);
 	const [term, setTerm] = useState("");
@@ -42,7 +43,10 @@ function CratesPage() {
 		try {
 			const response = await axios.get(`${baseUrl}/crates?user_id=${user_id}`);
 			setCrateList(response.data);
-			setFilteredCrateList(response.data);
+			setPinnedCrateList(response.data.filter((crate) => crate.pinned_crate));
+			setFilteredCrateList(
+				response.data.filter((crate) => !crate.pinned_crate)
+			);
 		} catch (error) {
 			console.log(error);
 		}
@@ -68,6 +72,15 @@ function CratesPage() {
 
 		console.log(formattedResults);
 		setFilteredCrateList(formattedResults);
+	}
+
+	async function togglePin(crate_id) {
+		try {
+			await axios.put(`${baseUrl}/crates/${crate_id}`);
+			getUserCrates();
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	useEffect(() => {
@@ -115,7 +128,8 @@ function CratesPage() {
 					mode='crate'
 				/>
 				<div className='crates-page__crates'>
-					<ItemList crateList={sortedCrateList} />
+					<ItemList crateList={pinnedCrateList} togglePin={togglePin} />
+					<ItemList crateList={sortedCrateList} togglePin={togglePin} />
 				</div>
 				{defaultCrate ? (
 					<p className='crates-page__default-text'>

@@ -1,0 +1,37 @@
+@use "../../styles/partials/colors";
+
+.menu-modal {
+	background-color: rgba(0, 0, 0, 0);
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 5;
+
+	&__card {
+		top: 8px;
+		right: 4px;
+		position: absolute;
+		background-color: colors.$white;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		width: 9rem;
+		padding: 0.5rem;
+		border-radius: 4px;
+		box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+		z-index: 6;
+	}
+
+	&__option {
+		display: flex;
+		gap: 0.25rem;
+		align-items: center;
+		pointer-events: all;
+
+		&-text {
+			font-size: 14px;
+		}
+	}
+}

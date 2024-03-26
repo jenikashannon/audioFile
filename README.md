@@ -300,3 +300,5 @@ complete if you have extra time, or after finishing. -->
 - change user info (email, username, password)
 - add user photo
 - change user photo
+
+<!-- pin icon: <a href="https://www.flaticon.com/free-icons/pin" title="pin icons">Pin icons created by Freepik - Flaticon</a> -->

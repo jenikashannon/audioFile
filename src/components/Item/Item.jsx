@@ -2,9 +2,11 @@ import "./Item.scss";
 
 // components
 import AddIcon from "../AddIcon/AddIcon";
+import HeaderIcon from "../HeaderIcon/HeaderIcon";
 
 // libraries
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Item({
 	item,
@@ -15,7 +17,11 @@ function Item({
 	editMode,
 	deletedAlbumIds,
 	setDeletedAlbumIds,
+	togglePin,
+	setDeleteMode,
 }) {
+	const [menuMode, setMenuMode] = useState(false);
+
 	let albumCount;
 	let details;
 	let image;
@@ -27,6 +33,15 @@ function Item({
 		const newIds = [...deletedAlbumIds];
 		newIds.push(id);
 		setDeletedAlbumIds(newIds);
+	}
+
+	function handlePin() {
+		togglePin(item.id);
+	}
+
+	function handleDelete() {
+		setMenuMode(false);
+		setDeleteMode(true);
 	}
 
 	if (type === "crate") {
@@ -71,6 +86,15 @@ function Item({
 			)}
 			{editMode && (
 				<AddIcon changeAlbum={removeAlbum} id={item.id} mode='remove' />
+			)}
+			{type === "crate" && (
+				<HeaderIcon
+					menuMode={menuMode}
+					setMenuMode={setMenuMode}
+					handleDelete={handleDelete}
+					handlePin={handlePin}
+					type='crate'
+				/>
 			)}
 		</article>
 	);

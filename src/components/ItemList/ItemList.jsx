@@ -14,6 +14,7 @@ function ItemList({
 	editMode,
 	setDeletedAlbumIds,
 	deletedAlbumIds,
+	togglePin,
 }) {
 	let itemList;
 	let type;
@@ -53,6 +54,7 @@ function ItemList({
 						editMode={editMode}
 						setDeletedAlbumIds={setDeletedAlbumIds}
 						deletedAlbumIds={deletedAlbumIds}
+						togglePin={togglePin}
 					/>
 				);
 			})}
