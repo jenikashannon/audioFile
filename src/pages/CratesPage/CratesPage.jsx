@@ -6,6 +6,7 @@ import { sortList } from "../../utils/sort";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import SearchCratesModal from "../../components/SearchCratesModal/SearchCratesModal";
 import Sorter from "../../components/Sorter/Sorter";
 import SorterModal from "../../components/SorterModal/SorterModal";
 
@@ -24,7 +25,9 @@ function CratesPage() {
 	const [pinnedCrateList, setPinnedCrateList] = useState(null);
 	const [sortedCrateList, setSortedCrateList] = useState(null);
 	const [filteredCrateList, setFilteredCrateList] = useState(null);
+	const [searchedCrateList, setSearchedCrateList] = useState([]);
 	const [term, setTerm] = useState("");
+	const [searchMode, setSearchMode] = useState(false);
 
 	const user_id = localStorage.getItem("audioFileId");
 
@@ -58,7 +61,7 @@ function CratesPage() {
 
 	function searchCrates(term) {
 		if (!term) {
-			return setFilteredCrateList(crateList);
+			return setSearchedCrateList([]);
 		}
 
 		const fuse = new Fuse(crateList, options);
@@ -71,7 +74,7 @@ function CratesPage() {
 		});
 
 		console.log(formattedResults);
-		setFilteredCrateList(formattedResults);
+		setSearchedCrateList(formattedResults);
 	}
 
 	async function togglePin(crate_id) {
@@ -120,7 +123,16 @@ function CratesPage() {
 		<main className='crates-page'>
 			<Header text='my crates' />
 			<div className='crates-page__container'>
-				<SearchBar handleSearch={searchCrates} setTerm={setTerm} term={term} />
+				<SearchBar
+					handleSearch={searchCrates}
+					setTerm={setTerm}
+					term={term}
+					setSearchMode={setSearchMode}
+					handleSearchBarClick={() => {
+						console.log("here");
+						setSearchMode(true);
+					}}
+				/>
 				<Sorter
 					sortBy={sortBy}
 					setSortMode={setSortMode}
@@ -146,6 +158,13 @@ function CratesPage() {
 					setSortMode={setSortMode}
 					setSortOrder={setSortOrder}
 					mode='crate'
+				/>
+			)}
+
+			{searchMode && (
+				<SearchCratesModal
+					searchedCrateList={searchedCrateList}
+					setSearchMode={setSearchMode}
 				/>
 			)}
 		</main>

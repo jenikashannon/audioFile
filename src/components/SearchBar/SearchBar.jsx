@@ -1,6 +1,6 @@
 import "./SearchBar.scss";
 
-function SearchBar({ term, setTerm }) {
+function SearchBar({ term, setTerm, setSearchMode, handleSearchBarClick }) {
 	function handleChange(event) {
 		setTerm(event.target.value);
 	}
@@ -16,6 +16,7 @@ function SearchBar({ term, setTerm }) {
 				type='text'
 				name='search'
 				value={term}
+				onClick={handleSearchBarClick}
 				onChange={handleChange}
 				placeholder='album, track, artist'
 			/>

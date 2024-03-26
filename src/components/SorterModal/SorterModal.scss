@@ -39,10 +39,6 @@
 	}
 
 	&__close {
-		border: none;
-		background-color: colors.$white;
-		color: colors.$red;
-		margin-top: 1rem;
-		font-weight: 600;
+		@include mixins.close-button;
 	}
 }

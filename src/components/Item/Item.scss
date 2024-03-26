@@ -11,11 +11,23 @@
 		height: 40px;
 	}
 
+	&__pin-icon {
+		height: 16px;
+		transform: rotate(-45deg);
+		fill: colors.$accent-dark;
+	}
+
 	&__container {
 		display: flex;
 		justify-content: flex-start;
 		width: 100%;
 		gap: 0.75rem;
+
+		&--pin {
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+		}
 
 		&--text {
 			flex-direction: column;

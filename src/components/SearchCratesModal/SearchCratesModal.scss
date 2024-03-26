@@ -1,0 +1,15 @@
+@use "../../styles/partials/mixins";
+
+.search-crates-modal {
+	@include mixins.modal--active-background;
+
+	&__title {
+		width: 100%;
+		text-align: left;
+		font-size: 0.8rem;
+	}
+
+	&__close {
+		@include mixins.close-button;
+	}
+}

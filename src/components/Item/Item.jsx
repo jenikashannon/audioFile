@@ -44,7 +44,7 @@ function Item({
 		setDeleteMode(true);
 	}
 
-	if (type === "crate") {
+	if (type === "crate" || type === "crate-result") {
 		albumCount =
 			item.album_count === 1
 				? item.album_count + " album"
@@ -73,7 +73,20 @@ function Item({
 				<img src={image} className='item__image' />
 				<div className='item__container--text'>
 					<p className='item__name'>{details[0]}</p>
-					<p className='item__details'>{details[1]}</p>
+					<div className='item__container--pin'>
+						{type === "crate" && item.pinned_crate ? (
+							<svg
+								className='item__pin-icon'
+								xmlns='http://www.w3.org/2000/svg'
+								height='24'
+								viewBox='0 -960 960 960'
+								width='24'
+							>
+								<path d='m640-480 80 80v80H520v240l-40 40-40-40v-240H240v-80l80-80v-280h-40v-80h400v80h-40v280Zm-286 80h252l-46-46v-314H400v314l-46 46Zm126 0Z' />
+							</svg>
+						) : null}
+						<p className='item__details'>{details[1]}</p>
+					</div>
 				</div>
 			</div>
 			{type === "album-result" && (
@@ -94,6 +107,7 @@ function Item({
 					handleDelete={handleDelete}
 					handlePin={handlePin}
 					type='crate'
+					isPinned={item.pinned_crate}
 				/>
 			)}
 		</article>

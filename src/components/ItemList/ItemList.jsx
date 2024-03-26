@@ -7,8 +7,9 @@ import { useEffect } from "react";
 function ItemList({
 	crateList,
 	albumList,
-	setActiveAlbum,
 	resultList,
+	searchedCrateList,
+	setActiveAlbum,
 	addAlbum,
 	albumIds,
 	editMode,
@@ -33,6 +34,11 @@ function ItemList({
 	if (resultList) {
 		itemList = resultList;
 		type = "album-result";
+	}
+
+	if (searchedCrateList) {
+		itemList = searchedCrateList;
+		type = "crate-result";
 	}
 
 	// re-render list whenever album is added

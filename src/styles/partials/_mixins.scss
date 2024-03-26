@@ -30,6 +30,21 @@
 	}
 }
 
+@mixin modal--active-background {
+	width: 100%;
+	height: 65%;
+	position: absolute;
+	bottom: 4rem;
+	padding: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 3;
+	background-color: colors.$white;
+	border: lightblue 1px dotted;
+}
+
 @mixin page {
 	padding: 5rem 1rem;
 	position: relative;
@@ -40,13 +55,21 @@
 }
 
 @mixin scroll-view {
-	padding: 1rem;
+	// padding: 1rem;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(219, 244, 80, 0.1);
+	// background-color: rgba(219, 244, 80, 0.1);
 	overflow-y: scroll;
 	overflow-x: hidden;
 	scrollbar-color: rgba(219, 244, 80, 0.1) rgba(219, 244, 80, 0.1);
-	box-shadow: 0px 1px 2px 3px rgba(36, 36, 36, 0.4);
-	border-radius: 4px;
+	// box-shadow: 0px 1px 2px 3px rgba(36, 36, 36, 0.4);
+	// border-radius: 4px;
+}
+
+@mixin close-button {
+	border: none;
+	background-color: colors.$white;
+	color: colors.$red;
+	margin-top: 1rem;
+	font-weight: 600;
 }

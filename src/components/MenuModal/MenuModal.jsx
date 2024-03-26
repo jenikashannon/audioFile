@@ -1,8 +1,21 @@
 import "./MenuModal.scss";
 import { menuOptions } from "../../utils/menuOptions";
 
-function MenuModal({ setMenuMode, handleEdit, handleDelete, handlePin, type }) {
-	let handlers = { edit: handleEdit, delete: handleDelete, pin: handlePin };
+function MenuModal({
+	setMenuMode,
+	handleEdit,
+	handleDelete,
+	handlePin,
+	type,
+	isPinned,
+}) {
+	let handlers = {
+		edit: handleEdit,
+		delete: handleDelete,
+		pin: handlePin,
+		unpin: handlePin,
+	};
+
 	let options = [];
 
 	if (type === "header") {
@@ -10,7 +23,8 @@ function MenuModal({ setMenuMode, handleEdit, handleDelete, handlePin, type }) {
 	}
 
 	if (type === "crate") {
-		options = ["pin"];
+		const pinAction = isPinned ? "unpin" : "pin";
+		options = [pinAction, "delete"];
 	}
 
 	return (
@@ -37,8 +51,9 @@ function MenuModal({ setMenuMode, handleEdit, handleDelete, handlePin, type }) {
 							>
 								<path
 									d={
-										menuOptions.find((menuOption) => menuOption.text === option)
-											.path
+										menuOptions.find((menuOption) =>
+											menuOption.text.includes(option)
+										).path
 									}
 								/>
 							</svg>

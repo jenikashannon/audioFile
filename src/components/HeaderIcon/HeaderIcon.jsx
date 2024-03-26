@@ -10,6 +10,7 @@ function HeaderIcon({
 	handleDelete,
 	handlePin,
 	type,
+	isPinned,
 }) {
 	const paths = {
 		crate:
@@ -44,6 +45,7 @@ function HeaderIcon({
 					handleEdit={handleEdit}
 					handleDelete={handleDelete}
 					handlePin={handlePin}
+					isPinned={isPinned}
 				/>
 			)}
 		</div>
