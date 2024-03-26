@@ -9,6 +9,10 @@
 		font-size: 0.8rem;
 	}
 
+	&__results {
+		@include mixins.scroll-view;
+	}
+
 	&__close {
 		@include mixins.close-button;
 	}

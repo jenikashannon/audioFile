@@ -1,5 +1,6 @@
 // components
 import Item from "../Item/Item";
+import ItemSearchedCrate from "../ItemSearchedCrate/ItemSearchedCrate";
 
 // libraries
 import { useEffect } from "react";
@@ -42,26 +43,38 @@ function ItemList({
 	}
 
 	// re-render list whenever album is added
-	useEffect(() => {}, [albumIds]);
+	useEffect(() => {}, [albumIds, searchedCrateList]);
 
 	return (
 		<section className='item-list'>
 			{itemList.length === 0 && type === "album" && <p>no albums yet.</p>}
 			{itemList.map((item) => {
 				return (
-					<Item
-						key={item.id}
-						item={item}
-						type={type}
-						mode={mode}
-						setActiveAlbum={setActiveAlbum}
-						addAlbum={addAlbum}
-						albumIds={albumIds}
-						editMode={editMode}
-						setDeletedAlbumIds={setDeletedAlbumIds}
-						deletedAlbumIds={deletedAlbumIds}
-						togglePin={togglePin}
-					/>
+					<>
+						{type !== "crate-result" && (
+							<Item
+								key={item.id}
+								item={item}
+								type={type}
+								mode={mode}
+								setActiveAlbum={setActiveAlbum}
+								addAlbum={addAlbum}
+								albumIds={albumIds}
+								editMode={editMode}
+								setDeletedAlbumIds={setDeletedAlbumIds}
+								deletedAlbumIds={deletedAlbumIds}
+								togglePin={togglePin}
+							/>
+						)}
+						{type === "crate-result" && (
+							<ItemSearchedCrate
+								key={item.id}
+								item={item}
+								type={type}
+								togglePin={togglePin}
+							/>
+						)}
+					</>
 				);
 			})}
 		</section>

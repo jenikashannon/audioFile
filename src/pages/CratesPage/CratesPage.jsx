@@ -66,6 +66,7 @@ function CratesPage() {
 
 		const fuse = new Fuse(crateList, options);
 		const results = fuse.search(term);
+		console.log(results);
 
 		const formattedResults = results.map((result) => {
 			const item = { ...result.item, matches: result.matches };
@@ -73,7 +74,7 @@ function CratesPage() {
 			return item;
 		});
 
-		console.log(formattedResults);
+		// console.log(formattedResults);
 		setSearchedCrateList(formattedResults);
 	}
 
@@ -129,7 +130,6 @@ function CratesPage() {
 					term={term}
 					setSearchMode={setSearchMode}
 					handleSearchBarClick={() => {
-						console.log("here");
 						setSearchMode(true);
 					}}
 				/>
@@ -165,6 +165,7 @@ function CratesPage() {
 				<SearchCratesModal
 					searchedCrateList={searchedCrateList}
 					setSearchMode={setSearchMode}
+					setTerm={setTerm}
 				/>
 			)}
 		</main>
