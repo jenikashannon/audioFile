@@ -2,6 +2,7 @@ import "./DiscoverPage.scss";
 import { baseUrl } from "../../utils/consts";
 
 // components
+import AddToCratesModal from "../../components/AddToCratesModal/AddToCratesModal";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -13,8 +14,23 @@ import { useState, useEffect } from "react";
 function DiscoverPage() {
 	const [term, setTerm] = useState("");
 	const [discoverList, setDiscoverList] = useState([]);
+	const [addMode, setAddMode] = useState(false);
+	const [crateList, setCrateList] = useState(null);
+	const [activeAlbum, setActiveAlbum] = useState(null);
 
 	const user_id = localStorage.getItem("audioFileId");
+
+	async function getUserCrateIds() {
+		try {
+			const response = await axios.get(
+				`${baseUrl}/crates?type=name&user_id=${user_id}`
+			);
+			setCrateList(response.data);
+			console.log(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
 	async function searchSpotify(term) {
 		try {
@@ -22,6 +38,22 @@ function DiscoverPage() {
 				`${baseUrl}/spotify/search?term=${term}&user_id=${user_id}`
 			);
 			setDiscoverList(response.data);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	async function toggleAddMode(id) {
+		setAddMode(true);
+		setActiveAlbum(id);
+	}
+
+	async function addAlbumToCrate(crate_id) {
+		try {
+			await axios.post(`${baseUrl}/crates/${crate_id}`, {
+				album_id: activeAlbum,
+				user_id,
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -35,6 +67,10 @@ function DiscoverPage() {
 		}
 	}, [term]);
 
+	useEffect(() => {
+		getUserCrateIds();
+	}, []);
+
 	return (
 		<main className='discover-page'>
 			<Header text='discover records' />
@@ -47,13 +83,22 @@ function DiscoverPage() {
 						</h2>
 					)}
 					<ItemList
-						discoverList={discoverList}
+						itemList={discoverList}
+						toggleAddMode={toggleAddMode}
 						// setActiveAlbum={setActiveAlbum}
 						// addAlbum={addAlbum}
 						// albumIds={albumIds}
+						type='album-discover-result'
 					/>
 				</div>
 			</div>
+
+			{addMode && (
+				<AddToCratesModal
+					crateList={crateList}
+					addAlbumToCrate={addAlbumToCrate}
+				/>
+			)}
 		</main>
 	);
 }

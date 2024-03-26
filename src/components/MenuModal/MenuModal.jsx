@@ -10,12 +10,14 @@ function MenuModal({
 	handlePin,
 	menuType,
 	isPinned,
+	handleAdd,
 }) {
 	const handlers = {
 		edit: handleEdit,
 		delete: handleDelete,
 		pin: handlePin,
 		unpin: handlePin,
+		add: handleAdd,
 	};
 
 	let options = [];

@@ -2,7 +2,6 @@ import "./Item.scss";
 
 // components
 import AddIcon from "../AddIcon/AddIcon";
-import HeaderIcon from "../HeaderIcon/HeaderIcon";
 import Icon from "../Icon/Icon";
 
 // libraries
@@ -20,6 +19,8 @@ function Item({
 	setDeletedAlbumIds,
 	togglePin,
 	setDeleteMode,
+	toggleAddMode,
+	addAlbumToCrate,
 }) {
 	const [menuMode, setMenuMode] = useState(false);
 
@@ -45,6 +46,18 @@ function Item({
 		setDeleteMode(true);
 	}
 
+	function handleAdd() {
+		if (type === "album-discover-result") {
+			toggleAddMode(item.id);
+			return;
+		}
+
+		if (type === "crate-add") {
+			addAlbumToCrate(item.id);
+			return;
+		}
+	}
+
 	if (type === "crate" || type === "crate-result") {
 		albumCount =
 			item.album_count === 1
@@ -57,6 +70,10 @@ function Item({
 		handleClick = () => {
 			navigate(`/crates/${item.id}`);
 		};
+	}
+
+	if (type === "crate-add") {
+		details = [item.name, null];
 	}
 
 	if (["album", "album-result", "album-discover-result"].includes(type)) {
@@ -98,6 +115,9 @@ function Item({
 					mode='add'
 				/>
 			)}
+			{type === "crate-add" && (
+				<Icon type='add' height='16' handleAdd={handleAdd} />
+			)}
 			{editMode && (
 				<AddIcon changeAlbum={removeAlbum} id={item.id} mode='remove' />
 			)}
@@ -108,9 +128,9 @@ function Item({
 					handleDelete={handleDelete}
 					handlePin={handlePin}
 					type='menuHorizontal'
+					menuType='crate'
 					isPinned={item.pinned_crate}
 					height='20'
-					menuType='crate'
 				/>
 			)}
 			{type === "album-discover-result" && (
@@ -120,6 +140,7 @@ function Item({
 					height='20'
 					menuMode={menuMode}
 					setMenuMode={setMenuMode}
+					handleAdd={handleAdd}
 				/>
 			)}
 		</article>

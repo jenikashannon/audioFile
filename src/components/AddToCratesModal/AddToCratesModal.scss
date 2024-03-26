@@ -1,0 +1,8 @@
+@use "../../styles/partials/mixins";
+
+.add-to-crates-modal {
+	@include mixins.modal;
+
+	&__card {
+	}
+}

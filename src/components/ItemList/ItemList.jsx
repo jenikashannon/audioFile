@@ -6,49 +6,20 @@ import ItemSearchedCrate from "../ItemSearchedCrate/ItemSearchedCrate";
 import { useEffect } from "react";
 
 function ItemList({
-	crateList,
-	albumList,
-	resultList,
-	discoverList,
-	searchedCrateList,
 	setActiveAlbum,
 	addAlbum,
 	albumIds,
 	editMode,
 	setDeletedAlbumIds,
 	deletedAlbumIds,
+	addAlbumToCrate,
 	togglePin,
+	toggleAddMode,
+	itemList,
+	type,
 }) {
-	let itemList;
-	let type;
-
-	if (crateList) {
-		itemList = crateList;
-		type = "crate";
-	}
-
-	if (albumList) {
-		itemList = albumList;
-		type = "album";
-	}
-
-	if (resultList) {
-		itemList = resultList;
-		type = "album-result";
-	}
-
-	if (searchedCrateList) {
-		itemList = searchedCrateList;
-		type = "crate-result";
-	}
-
-	if (discoverList) {
-		itemList = discoverList;
-		type = "album-discover-result";
-	}
-
 	// re-render list whenever album is added
-	useEffect(() => {}, [albumIds, searchedCrateList]);
+	useEffect(() => {}, [albumIds, itemList]);
 
 	return (
 		<section className='item-list'>
@@ -68,6 +39,8 @@ function ItemList({
 								setDeletedAlbumIds={setDeletedAlbumIds}
 								deletedAlbumIds={deletedAlbumIds}
 								togglePin={togglePin}
+								toggleAddMode={toggleAddMode}
+								addAlbumToCrate={addAlbumToCrate}
 							/>
 						)}
 						{type === "crate-result" && (

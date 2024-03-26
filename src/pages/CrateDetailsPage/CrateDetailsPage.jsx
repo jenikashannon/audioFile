@@ -166,7 +166,8 @@ function CrateDetailsPage() {
 				/>
 				<div className='crate-details-page__albums'>
 					<ItemList
-						albumList={sortedAlbums}
+						itemList={sortedAlbums}
+						type='album'
 						setActiveAlbum={setActiveAlbum}
 						editMode={editMode}
 						deletedAlbumIds={deletedAlbumIds}

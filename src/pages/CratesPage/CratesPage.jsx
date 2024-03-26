@@ -138,8 +138,16 @@ function CratesPage() {
 					mode='crate'
 				/>
 				<div className='crates-page__crates'>
-					<ItemList crateList={pinnedCrateList} togglePin={togglePin} />
-					<ItemList crateList={sortedCrateList} togglePin={togglePin} />
+					<ItemList
+						itemList={pinnedCrateList}
+						type='crate'
+						togglePin={togglePin}
+					/>
+					<ItemList
+						itemList={sortedCrateList}
+						type='crate'
+						togglePin={togglePin}
+					/>
 				</div>
 				{defaultCrate ? (
 					<p className='crates-page__default-text'>

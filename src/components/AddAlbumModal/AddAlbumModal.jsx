@@ -69,7 +69,8 @@ function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 						</h2>
 					)}
 					<ItemList
-						resultList={resultList}
+						itemList={resultList}
+						type='album-result'
 						setActiveAlbum={setActiveAlbum}
 						addAlbum={addAlbum}
 						albumIds={albumIds}
