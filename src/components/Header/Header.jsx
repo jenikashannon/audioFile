@@ -2,6 +2,7 @@ import "./Header.scss";
 
 // components
 import HeaderIcon from "../HeaderIcon/HeaderIcon";
+import Icon from "../Icon/Icon";
 
 // libraries
 import { useNavigate } from "react-router-dom";

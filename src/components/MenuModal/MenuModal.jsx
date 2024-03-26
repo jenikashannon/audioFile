@@ -1,15 +1,17 @@
 import "./MenuModal.scss";
-import { menuOptions } from "../../utils/menuOptions";
+
+// components
+import Icon from "../Icon/Icon";
 
 function MenuModal({
 	setMenuMode,
 	handleEdit,
 	handleDelete,
 	handlePin,
-	type,
+	menuType,
 	isPinned,
 }) {
-	let handlers = {
+	const handlers = {
 		edit: handleEdit,
 		delete: handleDelete,
 		pin: handlePin,
@@ -17,14 +19,31 @@ function MenuModal({
 	};
 
 	let options = [];
+	let text;
 
-	if (type === "header") {
+	if (menuType === "header") {
 		options = ["edit", "delete"];
+		text = {
+			edit: "edit crate",
+			delete: "delete crate",
+		};
 	}
 
-	if (type === "crate") {
+	if (menuType === "crate") {
 		const pinAction = isPinned ? "unpin" : "pin";
 		options = [pinAction, "delete"];
+		text = {
+			pin: "unpin crate",
+			unpin: "unpin crate",
+			delete: "delete crate",
+		};
+	}
+
+	if (menuType === "album-discover-result") {
+		options = ["add"];
+		text = {
+			add: "add to crate",
+		};
 	}
 
 	return (
@@ -43,21 +62,8 @@ function MenuModal({
 							className='menu-modal__option'
 							onClick={handlers[option]}
 						>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								height='24'
-								viewBox='0 -960 960 960'
-								width='24'
-							>
-								<path
-									d={
-										menuOptions.find((menuOption) =>
-											menuOption.text.includes(option)
-										).path
-									}
-								/>
-							</svg>
-							<p className='menu-modal__text'>{option + " crate"}</p>
+							<Icon type={option} height='14' />
+							<p className='menu-modal__text'>{text[option]}</p>
 						</div>
 					);
 				})}

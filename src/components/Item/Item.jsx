@@ -102,17 +102,25 @@ function Item({
 				<AddIcon changeAlbum={removeAlbum} id={item.id} mode='remove' />
 			)}
 			{type === "crate" && (
-				<HeaderIcon
+				<Icon
 					menuMode={menuMode}
 					setMenuMode={setMenuMode}
 					handleDelete={handleDelete}
 					handlePin={handlePin}
-					type='crate'
+					type='menuHorizontal'
 					isPinned={item.pinned_crate}
+					height='20'
+					menuType='crate'
 				/>
 			)}
 			{type === "album-discover-result" && (
-				<Icon type='menuHorizontal' height='20' />
+				<Icon
+					type='menuHorizontal'
+					menuType='album-discover-result'
+					height='20'
+					menuMode={menuMode}
+					setMenuMode={setMenuMode}
+				/>
 			)}
 		</article>
 	);

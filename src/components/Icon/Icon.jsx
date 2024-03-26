@@ -1,6 +1,20 @@
 import "./Icon.scss";
 
-function Icon({ type, width, height, fill }) {
+// components
+import MenuModal from "../MenuModal/MenuModal";
+
+function Icon({
+	type,
+	menuType,
+	height,
+	fill,
+	menuMode,
+	setMenuMode,
+	handleEdit,
+	handleDelete,
+	handlePin,
+	isPinned,
+}) {
 	const paths = {
 		add: "M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z",
 		albums:
@@ -17,6 +31,8 @@ function Icon({ type, width, height, fill }) {
 			"M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z",
 		menu: "M480-160q-33 0-56.5-23.5T400-240q0-33 23.5-56.5T480-320q33 0 56.5 23.5T560-240q0 33-23.5 56.5T480-160Zm0-240q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm0-240q-33 0-56.5-23.5T400-720q0-33 23.5-56.5T480-800q33 0 56.5 23.5T560-720q0 33-23.5 56.5T480-640Z",
 		pin: "m640-480 80 80v80H520v240l-40 40-40-40v-240H240v-80l80-80v-280h-40v-80h400v80h-40v280Zm-286 80h252l-46-46v-314H400v314l-46 46Zm126 0Z",
+		unpin:
+			"m640-480 80 80v80H520v240l-40 40-40-40v-240H240v-80l80-80v-280h-40v-80h400v80h-40v280Zm-286 80h252l-46-46v-314H400v314l-46 46Zm126 0Z",
 		remove:
 			"m336-280 144-144 144 144 56-56-144-144 144-144-56-56-144 144-144-144-56 56 144 144-144 144 56 56ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z",
 		sort: "M320-440v-287L217-624l-57-56 200-200 200 200-57 56-103-103v287h-80ZM600-80 400-280l57-56 103 103v-287h80v287l103-103 57 56L600-80Z",
@@ -24,17 +40,38 @@ function Icon({ type, width, height, fill }) {
 			"M400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47Z",
 	};
 
+	const clickHandlers = {
+		menuHorizontal: () => {
+			setMenuMode((prev) => {
+				return !prev;
+			});
+		},
+	};
+
 	return (
-		<svg
-			className='icon'
-			xmlns='http://www.w3.org/2000/svg'
-			height={height}
-			viewBox='0 -960 960 960'
-			width={width}
-			fill={fill || 0}
-		>
-			<path d={paths[type]} />
-		</svg>
+		<div className='icon'>
+			<svg
+				onClick={clickHandlers[type]}
+				className='icon__button'
+				xmlns='http://www.w3.org/2000/svg'
+				height={height}
+				width={height}
+				viewBox='0 -960 960 960'
+				fill={fill || 0}
+			>
+				<path d={paths[type]} />
+			</svg>
+			{menuMode && (
+				<MenuModal
+					menuType={menuType}
+					setMenuMode={setMenuMode}
+					handleEdit={handleEdit}
+					handleDelete={handleDelete}
+					handlePin={handlePin}
+					isPinned={isPinned}
+				/>
+			)}
+		</div>
 	);
 }
 

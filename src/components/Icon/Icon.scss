@@ -1,3 +1,9 @@
 .icon {
 	flex-shrink: 0;
+	position: relative;
+	display: flex;
+
+	&__button {
+		pointer-events: all;
+	}
 }
