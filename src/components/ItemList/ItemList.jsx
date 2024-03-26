@@ -9,6 +9,7 @@ function ItemList({
 	crateList,
 	albumList,
 	resultList,
+	discoverList,
 	searchedCrateList,
 	setActiveAlbum,
 	addAlbum,
@@ -20,7 +21,6 @@ function ItemList({
 }) {
 	let itemList;
 	let type;
-	let mode;
 
 	if (crateList) {
 		itemList = crateList;
@@ -42,6 +42,11 @@ function ItemList({
 		type = "crate-result";
 	}
 
+	if (discoverList) {
+		itemList = discoverList;
+		type = "album-discover-result";
+	}
+
 	// re-render list whenever album is added
 	useEffect(() => {}, [albumIds, searchedCrateList]);
 
@@ -56,7 +61,6 @@ function ItemList({
 								key={item.id}
 								item={item}
 								type={type}
-								mode={mode}
 								setActiveAlbum={setActiveAlbum}
 								addAlbum={addAlbum}
 								albumIds={albumIds}

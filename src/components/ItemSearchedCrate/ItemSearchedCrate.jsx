@@ -1,7 +1,7 @@
 import "./ItemSearchedCrate.scss";
 
 // components
-import Icon from "../Icon/Icon";
+import Icon from "../Icon/Icon.jsx";
 
 // libraries
 import { useNavigate } from "react-router-dom";

@@ -66,7 +66,6 @@ function CratesPage() {
 
 		const fuse = new Fuse(crateList, options);
 		const results = fuse.search(term);
-		console.log(results);
 
 		const formattedResults = results.map((result) => {
 			const item = { ...result.item, matches: result.matches };
@@ -74,7 +73,6 @@ function CratesPage() {
 			return item;
 		});
 
-		// console.log(formattedResults);
 		setSearchedCrateList(formattedResults);
 	}
 

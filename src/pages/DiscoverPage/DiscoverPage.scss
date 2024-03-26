@@ -1,0 +1,15 @@
+@use "../../styles/partials/mixins";
+
+.discover-page {
+	&__container {
+		@include mixins.page;
+	}
+
+	&__results {
+	}
+
+	&__sub-header {
+		font-size: 1rem;
+		font-weight: 400;
+	}
+}

@@ -78,6 +78,7 @@ function CrateDetailsPage() {
 		try {
 			await axios.patch(`${baseUrl}/crates/${crate_id}/`, {
 				name: crateName,
+				user_id,
 			});
 			getCrateDetails();
 		} catch (error) {

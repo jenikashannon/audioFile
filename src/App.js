@@ -5,6 +5,7 @@ import AddCratePage from "./pages/AddCratePage/AddCratePage";
 import AuthorizeSpotifyPage from "./pages/AuthorizeSpotifyPage/AuthorizeSpotifyPage";
 import CrateDetailsPage from "./pages/CrateDetailsPage/CrateDetailsPage";
 import CratesPage from "./pages/CratesPage/CratesPage";
+import DiscoverPage from "./pages/DiscoverPage/DiscoverPage";
 import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
@@ -28,6 +29,7 @@ function App() {
 				/>
 				<Route path='crates/:crate_id' element={<CrateDetailsPage />} />
 				<Route path='/crates' element={<AddCratePage />} />
+				<Route path='/discover' element={<DiscoverPage />} />
 			</Routes>
 			<Footer />
 		</BrowserRouter>

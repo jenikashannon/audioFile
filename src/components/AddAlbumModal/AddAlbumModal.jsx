@@ -27,6 +27,7 @@ function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 		try {
 			await axios.post(`${baseUrl}/crates/${crate_id}`, {
 				album_id,
+				user_id,
 			});
 			setAlbumIds((prev) => {
 				return [...prev, album_id];

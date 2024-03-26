@@ -73,7 +73,7 @@ limitations. -->
 - express
 - cors
 - axios
-- fuzzy-search
+- fuse.js
 
 ### APIs
 
@@ -165,52 +165,10 @@ visually using diagrams, or write it out. -->
 - created_at (timestamp, default to now)
 - updated_at (timestamp, default to now, change with every update)
 
-<!-- #### ~ album table
-
-- id (primary key, from spotify)
-- name (string)
-- cover_art (link from spotify)
-- primary_artist (string)
-- number of tracks (int)
-- duration (int, in ms)
-- release_year (string)
-- added_at (timestamp, default to now)
-
-#### ~ track table
-
-- id (primary key, from spotify)
-- name (string)
-- duration (int, in ms)
-
 #### ~ crate_album table
 
 - crate_id
 - album_id
-
-#### ~ crate_track table
-
-- crate_id
-- track_id
-
-#### ~ crate_artist table
-
-- crate_id
-- artist_id
-
-#### ~ album_track table
-
-- album_id
-- track_id
-
-#### ~ album_artist table
-
-- album_id
-- artist_id
-
-#### ~ track_artist table
-
-- track_id
-- artist_id -->
 
 ### Endpoints
 

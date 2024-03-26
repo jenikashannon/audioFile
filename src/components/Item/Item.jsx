@@ -3,6 +3,7 @@ import "./Item.scss";
 // components
 import AddIcon from "../AddIcon/AddIcon";
 import HeaderIcon from "../HeaderIcon/HeaderIcon";
+import Icon from "../Icon/Icon";
 
 // libraries
 import { useNavigate } from "react-router-dom";
@@ -58,7 +59,7 @@ function Item({
 		};
 	}
 
-	if (["album", "album-result"].includes(type)) {
+	if (["album", "album-result", "album-discover-result"].includes(type)) {
 		details = [item.name, item.artists.join(", ")];
 		image = item.image;
 
@@ -109,6 +110,9 @@ function Item({
 					type='crate'
 					isPinned={item.pinned_crate}
 				/>
+			)}
+			{type === "album-discover-result" && (
+				<Icon type='menuHorizontal' height='20' />
 			)}
 		</article>
 	);
