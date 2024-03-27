@@ -19,8 +19,12 @@ function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 			const response = await axios.get(
 				`${baseUrl}/crates?type=name&user_id=${user_id}`
 			);
-			setCrateList(response.data);
-			// can do something more sophisticated where we get the crates that the album is already in and exclude it (or make look diff) from the list
+
+			const cratesWithoutAlbum = response.data.filter((crate) => {
+				return !crate.albumIds.includes(albumToAdd.id);
+			});
+
+			setCrateList(cratesWithoutAlbum);
 		} catch (error) {
 			console.log(error);
 		}
