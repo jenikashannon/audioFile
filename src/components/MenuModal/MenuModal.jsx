@@ -4,10 +4,10 @@ import "./MenuModal.scss";
 import Icon from "../Icon/Icon";
 
 function MenuModal({
-	setMenuMode,
 	handleEdit,
 	handleDelete,
 	handlePin,
+	handleView,
 	menuType,
 	isPinned,
 	handleAdd,
@@ -19,6 +19,7 @@ function MenuModal({
 		pin: handlePin,
 		unpin: handlePin,
 		add: handleAdd,
+		view: handleView,
 	};
 
 	let options = [];
@@ -42,10 +43,12 @@ function MenuModal({
 		};
 	}
 
-	if (menuType === "album-discover-result") {
-		options = ["add"];
+	if (menuType === "album") {
+		options = ["delete", "add", "view"];
 		text = {
-			add: "add to crate",
+			add: "add to other crate",
+			delete: "remove from crate",
+			view: "view album details",
 		};
 	}
 

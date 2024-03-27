@@ -74,6 +74,10 @@ function CrateDetailsPage() {
 		}
 	}
 
+	function viewAlbum(album) {
+		setActiveAlbum(album);
+	}
+
 	async function updateCrateName() {
 		try {
 			await axios.patch(`${baseUrl}/crates/${crate_id}/`, {
@@ -168,11 +172,13 @@ function CrateDetailsPage() {
 					<ItemList
 						itemList={sortedAlbums}
 						type='album'
-						setActiveAlbum={setActiveAlbum}
+						context='crate-details'
+						viewAlbum={viewAlbum}
 						editMode={editMode}
 						deletedAlbumIds={deletedAlbumIds}
 						setDeletedAlbumIds={setDeletedAlbumIds}
 						albumIds={albumIds}
+						removeAlbum={removeAlbum}
 					/>
 				</div>
 				<div className='crate-details-page__button-container'>

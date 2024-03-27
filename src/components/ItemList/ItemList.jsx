@@ -1,5 +1,6 @@
 // components
 import Item from "../Item/Item";
+import ItemAlbum from "../ItemAlbum/ItemAlbum";
 import ItemCrate from "../ItemCrate/ItemCrate";
 import ItemSearchedCrate from "../ItemSearchedCrate/ItemSearchedCrate";
 
@@ -16,9 +17,12 @@ function ItemList({
 	addAlbumToCrate,
 	togglePin,
 	deleteCrate,
+	removeAlbum,
+	viewAlbum,
 	toggleAddMode,
 	itemList,
 	type,
+	context,
 }) {
 	// re-render list whenever album is added
 	useEffect(() => {}, [albumIds, itemList]);
@@ -34,6 +38,15 @@ function ItemList({
 								crate={item}
 								togglePin={togglePin}
 								deleteCrate={deleteCrate}
+							/>
+						)}
+
+						{type === "album" && (
+							<ItemAlbum
+								album={item}
+								context={context}
+								removeAlbum={removeAlbum}
+								viewAlbum={viewAlbum}
 							/>
 						)}
 						{/* {type !== "crate-result" && (
