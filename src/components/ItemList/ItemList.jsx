@@ -1,5 +1,6 @@
 // components
 import Item from "../Item/Item";
+import ItemCrate from "../ItemCrate/ItemCrate";
 import ItemSearchedCrate from "../ItemSearchedCrate/ItemSearchedCrate";
 
 // libraries
@@ -26,10 +27,10 @@ function ItemList({
 			{itemList.length === 0 && type === "album" && <p>no albums yet.</p>}
 			{itemList.map((item) => {
 				return (
-					<>
-						{type !== "crate-result" && (
+					<div key={item.id}>
+						{type === "crate" && <ItemCrate crate={item} />}
+						{/* {type !== "crate-result" && (
 							<Item
-								key={item.id}
 								item={item}
 								type={type}
 								setActiveAlbum={setActiveAlbum}
@@ -42,16 +43,15 @@ function ItemList({
 								toggleAddMode={toggleAddMode}
 								addAlbumToCrate={addAlbumToCrate}
 							/>
-						)}
-						{type === "crate-result" && (
+						)} */}
+						{/* {type === "crate-result" && (
 							<ItemSearchedCrate
-								key={item.id}
 								item={item}
 								type={type}
 								togglePin={togglePin}
 							/>
-						)}
-					</>
+						)} */}
+					</div>
 				);
 			})}
 		</section>

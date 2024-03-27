@@ -10,6 +10,7 @@ function Icon({
 	fill,
 	menuMode,
 	setMenuMode,
+	toggleModalOpen,
 	handleEdit,
 	handleDelete,
 	handlePin,
@@ -42,12 +43,7 @@ function Icon({
 	};
 
 	const clickHandlers = {
-		menuHorizontal: () => {
-			setMenuMode((prev) => {
-				return !prev;
-			});
-		},
-
+		menuHorizontal: toggleModalOpen,
 		add: handleAdd,
 	};
 
@@ -64,7 +60,7 @@ function Icon({
 			>
 				<path d={paths[type]} />
 			</svg>
-			{menuMode && (
+			{/* {menuMode && (
 				<MenuModal
 					menuType={menuType}
 					setMenuMode={setMenuMode}
@@ -74,7 +70,7 @@ function Icon({
 					isPinned={isPinned}
 					handleAdd={handleAdd}
 				/>
-			)}
+			)} */}
 		</div>
 	);
 }

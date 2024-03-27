@@ -20,13 +20,12 @@ function DiscoverPage() {
 
 	const user_id = localStorage.getItem("audioFileId");
 
-	async function getUserCrateIds() {
+	async function getUserCrateNames() {
 		try {
 			const response = await axios.get(
 				`${baseUrl}/crates?type=name&user_id=${user_id}`
 			);
 			setCrateList(response.data);
-			console.log(response.data);
 		} catch (error) {
 			console.log(error);
 		}
@@ -68,7 +67,7 @@ function DiscoverPage() {
 	}, [term]);
 
 	useEffect(() => {
-		getUserCrateIds();
+		getUserCrateNames();
 	}, []);
 
 	return (

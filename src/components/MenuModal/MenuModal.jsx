@@ -11,6 +11,7 @@ function MenuModal({
 	menuType,
 	isPinned,
 	handleAdd,
+	toggleModalOpen,
 }) {
 	const handlers = {
 		edit: handleEdit,
@@ -35,7 +36,7 @@ function MenuModal({
 		const pinAction = isPinned ? "unpin" : "pin";
 		options = [pinAction, "delete"];
 		text = {
-			pin: "unpin crate",
+			pin: "pin crate",
 			unpin: "unpin crate",
 			delete: "delete crate",
 		};
@@ -50,12 +51,7 @@ function MenuModal({
 
 	return (
 		<>
-			<div
-				className='menu-modal'
-				onClick={() => {
-					setMenuMode(false);
-				}}
-			></div>
+			<div className='menu-modal' onClick={toggleModalOpen}></div>
 			<div className='menu-modal__card'>
 				{options.map((option) => {
 					return (
