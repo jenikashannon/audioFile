@@ -94,6 +94,8 @@ function CratesPage() {
 		}
 	}
 
+	function triggerDelete(crate_name) {}
+
 	useEffect(() => {
 		if (!user_id) {
 			navigate("/authorize");

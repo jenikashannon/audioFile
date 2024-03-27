@@ -1,6 +1,7 @@
 import "./ItemCrate.scss";
 
 // components
+import DeleteModal from "../DeleteModal/DeleteModal";
 import Icon from "../Icon/Icon";
 import MenuModal from "../MenuModal/MenuModal";
 
@@ -12,6 +13,7 @@ let handleAdd;
 
 function ItemCrate({ crate, type, togglePin, deleteCrate }) {
 	const [menuMode, setMenuMode] = useState(false);
+	const [deleteMode, setDeleteMode] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -27,6 +29,11 @@ function ItemCrate({ crate, type, togglePin, deleteCrate }) {
 
 	function handlePin() {
 		togglePin(crate.id);
+	}
+
+	function triggerDelete() {
+		setMenuMode(false);
+		setDeleteMode(true);
 	}
 
 	function handleDelete() {
@@ -64,8 +71,16 @@ function ItemCrate({ crate, type, togglePin, deleteCrate }) {
 					toggleModalOpen={toggleModalOpen}
 					menuType={"crate"}
 					isPinned={crate.pinned_crate}
-					handleDelete={handleDelete}
+					handleDelete={triggerDelete}
 					handlePin={handlePin}
+				/>
+			)}
+
+			{deleteMode && (
+				<DeleteModal
+					deleteCrate={handleDelete}
+					setDeleteMode={setDeleteMode}
+					name={crate.name}
 				/>
 			)}
 		</article>
