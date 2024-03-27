@@ -25,7 +25,7 @@ function MenuModal({
 	let options = [];
 	let text;
 
-	if (menuType === "header") {
+	if (menuType === "crate-header") {
 		options = ["edit", "delete"];
 		text = {
 			edit: "edit crate",
@@ -63,7 +63,11 @@ function MenuModal({
 	return (
 		<>
 			<div className='menu-modal' onClick={toggleModalOpen}></div>
-			<div className='menu-modal__card'>
+			<div
+				className={`menu-modal__card ${
+					menuType === "crate-header" ? "menu-modal__card--header" : ""
+				}`}
+			>
 				{options.map((option) => {
 					return (
 						<div

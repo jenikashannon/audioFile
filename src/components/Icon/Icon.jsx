@@ -29,6 +29,7 @@ function Icon({ type, height, fill, disable, toggleModalOpen, handleAdd }) {
 
 	const clickHandlers = {
 		menuHorizontal: toggleModalOpen,
+		menu: toggleModalOpen,
 		add: handleAdd,
 	};
 

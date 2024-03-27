@@ -29,7 +29,6 @@ function CrateDetailsPage() {
 	const [sortBy, setSortBy] = useState("");
 	const [sortOrder, setSortOrder] = useState("asc");
 	const [sortedAlbums, setSortedAlbums] = useState(null);
-	const [menuMode, setMenuMode] = useState(false);
 	const [deletedAlbumIds, setDeletedAlbumIds] = useState([]);
 
 	const crate_id = useParams().crate_id;
@@ -123,13 +122,11 @@ function CrateDetailsPage() {
 		);
 	}
 
-	function handleEdit() {
-		setMenuMode(false);
+	function triggerEdit() {
 		setEditMode(true);
 	}
 
-	function handleDelete() {
-		setMenuMode(false);
+	function triggerDelete() {
 		setDeleteMode(true);
 	}
 
@@ -156,10 +153,8 @@ function CrateDetailsPage() {
 				setDeleteMode={setDeleteMode}
 				crateName={crateName}
 				setCrateName={setCrateName}
-				menuMode={menuMode}
-				setMenuMode={setMenuMode}
-				handleEdit={handleEdit}
-				handleDelete={handleDelete}
+				triggerEdit={triggerEdit}
+				triggerDelete={triggerDelete}
 			/>
 			<div className='crate-details-page__container'>
 				<Sorter

@@ -1,11 +1,11 @@
 import "./Header.scss";
 
 // components
-import HeaderIcon from "../HeaderIcon/HeaderIcon";
 import Icon from "../Icon/Icon";
+import MenuModal from "../MenuModal/MenuModal";
 
 // libraries
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Header({
 	mode,
@@ -13,15 +13,29 @@ function Header({
 	editMode,
 	crateName,
 	setCrateName,
-	menuMode,
-	setMenuMode,
-	handleEdit,
-	handleDelete,
+	triggerDelete,
+	triggerEdit,
 }) {
-	const navigate = useNavigate();
+	const [menuMode, setMenuMode] = useState(false);
 
 	function handleChange(event) {
 		setCrateName(event.target.value);
+	}
+
+	function toggleModalOpen() {
+		setMenuMode((prev) => {
+			return !prev;
+		});
+	}
+
+	function handleDelete() {
+		setMenuMode(false);
+		triggerDelete();
+	}
+
+	function handleEdit() {
+		setMenuMode(false);
+		triggerEdit();
 	}
 
 	return (
@@ -40,8 +54,22 @@ function Header({
 						value={crateName}
 						onChange={handleChange}
 					></input>
-					<Icon type='menu' height='18' fill='white' />
+					<Icon
+						type='menu'
+						height='18'
+						fill='white'
+						toggleModalOpen={toggleModalOpen}
+					/>
 				</>
+			)}
+
+			{menuMode && (
+				<MenuModal
+					menuType='crate-header'
+					toggleModalOpen={toggleModalOpen}
+					handleDelete={handleDelete}
+					handleEdit={handleEdit}
+				/>
 			)}
 		</header>
 	);
