@@ -1,15 +1,56 @@
 import "./AddToCratesModal.scss";
+import { baseUrl } from "../../utils/consts";
 
 // components
 import Icon from "../Icon/Icon";
 import ItemList from "../ItemList/ItemList";
 
-function AddToCratesModal({
-	crateList,
-	albumToAdd,
-	addAlbumToCrate,
-	toggleAddMode,
-}) {
+// libraries
+import axios from "axios";
+import { useState, useEffect } from "react";
+
+function AddToCratesModal({ albumToAdd, toggleAddMode }) {
+	const [crateList, setCrateList] = useState(null);
+
+	const user_id = localStorage.getItem("audioFileId");
+
+	async function getUserCrateNames() {
+		try {
+			const response = await axios.get(
+				`${baseUrl}/crates?type=name&user_id=${user_id}`
+			);
+			setCrateList(response.data);
+			// can do something more sophisticated where we get the crates that the album is already in and exclude it (or make look diff) from the list
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	async function addAlbumToCrate(crate_id) {
+		try {
+			await axios.post(`${baseUrl}/crates/${crate_id}`, {
+				album_id: albumToAdd.id,
+				user_id,
+			});
+
+			setCrateList((prev) => {
+				return prev.filter((crate) => {
+					return crate.id !== crate_id;
+				});
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	useEffect(() => {
+		getUserCrateNames();
+	}, []);
+
+	if (!crateList) {
+		return <>loading...</>;
+	}
+
 	return (
 		<div className='add-to-crates-modal'>
 			<div className='add-to-crates-modal__card'>

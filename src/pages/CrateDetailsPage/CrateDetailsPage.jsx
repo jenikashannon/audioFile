@@ -4,6 +4,7 @@ import { sortList } from "../../utils/sort";
 
 // components
 import AddAlbumModal from "../../components/AddAlbumModal/AddAlbumModal";
+import AddToCratesModal from "../../components/AddToCratesModal/AddToCratesModal";
 import AlbumDetailsModal from "../../components/AlbumDetailsModal/AlbumDetailsModal";
 import Button from "../../components/Button/Button";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
@@ -24,12 +25,14 @@ function CrateDetailsPage() {
 	const [editMode, setEditMode] = useState(false);
 	const [deleteMode, setDeleteMode] = useState(false);
 	const [addMode, setAddMode] = useState(false);
+	const [addToOtherCratesMode, setAddToOtherCratesMode] = useState(false);
 	const [activeAlbum, setActiveAlbum] = useState(null);
 	const [sortMode, setSortMode] = useState(false);
 	const [sortBy, setSortBy] = useState("");
 	const [sortOrder, setSortOrder] = useState("asc");
 	const [sortedAlbums, setSortedAlbums] = useState(null);
 	const [deletedAlbumIds, setDeletedAlbumIds] = useState([]);
+	const [albumToAdd, setAlbumToAdd] = useState(null);
 
 	const crate_id = useParams().crate_id;
 	const user_id = localStorage.getItem("audioFileId");
@@ -97,6 +100,20 @@ function CrateDetailsPage() {
 
 	function toggleAddMode() {
 		setAddMode(true);
+	}
+
+	function toggleAddToOtherCratesMode(album) {
+		setAddToOtherCratesMode((prev) => {
+			return !prev;
+		});
+
+		setAlbumToAdd((prev) => {
+			if (!prev) {
+				return album;
+			}
+
+			return null;
+		});
 	}
 
 	function saveEdits() {
@@ -182,6 +199,7 @@ function CrateDetailsPage() {
 						albumIds={albumIds}
 						deleteAlbum={deleteAlbum}
 						removeAlbum={removeAlbum}
+						toggleAddMode={toggleAddToOtherCratesMode}
 					/>
 				</div>
 				<div className='crate-details-page__button-container'>
@@ -228,6 +246,13 @@ function CrateDetailsPage() {
 					setSortMode={setSortMode}
 					setSortOrder={setSortOrder}
 					mode='album'
+				/>
+			)}
+
+			{addToOtherCratesMode && (
+				<AddToCratesModal
+					toggleAddMode={toggleAddToOtherCratesMode}
+					albumToAdd={albumToAdd}
 				/>
 			)}
 		</main>

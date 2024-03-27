@@ -28,7 +28,9 @@ function ItemCrate({
 	}
 
 	const handleClick = () => {
-		navigate(`/crates/${crate.id}`);
+		if (context !== "add-to-crates") {
+			navigate(`/crates/${crate.id}`);
+		}
 	};
 
 	function handlePin() {

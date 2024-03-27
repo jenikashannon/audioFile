@@ -16,24 +16,11 @@ function DiscoverPage() {
 	const [term, setTerm] = useState("");
 	const [discoverList, setDiscoverList] = useState([]);
 	const [addMode, setAddMode] = useState(false);
-	const [crateList, setCrateList] = useState(null);
-	const [cratesToAddTo, setCratesToAddTo] = useState(null);
+
 	const [activeAlbum, setActiveAlbum] = useState(null);
 	const [albumToAdd, setAlbumToAdd] = useState(null);
 
 	const user_id = localStorage.getItem("audioFileId");
-
-	async function getUserCrateNames() {
-		try {
-			const response = await axios.get(
-				`${baseUrl}/crates?type=name&user_id=${user_id}`
-			);
-			setCrateList(response.data);
-			setCratesToAddTo(response.data);
-		} catch (error) {
-			console.log(error);
-		}
-	}
 
 	async function searchSpotify(term) {
 		try {
@@ -58,26 +45,6 @@ function DiscoverPage() {
 
 			return null;
 		});
-
-		setCratesToAddTo(crateList);
-		// can do something more sophisticated where we get the crates that the album is already in and exclude it (or make look diff) from the list
-	}
-
-	async function addAlbumToCrate(crate_id) {
-		try {
-			await axios.post(`${baseUrl}/crates/${crate_id}`, {
-				album_id: albumToAdd.id,
-				user_id,
-			});
-
-			setCratesToAddTo((prev) => {
-				return prev.filter((crate) => {
-					return crate.id !== crate_id;
-				});
-			});
-		} catch (error) {
-			console.log(error);
-		}
 	}
 
 	function viewAlbum(album) {
@@ -91,10 +58,6 @@ function DiscoverPage() {
 			setDiscoverList([]);
 		}
 	}, [term]);
-
-	useEffect(() => {
-		getUserCrateNames();
-	}, []);
 
 	return (
 		<main className='discover-page'>
@@ -119,8 +82,6 @@ function DiscoverPage() {
 
 			{addMode && (
 				<AddToCratesModal
-					crateList={cratesToAddTo}
-					addAlbumToCrate={addAlbumToCrate}
 					toggleAddMode={toggleAddMode}
 					albumToAdd={albumToAdd}
 				/>
