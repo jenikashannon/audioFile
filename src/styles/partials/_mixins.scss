@@ -23,7 +23,7 @@
 
 		&--long {
 			width: 90%;
-			height: 90vh;
+			height: 70vh;
 			padding: 0.5rem;
 			justify-content: flex-start;
 			align-items: center;
@@ -65,6 +65,14 @@
 	scrollbar-color: rgba(219, 244, 80, 0.1) rgba(219, 244, 80, 0.1);
 	// box-shadow: 0px 1px 2px 3px rgba(36, 36, 36, 0.4);
 	// border-radius: 4px;
+}
+
+@mixin cancel-button {
+	border: none;
+	background-color: colors.$white;
+	color: colors.$red;
+	margin-top: 1rem;
+	font-weight: 600;
 }
 
 @mixin close-button {

@@ -16,6 +16,7 @@ function ItemAlbum({
 	viewAlbum,
 	addAlbum,
 	editMode,
+	toggleAddMode,
 }) {
 	const [menuMode, setMenuMode] = useState(false);
 
@@ -46,6 +47,11 @@ function ItemAlbum({
 
 	function handleRemove() {
 		removeAlbum(album.id);
+	}
+
+	function openAddModal() {
+		setMenuMode(false);
+		toggleAddMode({ id: album.id, name: album.name });
 	}
 
 	return (
@@ -86,6 +92,7 @@ function ItemAlbum({
 					handleRemove={handleRemove}
 					handleView={handleView}
 					handleDelete={handleDelete}
+					handleAdd={openAddModal}
 				/>
 			)}
 		</article>

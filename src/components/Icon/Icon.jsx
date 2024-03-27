@@ -8,6 +8,7 @@ function Icon({
 	toggleModalOpen,
 	handleAdd,
 	handleBack,
+	handleClose,
 	handleRemove,
 }) {
 	const paths = {
@@ -42,6 +43,7 @@ function Icon({
 		add: handleAdd,
 		back: handleBack,
 		remove: handleRemove,
+		close: handleClose,
 	};
 
 	return (

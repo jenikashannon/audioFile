@@ -9,9 +9,13 @@ import MenuModal from "../MenuModal/MenuModal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-let handleAdd;
-
-function ItemCrate({ crate, type, togglePin, deleteCrate }) {
+function ItemCrate({
+	crate,
+	context,
+	togglePin,
+	deleteCrate,
+	addAlbumToCrate,
+}) {
 	const [menuMode, setMenuMode] = useState(false);
 	const [deleteMode, setDeleteMode] = useState(false);
 
@@ -40,6 +44,10 @@ function ItemCrate({ crate, type, togglePin, deleteCrate }) {
 		deleteCrate(crate.id);
 	}
 
+	function handleAdd() {
+		addAlbumToCrate(crate.id);
+	}
+
 	return (
 		<article className='item-crate'>
 			<div className='item-crate__container' onClick={handleClick}>
@@ -48,14 +56,16 @@ function ItemCrate({ crate, type, togglePin, deleteCrate }) {
 					<p className='item-crate__name'>{crate.name}</p>
 					<div className='item-crate__container--pin'>
 						{crate.pinned_crate ? <Icon type='pin' height='10' /> : null}
-						<p className='item-crate__details'>{`${crate.album_count} album${
-							crate.album_count === 1 ? "" : "s"
-						}`}</p>
+						{context !== "add-to-crates" && (
+							<p className='item-crate__details'>
+								{crate.album_count} album{crate.album_count === 1 ? "" : "s"}
+							</p>
+						)}
 					</div>
 				</div>
 			</div>
 
-			{type === "adding-album" ? (
+			{context === "add-to-crates" ? (
 				<Icon type='add' height='16' handleAdd={handleAdd} />
 			) : (
 				<Icon
@@ -69,7 +79,7 @@ function ItemCrate({ crate, type, togglePin, deleteCrate }) {
 			{menuMode && (
 				<MenuModal
 					toggleModalOpen={toggleModalOpen}
-					menuType={"crate"}
+					menuType='crate'
 					isPinned={crate.pinned_crate}
 					handleDelete={triggerDelete}
 					handlePin={handlePin}

@@ -162,12 +162,12 @@ function CratesPage() {
 						deleteCrate={deleteCrate}
 					/>
 				</div>
-				{defaultCrate ? (
+				{defaultCrate && (
 					<p className='crates-page__default-text'>
 						We've created your first crate for you, just click the edit icon to
 						make it your own.
 					</p>
-				) : null}
+				)}
 			</div>
 
 			{sortMode && (

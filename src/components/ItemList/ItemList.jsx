@@ -1,5 +1,4 @@
 // components
-import Item from "../Item/Item";
 import ItemAlbum from "../ItemAlbum/ItemAlbum";
 import ItemCrate from "../ItemCrate/ItemCrate";
 import ItemSearchedCrate from "../ItemSearchedCrate/ItemSearchedCrate";
@@ -38,6 +37,8 @@ function ItemList({
 								crate={item}
 								togglePin={togglePin}
 								deleteCrate={deleteCrate}
+								context={context}
+								addAlbumToCrate={addAlbumToCrate}
 							/>
 						)}
 
@@ -51,30 +52,9 @@ function ItemList({
 								albumIds={albumIds}
 								editMode={editMode}
 								removeAlbum={removeAlbum}
+								toggleAddMode={toggleAddMode}
 							/>
 						)}
-						{/* {type !== "crate-result" && (
-							<Item
-								item={item}
-								type={type}
-								setActiveAlbum={setActiveAlbum}
-								addAlbum={addAlbum}
-								albumIds={albumIds}
-								editMode={editMode}
-								setDeletedAlbumIds={setDeletedAlbumIds}
-								deletedAlbumIds={deletedAlbumIds}
-								togglePin={togglePin}
-								toggleAddMode={toggleAddMode}
-								addAlbumToCrate={addAlbumToCrate}
-							/>
-						)} */}
-						{/* {type === "crate-result" && (
-							<ItemSearchedCrate
-								item={item}
-								type={type}
-								togglePin={togglePin}
-							/>
-						)} */}
 					</div>
 				);
 			})}
