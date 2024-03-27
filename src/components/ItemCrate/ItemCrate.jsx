@@ -10,19 +10,23 @@ import { useNavigate } from "react-router-dom";
 
 let handleAdd;
 
-function ItemCrate({ crate, type }) {
+function ItemCrate({ crate, type, togglePin }) {
 	const [menuMode, setMenuMode] = useState(false);
 
 	const navigate = useNavigate();
-
-	const handleClick = () => {
-		navigate(`/crates/${crate.id}`);
-	};
 
 	function toggleModalOpen() {
 		setMenuMode((prev) => {
 			return !prev;
 		});
+	}
+
+	const handleClick = () => {
+		navigate(`/crates/${crate.id}`);
+	};
+
+	function handlePin() {
+		togglePin(crate.id);
 	}
 
 	return (
@@ -47,7 +51,6 @@ function ItemCrate({ crate, type }) {
 					type='menuHorizontal'
 					menuType='crate'
 					toggleModalOpen={toggleModalOpen}
-					// isPinned={crate.pinned_crate}
 					height='20'
 				/>
 			)}
@@ -58,7 +61,7 @@ function ItemCrate({ crate, type }) {
 					menuType={"crate"}
 					isPinned={crate.pinned_crate}
 					// handleDelete={handleDelete}
-					// handlePin={handlePin}
+					handlePin={handlePin}
 				/>
 			)}
 			{/* put menu modal and relevant function into this component */}

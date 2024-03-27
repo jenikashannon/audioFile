@@ -28,7 +28,9 @@ function ItemList({
 			{itemList.map((item) => {
 				return (
 					<div key={item.id}>
-						{type === "crate" && <ItemCrate crate={item} />}
+						{type === "crate" && (
+							<ItemCrate crate={item} togglePin={togglePin} />
+						)}
 						{/* {type !== "crate-result" && (
 							<Item
 								item={item}
