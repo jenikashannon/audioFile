@@ -85,6 +85,15 @@ function CratesPage() {
 		}
 	}
 
+	async function deleteCrate(crate_id) {
+		try {
+			await axios.delete(`${baseUrl}/crates/${crate_id}`);
+			getUserCrates();
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
 	useEffect(() => {
 		if (!user_id) {
 			navigate("/authorize");
@@ -142,11 +151,13 @@ function CratesPage() {
 						itemList={pinnedCrateList}
 						type='crate'
 						togglePin={togglePin}
+						deleteCrate={deleteCrate}
 					/>
 					<ItemList
 						itemList={sortedCrateList}
 						type='crate'
 						togglePin={togglePin}
+						deleteCrate={deleteCrate}
 					/>
 				</div>
 				{defaultCrate ? (

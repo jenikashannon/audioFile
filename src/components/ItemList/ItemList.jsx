@@ -15,6 +15,7 @@ function ItemList({
 	deletedAlbumIds,
 	addAlbumToCrate,
 	togglePin,
+	deleteCrate,
 	toggleAddMode,
 	itemList,
 	type,
@@ -29,7 +30,11 @@ function ItemList({
 				return (
 					<div key={item.id}>
 						{type === "crate" && (
-							<ItemCrate crate={item} togglePin={togglePin} />
+							<ItemCrate
+								crate={item}
+								togglePin={togglePin}
+								deleteCrate={deleteCrate}
+							/>
 						)}
 						{/* {type !== "crate-result" && (
 							<Item

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 let handleAdd;
 
-function ItemCrate({ crate, type, togglePin }) {
+function ItemCrate({ crate, type, togglePin, deleteCrate }) {
 	const [menuMode, setMenuMode] = useState(false);
 
 	const navigate = useNavigate();
@@ -27,6 +27,10 @@ function ItemCrate({ crate, type, togglePin }) {
 
 	function handlePin() {
 		togglePin(crate.id);
+	}
+
+	function handleDelete() {
+		deleteCrate(crate.id);
 	}
 
 	return (
@@ -60,11 +64,10 @@ function ItemCrate({ crate, type, togglePin }) {
 					toggleModalOpen={toggleModalOpen}
 					menuType={"crate"}
 					isPinned={crate.pinned_crate}
-					// handleDelete={handleDelete}
+					handleDelete={handleDelete}
 					handlePin={handlePin}
 				/>
 			)}
-			{/* put menu modal and relevant function into this component */}
 		</article>
 	);
 }
