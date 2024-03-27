@@ -47,6 +47,8 @@ function ItemList({
 								context={context}
 								removeAlbum={removeAlbum}
 								viewAlbum={viewAlbum}
+								addAlbum={addAlbum}
+								albumIds={albumIds}
 							/>
 						)}
 						{/* {type !== "crate-result" && (

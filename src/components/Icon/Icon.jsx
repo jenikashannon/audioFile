@@ -1,22 +1,6 @@
 import "./Icon.scss";
 
-// components
-import MenuModal from "../MenuModal/MenuModal";
-
-function Icon({
-	type,
-	menuType,
-	height,
-	fill,
-	menuMode,
-	setMenuMode,
-	toggleModalOpen,
-	handleEdit,
-	handleDelete,
-	handlePin,
-	isPinned,
-	handleAdd,
-}) {
+function Icon({ type, height, fill, disable, toggleModalOpen }) {
 	const paths = {
 		add: "M440-280h80v-160h160v-80H520v-160h-80v160H280v80h160v160Zm40 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z",
 		albums:
@@ -40,18 +24,18 @@ function Icon({
 		sort: "M320-440v-287L217-624l-57-56 200-200 200 200-57 56-103-103v287h-80ZM600-80 400-280l57-56 103 103v-287h80v287l103-103 57 56L600-80Z",
 		tracks:
 			"M400-120q-66 0-113-47t-47-113q0-66 47-113t113-47q23 0 42.5 5.5T480-418v-422h240v160H560v400q0 66-47 113t-113 47Z",
+		view: "M160-320v-480 480ZM80-80v-720q0-33 23.5-56.5T160-880h440q33 0 56.5 23.5T680-800v17q-24 11-44 27t-36 36v-80H160v480h440v-160q16 20 36 36t44 27v97q0 33-23.5 56.5T600-240H240L80-80Zm160-320h160v-80H240v80Zm520-80q-50 0-85-35t-35-85q0-50 35-85t85-35q11 0 21 2t19 5v-207h160v80h-80v240q0 50-35 85t-85 35Zm-520-40h280v-80H240v80Zm0-120h280v-80H240v80Z",
 	};
 
 	const clickHandlers = {
 		menuHorizontal: toggleModalOpen,
-		add: handleAdd,
 	};
 
 	return (
-		<div className='icon'>
+		<div className={`icon `}>
 			<svg
 				onClick={clickHandlers[type]}
-				className='icon__button'
+				className={`icon__button ${disable ? "icon__button--disable" : ""}`}
 				xmlns='http://www.w3.org/2000/svg'
 				height={height}
 				width={height}
@@ -60,17 +44,6 @@ function Icon({
 			>
 				<path d={paths[type]} />
 			</svg>
-			{/* {menuMode && (
-				<MenuModal
-					menuType={menuType}
-					setMenuMode={setMenuMode}
-					handleEdit={handleEdit}
-					handleDelete={handleDelete}
-					handlePin={handlePin}
-					isPinned={isPinned}
-					handleAdd={handleAdd}
-				/>
-			)} */}
 		</div>
 	);
 }

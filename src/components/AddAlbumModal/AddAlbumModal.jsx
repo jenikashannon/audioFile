@@ -70,7 +70,8 @@ function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 					)}
 					<ItemList
 						itemList={resultList}
-						type='album-result'
+						type='album'
+						context='crate-add'
 						setActiveAlbum={setActiveAlbum}
 						addAlbum={addAlbum}
 						albumIds={albumIds}

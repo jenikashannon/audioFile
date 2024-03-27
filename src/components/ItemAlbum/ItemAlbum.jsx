@@ -7,10 +7,18 @@ import MenuModal from "../MenuModal/MenuModal";
 // libraries
 import { useState } from "react";
 
-function ItemAlbum({ album, type, context, removeAlbum, viewAlbum }) {
+function ItemAlbum({
+	albumIds,
+	album,
+	type,
+	context,
+	removeAlbum,
+	viewAlbum,
+	addAlbum,
+}) {
 	const [menuMode, setMenuMode] = useState(false);
 
-	const menuAlbumContexts = ["crate-details", "discover"];
+	const menuContexts = ["crate-details", "discover"];
 
 	function toggleModalOpen() {
 		setMenuMode((prev) => {
@@ -31,6 +39,10 @@ function ItemAlbum({ album, type, context, removeAlbum, viewAlbum }) {
 		setMenuMode(false);
 	}
 
+	function handleAdd() {
+		addAlbum(album.id);
+	}
+
 	return (
 		<article className='item-album'>
 			<div className='item-album__container' onClick={handleClick}>
@@ -40,18 +52,18 @@ function ItemAlbum({ album, type, context, removeAlbum, viewAlbum }) {
 					<p className='item-album__details'>{album.artists.join(", ")}</p>
 				</div>
 			</div>
-			{context === "adding-crate" && (
+			{context === "crate-add" && (
 				<Icon
-					// changeAlbum={addAlbum}
-					id={album.id}
-					// disable={albumIds.includes(item-album.id)}
-					mode='add'
+					disable={albumIds.includes(album.id)}
+					type='add'
+					height='12'
+					handleAdd={handleAdd}
 				/>
 			)}
 
 			{/* {editMode && <Icon id={album.id} mode='remove' />} */}
 
-			{menuAlbumContexts.includes(context) && (
+			{menuContexts.includes(context) && (
 				<Icon
 					type='menuHorizontal'
 					menuType='album-discover-result'
