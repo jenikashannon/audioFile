@@ -10,7 +10,6 @@ import { useState } from "react";
 function ItemAlbum({
 	albumIds,
 	album,
-	type,
 	context,
 	removeAlbum,
 	viewAlbum,
@@ -66,7 +65,6 @@ function ItemAlbum({
 			{menuContexts.includes(context) && (
 				<Icon
 					type='menuHorizontal'
-					menuType='album-discover-result'
 					height='20'
 					toggleModalOpen={toggleModalOpen}
 				/>
@@ -74,7 +72,7 @@ function ItemAlbum({
 
 			{menuMode && (
 				<MenuModal
-					menuType='album'
+					menuType={`album-${context}`}
 					toggleModalOpen={toggleModalOpen}
 					handleDelete={handleDelete}
 					handleView={handleView}

@@ -3,6 +3,7 @@ import { baseUrl } from "../../utils/consts";
 
 // components
 import AddToCratesModal from "../../components/AddToCratesModal/AddToCratesModal";
+import AlbumDetailsModal from "../../components/AlbumDetailsModal/AlbumDetailsModal";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -58,6 +59,10 @@ function DiscoverPage() {
 		}
 	}
 
+	function viewAlbum(album) {
+		setActiveAlbum(album);
+	}
+
 	useEffect(() => {
 		if (term) {
 			searchSpotify(term);
@@ -83,11 +88,12 @@ function DiscoverPage() {
 					)}
 					<ItemList
 						itemList={discoverList}
+						type='album'
+						context='discover'
 						toggleAddMode={toggleAddMode}
-						// setActiveAlbum={setActiveAlbum}
+						viewAlbum={viewAlbum}
 						// addAlbum={addAlbum}
 						// albumIds={albumIds}
-						type='album-discover-result'
 					/>
 				</div>
 			</div>
@@ -96,6 +102,13 @@ function DiscoverPage() {
 				<AddToCratesModal
 					crateList={crateList}
 					addAlbumToCrate={addAlbumToCrate}
+				/>
+			)}
+
+			{activeAlbum && (
+				<AlbumDetailsModal
+					album={activeAlbum}
+					setActiveAlbum={setActiveAlbum}
 				/>
 			)}
 		</main>

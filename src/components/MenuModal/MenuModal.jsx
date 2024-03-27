@@ -43,11 +43,19 @@ function MenuModal({
 		};
 	}
 
-	if (menuType === "album") {
+	if (menuType === "album-crate-details") {
 		options = ["delete", "add", "view"];
 		text = {
 			add: "add to other crate",
 			delete: "remove from crate",
+			view: "view album details",
+		};
+	}
+
+	if (menuType === "album-discover") {
+		options = ["add", "view"];
+		text = {
+			add: "add to crates",
 			view: "view album details",
 		};
 	}

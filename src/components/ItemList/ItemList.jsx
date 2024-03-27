@@ -29,7 +29,6 @@ function ItemList({
 
 	return (
 		<section className='item-list'>
-			{itemList.length === 0 && type === "album" && <p>no albums yet.</p>}
 			{itemList.map((item) => {
 				return (
 					<div key={item.id}>
