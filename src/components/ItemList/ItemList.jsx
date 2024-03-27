@@ -17,6 +17,7 @@ function ItemList({
 	addAlbumToCrate,
 	togglePin,
 	deleteCrate,
+	deleteAlbum,
 	removeAlbum,
 	viewAlbum,
 	toggleAddMode,
@@ -44,10 +45,12 @@ function ItemList({
 							<ItemAlbum
 								album={item}
 								context={context}
-								removeAlbum={removeAlbum}
+								deleteAlbum={deleteAlbum}
 								viewAlbum={viewAlbum}
 								addAlbum={addAlbum}
 								albumIds={albumIds}
+								editMode={editMode}
+								removeAlbum={removeAlbum}
 							/>
 						)}
 						{/* {type !== "crate-result" && (

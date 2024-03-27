@@ -31,7 +31,7 @@ function Item({
 
 	const navigate = useNavigate();
 
-	function removeAlbum(id) {
+	function deleteAlbum(id) {
 		const newIds = [...deletedAlbumIds];
 		newIds.push(id);
 		setDeletedAlbumIds(newIds);
@@ -119,7 +119,7 @@ function Item({
 				<Icon type='add' height='16' handleAdd={handleAdd} />
 			)}
 			{editMode && (
-				<AddIcon changeAlbum={removeAlbum} id={item.id} mode='remove' />
+				<AddIcon changeAlbum={deleteAlbum} id={item.id} mode='remove' />
 			)}
 			{type === "crate" && (
 				<Icon

@@ -12,7 +12,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
+function AddAlbumModal({
+	setAddMode,
+	setActiveAlbum,
+	albumIds,
+	setAlbumIds,
+	viewAlbum,
+}) {
 	const [resultList, setResultList] = useState([]);
 	const [term, setTerm] = useState("");
 
@@ -75,6 +81,7 @@ function AddAlbumModal({ setAddMode, setActiveAlbum, albumIds, setAlbumIds }) {
 						setActiveAlbum={setActiveAlbum}
 						addAlbum={addAlbum}
 						albumIds={albumIds}
+						viewAlbum={viewAlbum}
 					/>
 				</div>
 				<Button text='done' handleClick={handleClose} />

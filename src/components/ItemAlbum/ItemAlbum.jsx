@@ -11,9 +11,11 @@ function ItemAlbum({
 	albumIds,
 	album,
 	context,
+	deleteAlbum,
 	removeAlbum,
 	viewAlbum,
 	addAlbum,
+	editMode,
 }) {
 	const [menuMode, setMenuMode] = useState(false);
 
@@ -30,7 +32,7 @@ function ItemAlbum({
 	}
 
 	function handleDelete() {
-		removeAlbum(album.id);
+		deleteAlbum(album.id);
 	}
 
 	function handleView() {
@@ -42,6 +44,10 @@ function ItemAlbum({
 		addAlbum(album.id);
 	}
 
+	function handleRemove() {
+		removeAlbum(album.id);
+	}
+
 	return (
 		<article className='item-album'>
 			<div className='item-album__container' onClick={handleClick}>
@@ -51,6 +57,7 @@ function ItemAlbum({
 					<p className='item-album__details'>{album.artists.join(", ")}</p>
 				</div>
 			</div>
+
 			{context === "crate-add" && (
 				<Icon
 					disable={albumIds.includes(album.id)}
@@ -60,9 +67,11 @@ function ItemAlbum({
 				/>
 			)}
 
-			{/* {editMode && <Icon id={album.id} mode='remove' />} */}
+			{editMode && (
+				<Icon type='remove' height='12' handleRemove={handleRemove} />
+			)}
 
-			{menuContexts.includes(context) && (
+			{menuContexts.includes(context) && !editMode && (
 				<Icon
 					type='menuHorizontal'
 					height='20'
@@ -74,8 +83,9 @@ function ItemAlbum({
 				<MenuModal
 					menuType={`album-${context}`}
 					toggleModalOpen={toggleModalOpen}
-					handleDelete={handleDelete}
+					handleRemove={handleRemove}
 					handleView={handleView}
+					handleDelete={handleDelete}
 				/>
 			)}
 		</article>

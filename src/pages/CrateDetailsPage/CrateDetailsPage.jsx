@@ -64,13 +64,19 @@ function CrateDetailsPage() {
 		navigate("/");
 	}
 
-	async function removeAlbum(album_id) {
+	async function deleteAlbum(album_id) {
 		try {
 			await axios.delete(`${baseUrl}/crates/${crate_id}/${album_id}`);
 			getCrateDetails();
 		} catch (error) {
 			console.log(error);
 		}
+	}
+
+	function removeAlbum(album_id) {
+		setDeletedAlbumIds((prev) => {
+			return [...prev, album_id];
+		});
 	}
 
 	function viewAlbum(album) {
@@ -101,9 +107,10 @@ function CrateDetailsPage() {
 			updateCrateName(crateName);
 		}
 
+		// delete any removed albums
 		if (deletedAlbumIds.length > 0) {
 			deletedAlbumIds.forEach((albumId) => {
-				removeAlbum(albumId);
+				deleteAlbum(albumId);
 			});
 		}
 	}
@@ -173,6 +180,7 @@ function CrateDetailsPage() {
 						deletedAlbumIds={deletedAlbumIds}
 						setDeletedAlbumIds={setDeletedAlbumIds}
 						albumIds={albumIds}
+						deleteAlbum={deleteAlbum}
 						removeAlbum={removeAlbum}
 					/>
 				</div>
@@ -209,6 +217,7 @@ function CrateDetailsPage() {
 					setActiveAlbum={setActiveAlbum}
 					albumIds={albumIds}
 					setAlbumIds={setAlbumIds}
+					viewAlbum={viewAlbum}
 				/>
 			)}
 

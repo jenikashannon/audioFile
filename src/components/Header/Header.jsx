@@ -6,6 +6,7 @@ import MenuModal from "../MenuModal/MenuModal";
 
 // libraries
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Header({
 	mode,
@@ -17,6 +18,8 @@ function Header({
 	triggerEdit,
 }) {
 	const [menuMode, setMenuMode] = useState(false);
+
+	const navigate = useNavigate();
 
 	function handleChange(event) {
 		setCrateName(event.target.value);
@@ -42,7 +45,14 @@ function Header({
 		<header className='header'>
 			{mode !== "crate-details" && <h1 className='header__title'>{text}</h1>}
 			{mode === "crate-details" && !editMode && (
-				<Icon type='back' height='12' fill='white' />
+				<Icon
+					type='back'
+					height='12'
+					fill='white'
+					handleBack={() => {
+						navigate(-1);
+					}}
+				/>
 			)}
 			{mode === "crate-details" && (
 				<>
