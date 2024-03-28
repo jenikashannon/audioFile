@@ -1,5 +1,6 @@
 import "./DiscoverPage.scss";
 import { baseUrl } from "../../utils/consts";
+import { generateAuthHeader } from "../../utils/generateAuthHeader";
 
 // components
 import AddToCratesModal from "../../components/AddToCratesModal/AddToCratesModal";
@@ -20,12 +21,13 @@ function DiscoverPage() {
 	const [activeAlbum, setActiveAlbum] = useState(null);
 	const [albumToAdd, setAlbumToAdd] = useState(null);
 
-	const user_id = localStorage.getItem("audioFileId");
+	const token = localStorage.getItem("token");
 
 	async function searchSpotify(term) {
 		try {
 			const response = await axios.get(
-				`${baseUrl}/spotify/search?term=${term}&user_id=${user_id}`
+				`${baseUrl}/spotify/search?term=${term}`,
+				generateAuthHeader(token)
 			);
 			setDiscoverList(response.data);
 		} catch (error) {

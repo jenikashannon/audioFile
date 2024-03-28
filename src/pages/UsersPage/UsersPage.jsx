@@ -17,7 +17,7 @@ function UsersPage({ setIsLoggedIn }) {
 				`${baseUrl}/auth/authorizeSpotify?code=${code}`
 			);
 
-			localStorage.setItem("audioFileId", response.data.id);
+			localStorage.setItem("token", response.data.id);
 
 			setIsLoggedIn(true);
 

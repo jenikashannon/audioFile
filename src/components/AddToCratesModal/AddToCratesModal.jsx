@@ -1,5 +1,6 @@
 import "./AddToCratesModal.scss";
 import { baseUrl } from "../../utils/consts";
+import { generateAuthHeader } from "../../utils/generateAuthHeader";
 
 // components
 import Icon from "../Icon/Icon";
@@ -12,12 +13,13 @@ import { useState, useEffect } from "react";
 function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 	const [crateList, setCrateList] = useState(null);
 
-	const user_id = localStorage.getItem("audioFileId");
+	const token = localStorage.getItem("token");
 
 	async function getUserCrateNames() {
 		try {
 			const response = await axios.get(
-				`${baseUrl}/crates?type=name&user_id=${user_id}`
+				`${baseUrl}/crates?type=name`,
+				generateAuthHeader(token)
 			);
 
 			const cratesWithoutAlbum = response.data.filter((crate) => {
@@ -32,10 +34,13 @@ function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 
 	async function addAlbumToCrate(crate_id) {
 		try {
-			await axios.post(`${baseUrl}/crates/${crate_id}`, {
-				album_id: albumToAdd.id,
-				user_id,
-			});
+			await axios.post(
+				`${baseUrl}/crates/${crate_id}`,
+				{
+					album_id: albumToAdd.id,
+				},
+				generateAuthHeader(token)
+			);
 
 			setCrateList((prev) => {
 				return prev.filter((crate) => {

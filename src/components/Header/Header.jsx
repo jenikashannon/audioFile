@@ -50,7 +50,7 @@ function Header({
 					height='12'
 					fill='white'
 					handleBack={() => {
-						navigate(-1);
+						navigate("/");
 					}}
 				/>
 			)}
