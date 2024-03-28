@@ -3,7 +3,7 @@ import { baseUrl } from "../../utils/consts";
 
 // components
 import Button from "../Button/Button";
-import CloseIcon from "../CloseIcon/CloseIcon";
+import Icon from "../Icon/Icon";
 import ItemList from "../ItemList/ItemList";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -65,7 +65,7 @@ function AddAlbumModal({
 	return (
 		<article className='add-album-modal'>
 			<div className='add-album-modal__card add-album-modal__card--long'>
-				<CloseIcon handleClose={handleClose} />
+				<Icon type='close' height='20' handleClose={handleClose} />
 				<h1 className='add-album-modal__title'>search for albums</h1>
 				<SearchBar term={term} setTerm={setTerm} />
 				<div className='add-album-modal__results'>

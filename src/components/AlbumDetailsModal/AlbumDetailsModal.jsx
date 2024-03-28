@@ -1,8 +1,8 @@
 import "./AlbumDetailsModal.scss";
 
 // components
-import CloseIcon from "../CloseIcon/CloseIcon";
 import Divider from "../Divider/Divider";
+import Icon from "../Icon/Icon";
 
 function AlbumDetailsModal({ album, setActiveAlbum }) {
 	const regex = /\(fea.*/;
@@ -16,7 +16,7 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 	return (
 		<article className='album-details-modal'>
 			<div className='album-details-modal__card album-details-modal__card--long'>
-				<CloseIcon handleClose={handleClose} />
+				<Icon type='close' height='20' handleClose={handleClose} />
 				<img
 					className='album-details-modal__image'
 					src={album.image}

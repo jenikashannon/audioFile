@@ -13,7 +13,7 @@ function SearchCratesModal({ searchedCrateList, setSearchMode, setTerm }) {
 		<article className='search-crates-modal'>
 			<h1 className='search-crates-modal__title'>crate results</h1>
 			<div className='search-crates-modal__results'>
-				<ItemList itemList={searchedCrateList} type='crate-result' />
+				<ItemList itemList={searchedCrateList} type='crate' context='search' />
 			</div>
 			<button className='search-crates-modal__close' onClick={closeModal}>
 				cancel
