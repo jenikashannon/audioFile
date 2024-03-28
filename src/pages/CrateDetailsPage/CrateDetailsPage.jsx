@@ -1,6 +1,7 @@
 import "./CrateDetailsPage.scss";
 import { baseUrl } from "../../utils/consts";
 import { sortList } from "../../utils/sort";
+import { generateAuthHeader } from "../../utils/generateAuthHeader";
 
 // components
 import AddAlbumModal from "../../components/AddAlbumModal/AddAlbumModal";
@@ -35,14 +36,15 @@ function CrateDetailsPage() {
 	const [albumToAdd, setAlbumToAdd] = useState(null);
 
 	const crate_id = useParams().crate_id;
-	const user_id = localStorage.getItem("audioFileId");
+	const token = localStorage.getItem("token");
 
 	const navigate = useNavigate();
 
 	async function getCrateDetails() {
 		try {
 			const response = await axios.get(
-				`${baseUrl}/crates/${crate_id}?user_id=${user_id}`
+				`${baseUrl}/crates/${crate_id}`,
+				generateAuthHeader(token)
 			);
 			setCrate(response.data);
 
@@ -59,7 +61,10 @@ function CrateDetailsPage() {
 
 	async function deleteCrate() {
 		try {
-			await axios.delete(`${baseUrl}/crates/${crate_id}`);
+			await axios.delete(
+				`${baseUrl}/crates/${crate_id}`,
+				generateAuthHeader(token)
+			);
 		} catch (error) {
 			console.log(error);
 		}
@@ -69,7 +74,10 @@ function CrateDetailsPage() {
 
 	async function deleteAlbum(album_id) {
 		try {
-			await axios.delete(`${baseUrl}/crates/${crate_id}/${album_id}`);
+			await axios.delete(
+				`${baseUrl}/crates/${crate_id}/${album_id}`,
+				generateAuthHeader(token)
+			);
 			getCrateDetails();
 		} catch (error) {
 			console.log(error);
@@ -88,10 +96,13 @@ function CrateDetailsPage() {
 
 	async function updateCrateName() {
 		try {
-			await axios.patch(`${baseUrl}/crates/${crate_id}/`, {
-				name: crateName,
-				user_id,
-			});
+			await axios.patch(
+				`${baseUrl}/crates/${crate_id}`,
+				{
+					name: crateName,
+				},
+				generateAuthHeader(token)
+			);
 			getCrateDetails();
 		} catch (error) {
 			console.log(error);

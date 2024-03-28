@@ -1,5 +1,6 @@
 import "./AddAlbumModal.scss";
 import { baseUrl } from "../../utils/consts";
+import { generateAuthHeader } from "../../utils/generateAuthHeader";
 
 // components
 import Button from "../Button/Button";
@@ -22,7 +23,7 @@ function AddAlbumModal({
 	const [resultList, setResultList] = useState([]);
 	const [term, setTerm] = useState("");
 
-	const user_id = localStorage.getItem("audioFileId");
+	const token = localStorage.getItem("token");
 	const crate_id = useParams().crate_id;
 
 	function handleClose() {
@@ -31,10 +32,13 @@ function AddAlbumModal({
 
 	async function addAlbum(album_id) {
 		try {
-			await axios.post(`${baseUrl}/crates/${crate_id}`, {
-				album_id,
-				user_id,
-			});
+			await axios.post(
+				`${baseUrl}/crates/${crate_id}`,
+				{
+					album_id,
+				},
+				generateAuthHeader(token)
+			);
 			setAlbumIds((prev) => {
 				return [...prev, album_id];
 			});
@@ -46,7 +50,8 @@ function AddAlbumModal({
 	async function searchSpotify(term) {
 		try {
 			const response = await axios.get(
-				`${baseUrl}/spotify/search?term=${term}&user_id=${user_id}`
+				`${baseUrl}/spotify/search?term=${term}`,
+				generateAuthHeader(token)
 			);
 			setResultList(response.data);
 		} catch (error) {
