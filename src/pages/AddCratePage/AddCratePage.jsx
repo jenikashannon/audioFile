@@ -1,5 +1,6 @@
 import "./AddCratePage.scss";
 import { baseUrl } from "../../utils/consts";
+import { generateAuthHeader } from "../../utils/generateAuthHeader";
 
 // components
 import Header from "../../components/Header/Header";
@@ -13,7 +14,7 @@ import uniqid from "uniqid";
 function AddCratePage() {
 	const [crateName, setCrateName] = useState("new crate");
 
-	const user_id = localStorage.getItem("audioFileId");
+	const token = localStorage.getItem("token");
 	const navigate = useNavigate();
 
 	function handleChange(event) {
@@ -21,14 +22,19 @@ function AddCratePage() {
 	}
 
 	async function handleSubmit(event) {
-		const id = uniqid();
 		event.preventDefault();
+
+		const id = uniqid();
+
 		try {
-			await axios.post(`${baseUrl}/crates?user_id=${user_id}`, {
-				name: event.target.crate_name.value,
-				user_id,
-				id,
-			});
+			await axios.post(
+				`${baseUrl}/crates?`,
+				{
+					name: event.target.crate_name.value,
+					id,
+				},
+				generateAuthHeader(token)
+			);
 
 			navigate(`/crates/${id}`);
 		} catch (error) {

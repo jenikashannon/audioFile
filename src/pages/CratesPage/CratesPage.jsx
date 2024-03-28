@@ -82,7 +82,11 @@ function CratesPage() {
 
 	async function togglePin(crate_id) {
 		try {
-			await axios.put(`${baseUrl}/crates/${crate_id}`);
+			await axios.put(
+				`${baseUrl}/crates/${crate_id}`,
+				{},
+				generateAuthHeader(token)
+			);
 			getUserCrates();
 		} catch (error) {
 			console.log(error);
@@ -91,7 +95,10 @@ function CratesPage() {
 
 	async function deleteCrate(crate_id) {
 		try {
-			await axios.delete(`${baseUrl}/crates/${crate_id}`);
+			await axios.delete(
+				`${baseUrl}/crates/${crate_id}`,
+				generateAuthHeader(token)
+			);
 			getUserCrates();
 		} catch (error) {
 			console.log(error);
