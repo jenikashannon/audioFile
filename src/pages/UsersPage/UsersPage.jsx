@@ -14,7 +14,7 @@ function UsersPage({ setIsLoggedIn }) {
 	async function createUser() {
 		try {
 			const response = await axios.get(
-				`${baseUrl}/users/createUser?code=${code}`
+				`${baseUrl}/auth/authorizeSpotify?code=${code}`
 			);
 
 			localStorage.setItem("audioFileId", response.data.id);

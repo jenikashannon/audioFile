@@ -1,5 +1,6 @@
 import "./CratesPage.scss";
 import { baseUrl } from "../../utils/consts";
+import { generateAuthHeader } from "../../utils/generateAuthHeader";
 import { sortList } from "../../utils/sort";
 
 // components
@@ -29,7 +30,7 @@ function CratesPage() {
 	const [term, setTerm] = useState("");
 	const [searchMode, setSearchMode] = useState(false);
 
-	const user_id = localStorage.getItem("audioFileId");
+	const token = localStorage.getItem("token");
 
 	const navigate = useNavigate();
 
@@ -44,7 +45,10 @@ function CratesPage() {
 
 	async function getUserCrates() {
 		try {
-			const response = await axios.get(`${baseUrl}/crates?user_id=${user_id}`);
+			const response = await axios.get(
+				`${baseUrl}/crates`,
+				generateAuthHeader(token)
+			);
 			setCrateList(response.data);
 			setPinnedCrateList(response.data.filter((crate) => crate.pinned_crate));
 			setFilteredCrateList(
@@ -94,11 +98,9 @@ function CratesPage() {
 		}
 	}
 
-	function triggerDelete(crate_name) {}
-
 	useEffect(() => {
-		if (!user_id) {
-			navigate("/authorize");
+		if (!token) {
+			navigate("/login");
 		} else {
 			getUserCrates();
 		}

@@ -12,6 +12,7 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 	function handleClose() {
 		setActiveAlbum(null);
 	}
+	//1nmfd34zlu7amjrw
 
 	return (
 		<article className='album-details-modal'>
