@@ -12,6 +12,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function AddAlbumModal({
 	setAddMode,
@@ -25,6 +26,8 @@ function AddAlbumModal({
 
 	const token = localStorage.getItem("token");
 	const crate_id = useParams().crate_id;
+
+	const navigate = useNavigate();
 
 	function handleClose() {
 		setAddMode(false);
@@ -43,7 +46,9 @@ function AddAlbumModal({
 				return [...prev, album_id];
 			});
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 
@@ -55,7 +60,9 @@ function AddAlbumModal({
 			);
 			setResultList(response.data);
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 

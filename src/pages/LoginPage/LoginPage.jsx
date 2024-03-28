@@ -18,12 +18,7 @@ function LoginPage() {
 			});
 
 			localStorage.setItem("token", response.data.token);
-
-			if (response.data.isSpotifyAuthorized) {
-				navigate("/");
-			} else {
-				navigate("/authorize");
-			}
+			navigate("/");
 		} catch (error) {
 			console.log(error);
 		}

@@ -12,7 +12,6 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 	function handleClose() {
 		setActiveAlbum(null);
 	}
-	//1nmfd34zlu7amjrw
 
 	return (
 		<article className='album-details-modal'>
@@ -23,6 +22,7 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 					src={album.image}
 					alt={`${album.name} cover art`}
 				/>
+				<p className='album-details-modal__name'>{album.name}</p>
 				<p className='album-details-modal__metadata'>
 					{`${album.release_date} · ${count} songs · ${duration}`}
 				</p>

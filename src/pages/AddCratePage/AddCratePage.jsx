@@ -38,7 +38,9 @@ function AddCratePage() {
 
 			navigate(`/crates/${id}`);
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 

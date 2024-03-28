@@ -12,6 +12,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 // libraries
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function DiscoverPage() {
 	const [term, setTerm] = useState("");
@@ -22,6 +23,7 @@ function DiscoverPage() {
 	const [albumToAdd, setAlbumToAdd] = useState(null);
 
 	const token = localStorage.getItem("token");
+	const navigate = useNavigate();
 
 	async function searchSpotify(term) {
 		try {
@@ -31,7 +33,9 @@ function DiscoverPage() {
 			);
 			setDiscoverList(response.data);
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 

@@ -9,11 +9,13 @@ import ItemList from "../ItemList/ItemList";
 // libraries
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 	const [crateList, setCrateList] = useState(null);
 
 	const token = localStorage.getItem("token");
+	const navigate = useNavigate();
 
 	async function getUserCrateNames() {
 		try {
@@ -28,7 +30,9 @@ function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 
 			setCrateList(cratesWithoutAlbum);
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 
@@ -48,7 +52,9 @@ function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 				});
 			});
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 

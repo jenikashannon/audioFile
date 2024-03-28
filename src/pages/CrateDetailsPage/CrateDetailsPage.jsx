@@ -55,7 +55,9 @@ function CrateDetailsPage() {
 			setAlbumIds(albums);
 			setCrateName(response.data.name);
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 
@@ -66,7 +68,9 @@ function CrateDetailsPage() {
 				generateAuthHeader(token)
 			);
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 
 		navigate("/");
@@ -80,7 +84,9 @@ function CrateDetailsPage() {
 			);
 			getCrateDetails();
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 
@@ -105,7 +111,9 @@ function CrateDetailsPage() {
 			);
 			getCrateDetails();
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 

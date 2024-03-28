@@ -6,31 +6,27 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-function UsersPage({ setIsLoggedIn }) {
+function UsersPage() {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const code = searchParams.get("code");
+	const token = localStorage.getItem("token");
 
-	async function createUser() {
+	async function saveUserSpotifyAuth() {
 		try {
-			const response = await axios.get(
-				`${baseUrl}/auth/authorizeSpotify?code=${code}`
-			);
-
-			localStorage.setItem("token", response.data.id);
-
-			setIsLoggedIn(true);
-
+			await axios.post(`${baseUrl}/auth/authorizeSpotify?code=${code}`, {
+				token,
+			});
 			navigate("/");
 		} catch (error) {
-			console.log(error);
+			console.log(error.response.data);
 		}
 	}
 	useEffect(() => {
-		createUser();
+		saveUserSpotifyAuth();
 	}, []);
 
-	return <div>here</div>;
+	return <div>loading...</div>;
 }
 
 export default UsersPage;

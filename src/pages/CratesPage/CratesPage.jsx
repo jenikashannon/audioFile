@@ -55,7 +55,9 @@ function CratesPage() {
 				response.data.filter((crate) => !crate.pinned_crate)
 			);
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 
@@ -89,7 +91,9 @@ function CratesPage() {
 			);
 			getUserCrates();
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 
@@ -101,7 +105,9 @@ function CratesPage() {
 			);
 			getUserCrates();
 		} catch (error) {
-			console.log(error);
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
 		}
 	}
 

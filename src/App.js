@@ -11,22 +11,16 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 
 // libraries
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<CratesPage isLoggedIn={isLoggedIn} />} />
+				<Route path='/' element={<CratesPage />} />
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/authorize' element={<AuthorizeSpotifyPage />} />
-				<Route
-					path='/users'
-					element={<UsersPage setIsLoggedIn={setIsLoggedIn} />}
-				/>
+				<Route path='/users' element={<UsersPage />} />
 				<Route path='crates/:crate_id' element={<CrateDetailsPage />} />
 				<Route path='/crates' element={<AddCratePage />} />
 				<Route path='/discover' element={<DiscoverPage />} />
