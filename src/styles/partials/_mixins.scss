@@ -1,4 +1,5 @@
 @use "./colors";
+@use "./variables";
 
 @mixin modal {
 	&__background {
@@ -60,7 +61,8 @@
 }
 
 @mixin page {
-	padding: 5rem 1rem calc(80px + 2rem) 1rem;
+	padding: calc(variables.$header-height + 2rem) 1rem
+		calc(variables.$footer-height + 2rem);
 	position: relative;
 	height: 100vh;
 	display: flex;
