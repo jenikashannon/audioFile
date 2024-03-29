@@ -15,6 +15,10 @@ function ItemSearchedCrate({ crate, type, togglePin }) {
 		return match.key !== "name";
 	});
 
+	const crateNameMatch = crate.matches.filter((match) => {
+		return match.key === "name";
+	})[0];
+
 	// remove match duplicates
 	let matchValues = [];
 	let uniqueMatches = [];
@@ -51,6 +55,41 @@ function ItemSearchedCrate({ crate, type, togglePin }) {
 		return (previousTrackIndex += album.tracks.length);
 	});
 
+	function highlightMatchText(match, textType, album) {
+		const refs = album
+			? {
+					"albums.name": album.name,
+					"albums.tracks.name": match.value,
+					"albums.artists": album.artists.join(", "),
+			  }
+			: null;
+
+		if (!match) {
+			return crate.name;
+		}
+
+		if (textType !== match.key) {
+			return <>{refs[textType]}</>;
+		}
+
+		const stringStart = match.value.slice(0, match.indices[0][0]);
+		const stringHighlight = match.value.slice(
+			match.indices[0][0],
+			match.indices[0][1] + 1
+		);
+		const stringEnd = match.value.slice(match.indices[0][1] + 1);
+
+		return (
+			<>
+				{stringStart}
+				<span className='item-searched-crate__highlight'>
+					{stringHighlight}
+				</span>
+				{stringEnd}
+			</>
+		);
+	}
+
 	return (
 		<article
 			className='item-searched-crate'
@@ -58,13 +97,16 @@ function ItemSearchedCrate({ crate, type, togglePin }) {
 				navigate(`/crates/${crate.id}`);
 			}}
 		>
-			<h2 className='item-searched-crate__name'>{crate.name}</h2>
+			<h2 className='item-searched-crate__name'>
+				{highlightMatchText(crateNameMatch, "name")}
+			</h2>
 			<p className='item-searched-crate__title'>top matches:</p>
 
 			<div className='item-searched-crate__container'>
 				{uniqueMatches.map((match) => {
 					const matchType = match.key;
 
+					// find relevant album for match
 					let albumIndex;
 
 					if (matchType === "albums.tracks.name") {
@@ -89,13 +131,14 @@ function ItemSearchedCrate({ crate, type, togglePin }) {
 							/>
 							<div className='item-searched-crate__container--text'>
 								<p className='item-searched-crate__album-name'>
-									{album.name} · {album.artists.join(", ")}
+									{highlightMatchText(match, "albums.name", album)} ·{" "}
+									{highlightMatchText(match, "albums.artists", album)}
 								</p>
 								{matchType === "albums.tracks.name" && (
 									<div className='item-searched-crate__container--track'>
 										<Icon type='tracks' height='12' fill='0' />
 										<p className='item-searched-crate__track-name'>
-											{match.value}
+											{highlightMatchText(match, "albums.tracks.name", album)}
 										</p>
 									</div>
 								)}
