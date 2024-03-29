@@ -6,7 +6,6 @@ import { sortList } from "../../utils/sort";
 // components
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import SearchCratesModal from "../../components/SearchCratesModal/SearchCratesModal";
 import Sorter from "../../components/Sorter/Sorter";
 import SorterModal from "../../components/SorterModal/SorterModal";
@@ -15,7 +14,6 @@ import SorterModal from "../../components/SorterModal/SorterModal";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Fuse from "fuse.js";
 
 function CratesPage() {
 	const [crateList, setCrateList] = useState(null);
@@ -26,22 +24,12 @@ function CratesPage() {
 	const [pinnedCrateList, setPinnedCrateList] = useState(null);
 	const [sortedCrateList, setSortedCrateList] = useState(null);
 	const [filteredCrateList, setFilteredCrateList] = useState(null);
-	const [searchedCrateList, setSearchedCrateList] = useState([]);
-	const [term, setTerm] = useState("");
+
 	const [searchMode, setSearchMode] = useState(false);
 
 	const token = localStorage.getItem("token");
 
 	const navigate = useNavigate();
-
-	const options = {
-		keys: ["name", "albums.name", "albums.tracks.name", "albums.artists"],
-		threshold: 0.2,
-		includeMatches: true,
-		findAllMatches: true,
-		ignoreLocation: true,
-		minMatchCharLength: 2,
-	};
 
 	async function getUserCrates() {
 		try {
@@ -63,23 +51,6 @@ function CratesPage() {
 
 	function sortCrates() {
 		setSortedCrateList(sortList(filteredCrateList, sortBy, sortOrder));
-	}
-
-	function searchCrates(term) {
-		if (!term) {
-			return setSearchedCrateList([]);
-		}
-
-		const fuse = new Fuse(crateList, options);
-		const results = fuse.search(term);
-
-		const formattedResults = results.map((result) => {
-			const item = { ...result.item, matches: result.matches };
-
-			return item;
-		});
-
-		setSearchedCrateList(formattedResults);
 	}
 
 	async function togglePin(crate_id) {
@@ -111,6 +82,12 @@ function CratesPage() {
 		}
 	}
 
+	function toggleSearchModal() {
+		setSearchMode((prev) => {
+			return !prev;
+		});
+	}
+
 	useEffect(() => {
 		if (!token) {
 			navigate("/login");
@@ -136,27 +113,14 @@ function CratesPage() {
 		}
 	}, [filteredCrateList]);
 
-	useEffect(() => {
-		searchCrates(term);
-	}, [term]);
-
 	if (!sortedCrateList) {
 		return <>Loading...</>;
 	}
 
 	return (
 		<main className='crates-page'>
-			<Header text='my crates' />
+			<Header text='my crates' triggerSearch={toggleSearchModal} />
 			<div className='crates-page__container'>
-				<SearchBar
-					handleSearch={searchCrates}
-					setTerm={setTerm}
-					term={term}
-					setSearchMode={setSearchMode}
-					handleSearchBarClick={() => {
-						setSearchMode(true);
-					}}
-				/>
 				<Sorter
 					sortBy={sortBy}
 					setSortMode={setSortMode}
@@ -197,9 +161,8 @@ function CratesPage() {
 
 			{searchMode && (
 				<SearchCratesModal
-					searchedCrateList={searchedCrateList}
 					setSearchMode={setSearchMode}
-					setTerm={setTerm}
+					crateList={crateList}
 				/>
 			)}
 		</main>

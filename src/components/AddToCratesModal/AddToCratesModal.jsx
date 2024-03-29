@@ -20,7 +20,7 @@ function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 	async function getUserCrateNames() {
 		try {
 			const response = await axios.get(
-				`${baseUrl}/crates?type=name`,
+				`${baseUrl}/crates?type=album_ids`,
 				generateAuthHeader(token)
 			);
 

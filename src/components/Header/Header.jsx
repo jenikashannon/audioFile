@@ -16,6 +16,7 @@ function Header({
 	setCrateName,
 	triggerDelete,
 	triggerEdit,
+	triggerSearch,
 }) {
 	const [menuMode, setMenuMode] = useState(false);
 
@@ -41,17 +42,22 @@ function Header({
 		triggerEdit();
 	}
 
+	function handleSearch() {
+		triggerSearch();
+	}
+
 	return (
 		<header className='header'>
 			{mode !== "crate-details" && <h1 className='header__title'>{text}</h1>}
-			{mode === "crate-details" && !editMode && (
+			{!editMode && (
 				<Icon
-					type='back'
-					height='12'
+					type={mode === "crate-details" ? "back" : "search"}
+					height={mode === "crate-details" ? "12" : "24"}
 					fill='white'
 					handleBack={() => {
 						navigate("/");
 					}}
+					handleSearch={handleSearch}
 				/>
 			)}
 			{mode === "crate-details" && (
