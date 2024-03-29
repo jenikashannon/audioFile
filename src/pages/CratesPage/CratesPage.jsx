@@ -35,7 +35,7 @@ function CratesPage() {
 	const navigate = useNavigate();
 
 	const options = {
-		keys: ["name", "albums", "tracks", "artists"],
+		keys: ["name", "albums.name", "albums.tracks.name", "albums.artists"],
 		threshold: 0.2,
 		includeMatches: true,
 		findAllMatches: true,

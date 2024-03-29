@@ -17,10 +17,39 @@
 	}
 
 	&__container {
-		display: flex;
-		gap: 4px;
-		align-items: center;
-		margin: 8px 0;
+		&--text {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			padding: 3px;
+			gap: 0;
+		}
+
+		&--match,
+		&--track {
+			display: flex;
+			gap: 4px;
+			align-items: center;
+			margin: 8px 0;
+		}
+
+		&--track {
+			margin: 0;
+		}
+	}
+
+	&__album-art,
+	&__container--text {
+		height: 40px;
+	}
+
+	&__album-name {
+		font-size: 0.7rem;
+		font-weight: 600;
+	}
+
+	&__track-name {
+		font-size: 0.7rem;
 	}
 
 	&__matches {

@@ -2,6 +2,7 @@
 
 .search-crates-modal {
 	@include mixins.modal--active-background;
+	height: 65%;
 
 	&__title {
 		width: 100%;

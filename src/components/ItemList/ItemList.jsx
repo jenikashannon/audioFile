@@ -32,8 +32,18 @@ function ItemList({
 			{itemList.map((item) => {
 				return (
 					<div key={item.id}>
-						{type === "crate" && (
+						{type === "crate" && context !== "search" && (
 							<ItemCrate
+								crate={item}
+								togglePin={togglePin}
+								deleteCrate={deleteCrate}
+								context={context}
+								addAlbumToCrate={addAlbumToCrate}
+							/>
+						)}
+
+						{type === "crate" && context === "search" && (
+							<ItemSearchedCrate
 								crate={item}
 								togglePin={togglePin}
 								deleteCrate={deleteCrate}
