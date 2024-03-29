@@ -118,7 +118,9 @@ function CrateDetailsPage() {
 	}
 
 	function toggleAddMode() {
-		setAddMode(true);
+		setAddMode((prev) => {
+			return !prev;
+		});
 	}
 
 	function toggleAddToOtherCratesMode(album) {
@@ -250,7 +252,7 @@ function CrateDetailsPage() {
 
 			{addMode && (
 				<AddAlbumModal
-					setAddMode={setAddMode}
+					toggleAddMode={toggleAddMode}
 					setActiveAlbum={setActiveAlbum}
 					albumIds={albumIds}
 					setAlbumIds={setAlbumIds}

@@ -15,7 +15,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function AddAlbumModal({
-	setAddMode,
+	toggleAddMode,
 	setActiveAlbum,
 	albumIds,
 	setAlbumIds,
@@ -30,7 +30,7 @@ function AddAlbumModal({
 	const navigate = useNavigate();
 
 	function handleClose() {
-		setAddMode(false);
+		toggleAddMode();
 	}
 
 	async function addAlbum(album_id) {
@@ -75,30 +75,36 @@ function AddAlbumModal({
 	}, [term]);
 
 	return (
-		<article className='add-album-modal'>
-			<div className='add-album-modal__card add-album-modal__card--long'>
-				<Icon type='close' height='20' handleClose={handleClose} />
-				<h1 className='add-album-modal__title'>search for albums</h1>
-				<SearchBar term={term} setTerm={setTerm} />
-				<div className='add-album-modal__results'>
-					{resultList.length === 0 && (
-						<h2 className='add-album-modal__sub-header'>
-							search results will appear here
-						</h2>
-					)}
-					<ItemList
-						itemList={resultList}
-						type='album'
-						context='crate-add'
-						setActiveAlbum={setActiveAlbum}
-						addAlbum={addAlbum}
-						albumIds={albumIds}
-						viewAlbum={viewAlbum}
+		<div className='add-album-modal'>
+			<div className='add-album-modal__background'>
+				<dialog className='add-album-modal__card add-album-modal__card--bottom-anchored'>
+					<Icon type='close' height='20' handleClose={handleClose} />
+					<h1 className='add-album-modal__title'>search for albums</h1>
+					<SearchBar term={term} setTerm={setTerm} />
+					<div className='add-album-modal__results'>
+						{resultList.length === 0 && (
+							<h2 className='add-album-modal__sub-header'>
+								search results will appear here
+							</h2>
+						)}
+						<ItemList
+							itemList={resultList}
+							type='album'
+							context='crate-add'
+							setActiveAlbum={setActiveAlbum}
+							addAlbum={addAlbum}
+							albumIds={albumIds}
+							viewAlbum={viewAlbum}
+						/>
+					</div>
+					<Button
+						text='done'
+						handleClick={handleClose}
+						className='add-album-modal__button'
 					/>
-				</div>
-				<Button text='done' handleClick={handleClose} />
+				</dialog>
 			</div>
-		</article>
+		</div>
 	);
 }
 

@@ -5,15 +5,12 @@ import ItemList from "../ItemList/ItemList";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
 // libraries
-import axios from "axios";
 import { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 
 function SearchCratesModal({ crateList, toggleSearchModal }) {
 	const [searchedCrateList, setSearchedCrateList] = useState([]);
 	const [term, setTerm] = useState("");
-
-	const token = localStorage.getItem("token");
 
 	const options = {
 		keys: ["name", "albums.name", "albums.tracks.name", "albums.artists"],
@@ -47,11 +44,11 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 
 	return (
 		<div className='search-crates-modal'>
-			<article
+			<div
 				className='search-crates-modal__background'
 				onClick={toggleSearchModal}
-			></article>
-			<div className='search-crates-modal__card search-crates-modal__card--bottom-anchored'>
+			></div>
+			<dialog className='search-crates-modal__card search-crates-modal__card--bottom-anchored'>
 				<SearchBar handleSearch={searchCrates} setTerm={setTerm} term={term} />
 				<h1 className='search-crates-modal__title'>crate results</h1>
 				<div className='search-crates-modal__results'>
@@ -67,7 +64,7 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 				>
 					cancel
 				</button>
-			</div>
+			</dialog>
 		</div>
 	);
 }

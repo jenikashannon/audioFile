@@ -4,6 +4,10 @@
 .add-album-modal {
 	@include mixins.modal;
 
+	&__card {
+		height: calc(100vh - 80px - 64px);
+	}
+
 	&__title,
 	&__sub-header {
 		width: 100%;
