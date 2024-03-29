@@ -4,15 +4,10 @@
 .sorter-modal {
 	@include mixins.modal;
 
-	&__card {
-		position: fixed;
-		bottom: 3.7rem;
-		width: 100%;
-		padding: 2rem;
+	&__card--bottom-anchored {
 		gap: 1rem;
 		border-radius: 20px;
 		justify-content: flex-start;
-		height: 18rem;
 	}
 
 	&__title {

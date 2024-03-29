@@ -29,6 +29,13 @@
 			align-items: center;
 			z-index: 3;
 		}
+
+		&--bottom-anchored {
+			position: fixed;
+			bottom: 80px;
+			width: 100%;
+			padding: 2rem;
+		}
 	}
 }
 

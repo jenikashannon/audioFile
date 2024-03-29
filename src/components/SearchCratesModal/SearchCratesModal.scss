@@ -1,8 +1,13 @@
 @use "../../styles/partials/mixins";
 
 .search-crates-modal {
-	@include mixins.modal--active-background;
-	height: 65%;
+	@include mixins.modal;
+
+	&__card {
+		height: calc(100vh - 80px);
+		z-index: 9;
+		// border: red 2px solid;
+	}
 
 	&__title {
 		width: 100%;

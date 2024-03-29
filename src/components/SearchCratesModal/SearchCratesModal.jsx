@@ -51,7 +51,7 @@ function SearchCratesModal({ setSearchMode, crateList }) {
 	}, [term]);
 
 	return (
-		<article className='search-crates-modal'>
+		<article className='search-crates-modal__card search-crates-modal__card--bottom-anchored'>
 			<SearchBar
 				handleSearch={searchCrates}
 				setTerm={setTerm}
