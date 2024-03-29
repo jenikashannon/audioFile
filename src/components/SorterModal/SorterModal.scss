@@ -4,9 +4,8 @@
 .sorter-modal {
 	@include mixins.modal;
 
-	&__card--bottom-anchored {
+	&__card {
 		gap: 1rem;
-		border-radius: 20px;
 		justify-content: flex-start;
 	}
 

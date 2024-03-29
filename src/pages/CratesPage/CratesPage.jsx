@@ -161,7 +161,7 @@ function CratesPage() {
 
 			{searchMode && (
 				<SearchCratesModal
-					setSearchMode={setSearchMode}
+					toggleSearchModal={toggleSearchModal}
 					crateList={crateList}
 				/>
 			)}

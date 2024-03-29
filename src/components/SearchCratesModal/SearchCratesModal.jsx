@@ -9,7 +9,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Fuse from "fuse.js";
 
-function SearchCratesModal({ setSearchMode, crateList }) {
+function SearchCratesModal({ crateList, toggleSearchModal }) {
 	const [searchedCrateList, setSearchedCrateList] = useState([]);
 	const [term, setTerm] = useState("");
 
@@ -23,11 +23,6 @@ function SearchCratesModal({ setSearchMode, crateList }) {
 		ignoreLocation: true,
 		minMatchCharLength: 2,
 	};
-
-	function closeModal() {
-		setSearchMode(false);
-		setTerm("");
-	}
 
 	function searchCrates(term) {
 		if (!term) {
@@ -51,24 +46,29 @@ function SearchCratesModal({ setSearchMode, crateList }) {
 	}, [term]);
 
 	return (
-		<article className='search-crates-modal__card search-crates-modal__card--bottom-anchored'>
-			<SearchBar
-				handleSearch={searchCrates}
-				setTerm={setTerm}
-				term={term}
-				setSearchMode={setSearchMode}
-				handleSearchBarClick={() => {
-					setSearchMode(true);
-				}}
-			/>
-			<h1 className='search-crates-modal__title'>crate results</h1>
-			<div className='search-crates-modal__results'>
-				<ItemList itemList={searchedCrateList} type='crate' context='search' />
+		<div className='search-crates-modal'>
+			<article
+				className='search-crates-modal__background'
+				onClick={toggleSearchModal}
+			></article>
+			<div className='search-crates-modal__card search-crates-modal__card--bottom-anchored'>
+				<SearchBar handleSearch={searchCrates} setTerm={setTerm} term={term} />
+				<h1 className='search-crates-modal__title'>crate results</h1>
+				<div className='search-crates-modal__results'>
+					<ItemList
+						itemList={searchedCrateList}
+						type='crate'
+						context='search'
+					/>
+				</div>
+				<button
+					className='search-crates-modal__close'
+					onClick={toggleSearchModal}
+				>
+					cancel
+				</button>
 			</div>
-			<button className='search-crates-modal__close' onClick={closeModal}>
-				cancel
-			</button>
-		</article>
+		</div>
 	);
 }
 

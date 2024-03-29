@@ -9,7 +9,11 @@ function SorterModal({ sortBy, setSortBy, setSortMode, setSortOrder, mode }) {
 	}
 
 	return (
-		<article className='sorter-modal' onClick={closeModal}>
+		<div className='sorter-modal'>
+			<article
+				className='sorter-modal__background'
+				onClick={closeModal}
+			></article>
 			<div className=' sorter-modal__card sorter-modal__card--bottom-anchored'>
 				<p className='sorter-modal__title'>sort by</p>
 				<div className='sorter-modal__container'>
@@ -40,7 +44,7 @@ function SorterModal({ sortBy, setSortBy, setSortMode, setSortOrder, mode }) {
 					</button>
 				</div>
 			</div>
-		</article>
+		</div>
 	);
 }
 

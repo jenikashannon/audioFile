@@ -1,16 +1,18 @@
 @use "./colors";
 
 @mixin modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: rgba(11, 57, 57, 0.2);
-	height: 100vh;
-	width: 100vw;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 2;
+	&__background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: rgba(11, 57, 57, 0.2);
+		height: 100vh;
+		width: 100vw;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 2;
+	}
 
 	&__card {
 		background-color: colors.$white;
@@ -20,6 +22,7 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		z-index: 3;
 
 		&--long {
 			width: 90%;
@@ -31,6 +34,7 @@
 		}
 
 		&--bottom-anchored {
+			border-radius: 20px 20px 0 0;
 			position: fixed;
 			bottom: 80px;
 			width: 100%;

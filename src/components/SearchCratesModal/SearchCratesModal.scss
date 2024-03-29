@@ -4,9 +4,7 @@
 	@include mixins.modal;
 
 	&__card {
-		height: calc(100vh - 80px);
-		z-index: 9;
-		// border: red 2px solid;
+		height: calc(100vh - 80px - 64px);
 	}
 
 	&__title {
