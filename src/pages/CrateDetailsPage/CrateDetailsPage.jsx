@@ -95,7 +95,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 				navigate("/authorize");
 			}
 
-			getCrateDetails(error.response.data);
+			triggerSnackbar(error.response.data);
 		}
 	}
 
@@ -118,7 +118,10 @@ function CrateDetailsPage({ triggerSnackbar }) {
 				},
 				generateAuthHeader(token)
 			);
+
 			triggerSnackbar(response.data);
+
+			setEditMode(false);
 
 			getCrateDetails();
 		} catch (error) {
@@ -151,7 +154,11 @@ function CrateDetailsPage({ triggerSnackbar }) {
 	}
 
 	function saveEdits() {
-		setEditMode(false);
+		// if no changes, exit edit mode
+		if (crateName === crate.name && deletedAlbumIds.length === 0) {
+			setEditMode(false);
+			return;
+		}
 
 		// if new crate name, update crate
 		if (crateName !== crate.name) {

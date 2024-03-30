@@ -56,7 +56,10 @@ function App() {
 					path='crates/:crate_id'
 					element={<CrateDetailsPage triggerSnackbar={triggerSnackbar} />}
 				/>
-				<Route path='/crates' element={<AddCratePage />} />
+				<Route
+					path='/crates'
+					element={<AddCratePage triggerSnackbar={triggerSnackbar} />}
+				/>
 				<Route
 					path='/discover'
 					element={<DiscoverPage triggerSnackbar={triggerSnackbar} />}

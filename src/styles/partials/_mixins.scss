@@ -101,3 +101,9 @@
 	margin-top: 1rem;
 	font-weight: 600;
 }
+
+@mixin directive-text {
+	font-size: 0.7rem;
+	width: 75%;
+	color: colors.$black-light;
+}

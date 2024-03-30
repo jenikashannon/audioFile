@@ -137,12 +137,14 @@ function CratesPage({ triggerSnackbar }) {
 
 					{pinnedCrateList.length > 0 && <Divider />}
 
-					<Sorter
-						sortBy={sortBy}
-						setSortMode={setSortMode}
-						setSortOrder={setSortOrder}
-						mode='crate'
-					/>
+					{crateList.length > 0 && (
+						<Sorter
+							sortBy={sortBy}
+							setSortMode={setSortMode}
+							setSortOrder={setSortOrder}
+							mode='crate'
+						/>
+					)}
 
 					<ItemList
 						itemList={sortedCrateList}
@@ -158,7 +160,9 @@ function CratesPage({ triggerSnackbar }) {
 						</p>
 					)}
 					{crateList.length === 0 && (
-						<p>it's so empty here, tap "new crate" to start collecting.</p>
+						<p className='crates-page__default-text'>
+							it's so empty here, tap "new crate" to start collecting.
+						</p>
 					)}
 				</div>
 			</div>

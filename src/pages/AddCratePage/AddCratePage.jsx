@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import uniqid from "uniqid";
 
-function AddCratePage() {
+function AddCratePage({ triggerSnackbar }) {
 	const [crateName, setCrateName] = useState("new crate");
 
 	const token = localStorage.getItem("token");
@@ -27,7 +27,7 @@ function AddCratePage() {
 		const id = uniqid();
 
 		try {
-			await axios.post(
+			const response = await axios.post(
 				`${baseUrl}/crates?`,
 				{
 					name: event.target.crate_name.value,
@@ -41,6 +41,8 @@ function AddCratePage() {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
 			}
+
+			triggerSnackbar(error.response.data);
 		}
 	}
 
