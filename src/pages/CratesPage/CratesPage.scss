@@ -12,8 +12,6 @@
 	}
 
 	&__default-text {
-		font-size: 0.7rem;
-		width: 75%;
-		color: colors.$black-light;
+		@include mixins.directive-text;
 	}
 }

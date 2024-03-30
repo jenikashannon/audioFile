@@ -57,7 +57,9 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 				/>
 				<h1 className='search-crates-modal__title'>crate results</h1>
 				{searchedCrateList.length === 0 && (
-					<p>search results will appear here.</p>
+					<p className='search-crates-modal__directive-text'>
+						search results will appear here.
+					</p>
 				)}
 				<div className='search-crates-modal__results'>
 					<ItemList

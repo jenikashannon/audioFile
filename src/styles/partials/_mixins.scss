@@ -105,5 +105,6 @@
 @mixin directive-text {
 	font-size: 0.7rem;
 	width: 75%;
-	color: colors.$black-light;
+	color: rgba(11, 57, 57, 0.5);
+	margin: 0;
 }

@@ -18,6 +18,10 @@
 		@include mixins.scroll-view;
 	}
 
+	&__directive-text {
+		@include mixins.directive-text;
+	}
+
 	&__close {
 		@include mixins.close-button;
 	}

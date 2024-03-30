@@ -9,7 +9,6 @@
 	}
 
 	&__sub-header {
-		font-size: 1rem;
-		font-weight: 400;
+		@include mixins.directive-text;
 	}
 }
