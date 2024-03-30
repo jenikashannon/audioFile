@@ -3,6 +3,7 @@ import { baseUrl } from "../../utils/consts";
 import { generateAuthHeader } from "../../utils/generateAuthHeader";
 
 // components
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 
 // libraries
@@ -66,6 +67,7 @@ function AddCratePage({ triggerSnackbar }) {
 					value='add crate'
 				/>
 			</form>
+			<Footer />
 		</main>
 	);
 }

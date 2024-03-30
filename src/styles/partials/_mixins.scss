@@ -69,7 +69,7 @@
 
 @mixin page {
 	padding: calc(variables.$header-height + 2rem) 1rem
-		calc(variables.$footer-height + 2rem);
+		calc(variables.$footer-height + 1rem);
 	position: relative;
 	height: 100vh;
 	display: flex;
@@ -83,6 +83,7 @@
 	overflow-y: scroll;
 	overflow-x: hidden;
 	scrollbar-color: rgba(219, 244, 80, 0.1) rgba(219, 244, 80, 0.1);
+	margin-bottom: 1rem;
 }
 
 @mixin close-button {

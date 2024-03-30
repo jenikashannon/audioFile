@@ -5,6 +5,7 @@ import { sortList } from "../../utils/sort";
 
 // components
 import Divider from "../../components/Divider/Divider";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
 import LoadingPage from "../LoadingPage/LoadingPage";
@@ -184,6 +185,7 @@ function CratesPage({ triggerSnackbar }) {
 					crateList={crateList}
 				/>
 			)}
+			<Footer />
 		</main>
 	);
 }

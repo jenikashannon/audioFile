@@ -6,16 +6,12 @@ import AuthorizeSpotifyPage from "./pages/AuthorizeSpotifyPage/AuthorizeSpotifyP
 import CrateDetailsPage from "./pages/CrateDetailsPage/CrateDetailsPage";
 import CratesPage from "./pages/CratesPage/CratesPage";
 import DiscoverPage from "./pages/DiscoverPage/DiscoverPage";
-import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
-
-import LoadingPage from "./pages/LoadingPage/LoadingPage";
 
 // libraries
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import { theme, createTheme } from "@mui/system";
 
 // material ui components
 import Snackbar from "@mui/material/Snackbar";
@@ -66,7 +62,6 @@ function App() {
 					path='/discover'
 					element={<DiscoverPage triggerSnackbar={triggerSnackbar} />}
 				/>
-				<Route path='/loading' element={<LoadingPage />} />
 			</Routes>
 			<Snackbar
 				anchorOrigin={{ vertical, horizontal }}
@@ -76,7 +71,6 @@ function App() {
 				message={snackbarMessage}
 				sx={styles}
 			/>
-			<Footer />
 		</BrowserRouter>
 	);
 }

@@ -9,6 +9,7 @@ import AddToCratesModal from "../../components/AddToCratesModal/AddToCratesModal
 import AlbumDetailsModal from "../../components/AlbumDetailsModal/AlbumDetailsModal";
 import Button from "../../components/Button/Button";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
 import LoadingPage from "../LoadingPage/LoadingPage";
@@ -302,6 +303,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 					triggerSnackbar={triggerSnackbar}
 				/>
 			)}
+			<Footer />
 		</main>
 	);
 }

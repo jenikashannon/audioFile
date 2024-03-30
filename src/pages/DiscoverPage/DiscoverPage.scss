@@ -6,6 +6,7 @@
 	}
 
 	&__results {
+		@include mixins.scroll-view;
 	}
 
 	&__sub-header {

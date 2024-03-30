@@ -5,6 +5,7 @@ import { generateAuthHeader } from "../../utils/generateAuthHeader";
 // components
 import AddToCratesModal from "../../components/AddToCratesModal/AddToCratesModal";
 import AlbumDetailsModal from "../../components/AlbumDetailsModal/AlbumDetailsModal";
+import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -104,6 +105,7 @@ function DiscoverPage({ triggerSnackbar }) {
 					setActiveAlbum={setActiveAlbum}
 				/>
 			)}
+			<Footer />
 		</main>
 	);
 }
