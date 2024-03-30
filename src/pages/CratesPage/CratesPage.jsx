@@ -126,7 +126,11 @@ function CratesPage({ triggerSnackbar }) {
 
 	return (
 		<main className='crates-page'>
-			<Header text='my crates' triggerSearch={toggleSearchModal} />
+			<Header
+				text='my crates'
+				mode='crates-page'
+				triggerSearch={toggleSearchModal}
+			/>
 			<div className='crates-page__container'>
 				<div className='crates-page__crates'>
 					<ItemList

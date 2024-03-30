@@ -49,7 +49,7 @@ function Header({
 	return (
 		<header className='header'>
 			{mode !== "crate-details" && <h1 className='header__title'>{text}</h1>}
-			{!editMode && (
+			{!editMode && ["crate-details", "search"].includes(mode) && (
 				<Icon
 					type={mode === "crate-details" ? "back" : "search"}
 					height={mode === "crate-details" ? "12" : "24"}
@@ -60,6 +60,7 @@ function Header({
 					handleSearch={handleSearch}
 				/>
 			)}
+
 			{mode === "crate-details" && (
 				<>
 					<input
