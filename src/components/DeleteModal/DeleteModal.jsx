@@ -18,8 +18,9 @@ function DeleteModal({ deleteCrate, setDeleteMode, name }) {
 	}
 
 	return (
-		<article className='delete-modal'>
-			<div className='delete-modal__card'>
+		<div className='delete-modal'>
+			<article className='delete-modal__background'></article>
+			<dialog className='delete-modal__card'>
 				<p className='delete-modal__text'>
 					are you sure you want to delete{" "}
 					<span className='delete-modal__text--name'>{name}</span>? this action
@@ -34,8 +35,8 @@ function DeleteModal({ deleteCrate, setDeleteMode, name }) {
 						handleClick={handleDelete}
 					/>
 				</div>
-			</div>
-		</article>
+			</dialog>
+		</div>
 	);
 }
 

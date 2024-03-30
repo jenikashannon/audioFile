@@ -11,7 +11,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AddToCratesModal({ albumToAdd, toggleAddMode }) {
+function AddToCratesModal({ albumToAdd, toggleAddMode, triggerSnackbar }) {
 	const [crateList, setCrateList] = useState(null);
 
 	const token = localStorage.getItem("token");
@@ -38,13 +38,15 @@ function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 
 	async function addAlbumToCrate(crate_id) {
 		try {
-			await axios.post(
+			const response = await axios.post(
 				`${baseUrl}/crates/${crate_id}`,
 				{
 					album_id: albumToAdd.id,
 				},
 				generateAuthHeader(token)
 			);
+
+			triggerSnackbar(response.data);
 
 			setCrateList((prev) => {
 				return prev.filter((crate) => {
@@ -54,7 +56,10 @@ function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
+				return;
 			}
+
+			triggerSnackbar(error.response.data);
 		}
 	}
 
@@ -68,6 +73,10 @@ function AddToCratesModal({ albumToAdd, toggleAddMode }) {
 
 	return (
 		<div className='add-to-crates-modal'>
+			<div
+				className='add-to-crates-modal__background'
+				onClick={toggleAddMode}
+			></div>
 			<div className='add-to-crates-modal__card'>
 				<div className='add-to-crates-modal__close-container'>
 					<Icon type='close' height='20' handleClose={toggleAddMode} />

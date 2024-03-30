@@ -3,7 +3,7 @@ import { baseUrl } from "../../utils/consts";
 import { sortList } from "../../utils/sort";
 import { generateAuthHeader } from "../../utils/generateAuthHeader";
 
-// components
+// audioFile components
 import AddAlbumModal from "../../components/AddAlbumModal/AddAlbumModal";
 import AddToCratesModal from "../../components/AddToCratesModal/AddToCratesModal";
 import AlbumDetailsModal from "../../components/AlbumDetailsModal/AlbumDetailsModal";
@@ -19,7 +19,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function CrateDetailsPage() {
+function CrateDetailsPage({ triggerSnackbar }) {
 	const [crate, setCrate] = useState(null);
 	const [crateName, setCrateName] = useState(null);
 	const [albumIds, setAlbumIds] = useState([]);
@@ -63,14 +63,18 @@ function CrateDetailsPage() {
 
 	async function deleteCrate() {
 		try {
-			await axios.delete(
+			const response = await axios.delete(
 				`${baseUrl}/crates/${crate_id}`,
 				generateAuthHeader(token)
 			);
+
+			triggerSnackbar(response.data);
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
 			}
+
+			triggerSnackbar(error.response.data);
 		}
 
 		navigate("/");
@@ -78,15 +82,20 @@ function CrateDetailsPage() {
 
 	async function deleteAlbum(album_id) {
 		try {
-			await axios.delete(
+			const response = await axios.delete(
 				`${baseUrl}/crates/${crate_id}/${album_id}`,
 				generateAuthHeader(token)
 			);
+
 			getCrateDetails();
+
+			triggerSnackbar(response.data);
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
 			}
+
+			getCrateDetails(error.response.data);
 		}
 	}
 
@@ -102,18 +111,22 @@ function CrateDetailsPage() {
 
 	async function updateCrateName() {
 		try {
-			await axios.patch(
+			const response = await axios.patch(
 				`${baseUrl}/crates/${crate_id}`,
 				{
 					name: crateName,
 				},
 				generateAuthHeader(token)
 			);
+			triggerSnackbar(response.data);
+
 			getCrateDetails();
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
 			}
+
+			triggerSnackbar(error.response.data);
 		}
 	}
 
@@ -150,6 +163,8 @@ function CrateDetailsPage() {
 			deletedAlbumIds.forEach((albumId) => {
 				deleteAlbum(albumId);
 			});
+
+			setDeletedAlbumIds([]);
 		}
 	}
 
@@ -223,6 +238,7 @@ function CrateDetailsPage() {
 						toggleAddMode={toggleAddToOtherCratesMode}
 					/>
 				</div>
+
 				<div className='crate-details-page__button-container'>
 					{editMode && (
 						<Button text='cancel' type='cancel' handleClick={abortEdits} />
@@ -257,6 +273,7 @@ function CrateDetailsPage() {
 					albumIds={albumIds}
 					setAlbumIds={setAlbumIds}
 					viewAlbum={viewAlbum}
+					triggerSnackbar={triggerSnackbar}
 				/>
 			)}
 
@@ -274,6 +291,7 @@ function CrateDetailsPage() {
 				<AddToCratesModal
 					toggleAddMode={toggleAddToOtherCratesMode}
 					albumToAdd={albumToAdd}
+					triggerSnackbar={triggerSnackbar}
 				/>
 			)}
 		</main>

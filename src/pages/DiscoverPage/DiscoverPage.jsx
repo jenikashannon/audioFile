@@ -14,7 +14,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function DiscoverPage() {
+function DiscoverPage({ triggerSnackbar }) {
 	const [term, setTerm] = useState("");
 	const [discoverList, setDiscoverList] = useState([]);
 	const [addMode, setAddMode] = useState(false);
@@ -90,6 +90,7 @@ function DiscoverPage() {
 				<AddToCratesModal
 					toggleAddMode={toggleAddMode}
 					albumToAdd={albumToAdd}
+					triggerSnackbar={triggerSnackbar}
 				/>
 			)}
 

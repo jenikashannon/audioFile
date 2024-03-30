@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function CratesPage() {
+function CratesPage({ triggerSnackbar }) {
 	const [crateList, setCrateList] = useState(null);
 	const [defaultCrate, setDefaultCrate] = useState(false);
 	const [sortMode, setSortMode] = useState(false);
@@ -70,15 +70,20 @@ function CratesPage() {
 
 	async function deleteCrate(crate_id) {
 		try {
-			await axios.delete(
+			const response = await axios.delete(
 				`${baseUrl}/crates/${crate_id}`,
 				generateAuthHeader(token)
 			);
+
+			triggerSnackbar(response.data);
+
 			getUserCrates();
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
 			}
+
+			triggerSnackbar(error.response.data);
 		}
 	}
 

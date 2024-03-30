@@ -6,7 +6,7 @@ import { baseUrl } from "../../utils/consts";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function LoginPage() {
+function LoginPage({ triggerSnackbar }) {
 	const navigate = useNavigate();
 
 	async function handleSubmit(event) {
@@ -18,9 +18,11 @@ function LoginPage() {
 			});
 
 			localStorage.setItem("token", response.data.token);
+
 			navigate("/");
 		} catch (error) {
 			console.log(error);
+			triggerSnackbar(error.response.data);
 		}
 	}
 

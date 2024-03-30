@@ -6,9 +6,11 @@
 
 	&__card {
 		padding: 1rem;
-		height: 30vh;
+		display: flex;
+		gap: 3rem;
 		align-items: center;
-		pointer-events: all;
+		justify-content: center;
+		position: static;
 	}
 
 	&__text {

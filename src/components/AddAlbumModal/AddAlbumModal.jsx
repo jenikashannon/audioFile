@@ -20,6 +20,7 @@ function AddAlbumModal({
 	albumIds,
 	setAlbumIds,
 	viewAlbum,
+	triggerSnackbar,
 }) {
 	const [resultList, setResultList] = useState([]);
 	const [term, setTerm] = useState("");
@@ -35,20 +36,26 @@ function AddAlbumModal({
 
 	async function addAlbum(album_id) {
 		try {
-			await axios.post(
+			const response = await axios.post(
 				`${baseUrl}/crates/${crate_id}`,
 				{
 					album_id,
 				},
 				generateAuthHeader(token)
 			);
+
+			triggerSnackbar(response.data);
+
 			setAlbumIds((prev) => {
 				return [...prev, album_id];
 			});
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
+				return;
 			}
+
+			triggerSnackbar(error.response.data);
 		}
 	}
 

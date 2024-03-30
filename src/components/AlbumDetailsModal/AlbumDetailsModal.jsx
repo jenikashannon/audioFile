@@ -14,7 +14,11 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 	}
 
 	return (
-		<article className='album-details-modal'>
+		<div className='album-details-modal'>
+			<article
+				className='album-details-modal__background'
+				onClick={handleClose}
+			></article>
 			<div className='album-details-modal__card album-details-modal__card--long'>
 				<Icon type='close' height='20' handleClose={handleClose} />
 				<img
@@ -67,7 +71,7 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 					})}
 				</div>
 			</div>
-		</article>
+		</div>
 	);
 }
 
