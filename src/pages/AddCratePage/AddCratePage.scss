@@ -1,10 +1,9 @@
 @use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
 
 .add-crate-page {
-	margin-top: 4rem;
-
 	&__form {
-		padding: 1rem;
+		@include mixins.page;
 	}
 
 	&__label {
