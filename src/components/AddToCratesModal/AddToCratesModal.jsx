@@ -5,6 +5,7 @@ import { generateAuthHeader } from "../../utils/generateAuthHeader";
 // components
 import Icon from "../Icon/Icon";
 import ItemList from "../ItemList/ItemList";
+import LoadingPage from "../../pages/LoadingPage/LoadingPage";
 
 // libraries
 import axios from "axios";
@@ -68,7 +69,7 @@ function AddToCratesModal({ albumToAdd, toggleAddMode, triggerSnackbar }) {
 	}, []);
 
 	if (!crateList) {
-		return <>loading...</>;
+		return <LoadingPage />;
 	}
 
 	return (

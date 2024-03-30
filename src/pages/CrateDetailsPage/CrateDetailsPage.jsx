@@ -11,6 +11,7 @@ import Button from "../../components/Button/Button";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
+import LoadingPage from "../LoadingPage/LoadingPage";
 import Sorter from "../../components/Sorter/Sorter";
 import SorterModal from "../../components/SorterModal/SorterModal";
 
@@ -208,7 +209,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 	}, [crate, deletedAlbumIds]);
 
 	if (!sortedAlbums) {
-		return <>Loading...</>;
+		return <LoadingPage />;
 	}
 
 	return (

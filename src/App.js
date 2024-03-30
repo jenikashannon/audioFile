@@ -10,6 +10,8 @@ import Footer from "./components/Footer/Footer";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 
+import LoadingPage from "./pages/LoadingPage/LoadingPage";
+
 // libraries
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
@@ -64,6 +66,7 @@ function App() {
 					path='/discover'
 					element={<DiscoverPage triggerSnackbar={triggerSnackbar} />}
 				/>
+				<Route path='/loading' element={<LoadingPage />} />
 			</Routes>
 			<Snackbar
 				anchorOrigin={{ vertical, horizontal }}

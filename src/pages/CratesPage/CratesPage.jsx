@@ -7,6 +7,7 @@ import { sortList } from "../../utils/sort";
 import Divider from "../../components/Divider/Divider";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
+import LoadingPage from "../LoadingPage/LoadingPage";
 import SearchCratesModal from "../../components/SearchCratesModal/SearchCratesModal";
 import Sorter from "../../components/Sorter/Sorter";
 import SorterModal from "../../components/SorterModal/SorterModal";
@@ -119,7 +120,7 @@ function CratesPage({ triggerSnackbar }) {
 	}, [filteredCrateList]);
 
 	if (!sortedCrateList) {
-		return <>Loading...</>;
+		return <LoadingPage />;
 	}
 
 	return (
