@@ -50,6 +50,45 @@ function ItemCrate({
 		addAlbumToCrate(crate.id);
 	}
 
+	if (context === "pinned") {
+		return (
+			<article className='item-crate--pinned'>
+				<div onClick={handleClick}>
+					<p className='item-crate--pinned__name'>{crate.name}</p>
+					<p className='item-crate--pinned__album-count'>
+						{crate.album_count} album{crate.album_count === 1 ? "" : "s"}
+					</p>
+				</div>
+				<div className='item-crate--pinned__container--icon'>
+					<Icon
+						type='menuHorizontal'
+						menuType='crate'
+						toggleModalOpen={toggleModalOpen}
+						height='20'
+					/>
+				</div>
+
+				{menuMode && (
+					<MenuModal
+						toggleModalOpen={toggleModalOpen}
+						menuType='crate-pinned'
+						isPinned={crate.pinned_crate}
+						handleDelete={triggerDelete}
+						handlePin={handlePin}
+					/>
+				)}
+
+				{deleteMode && (
+					<DeleteModal
+						deleteCrate={handleDelete}
+						setDeleteMode={setDeleteMode}
+						name={crate.name}
+					/>
+				)}
+			</article>
+		);
+	}
+
 	return (
 		<article className='item-crate'>
 			<div className='item-crate__container' onClick={handleClick}>
@@ -57,12 +96,9 @@ function ItemCrate({
 				<div className='item-crate__container--text'>
 					<p className='item-crate__name'>{crate.name}</p>
 					<div className='item-crate__container--pin'>
-						{crate.pinned_crate ? <Icon type='pin' height='10' /> : null}
-						{context !== "add-to-crates" && (
-							<p className='item-crate__details'>
-								{crate.album_count} album{crate.album_count === 1 ? "" : "s"}
-							</p>
-						)}
+						<p className='item-crate__details'>
+							{crate.album_count} album{crate.album_count === 1 ? "" : "s"}
+						</p>
 					</div>
 				</div>
 			</div>

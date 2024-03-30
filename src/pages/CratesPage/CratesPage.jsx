@@ -4,6 +4,7 @@ import { generateAuthHeader } from "../../utils/generateAuthHeader";
 import { sortList } from "../../utils/sort";
 
 // components
+import Divider from "../../components/Divider/Divider";
 import Header from "../../components/Header/Header";
 import ItemList from "../../components/ItemList/ItemList";
 import SearchCratesModal from "../../components/SearchCratesModal/SearchCratesModal";
@@ -17,15 +18,14 @@ import axios from "axios";
 
 function CratesPage({ triggerSnackbar }) {
 	const [crateList, setCrateList] = useState(null);
-	const [defaultCrate, setDefaultCrate] = useState(false);
-	const [sortMode, setSortMode] = useState(false);
-	const [sortBy, setSortBy] = useState("");
-	const [sortOrder, setSortOrder] = useState("asc");
+	const [filteredCrateList, setFilteredCrateList] = useState(null);
 	const [pinnedCrateList, setPinnedCrateList] = useState(null);
 	const [sortedCrateList, setSortedCrateList] = useState(null);
-	const [filteredCrateList, setFilteredCrateList] = useState(null);
-
+	const [defaultCrate, setDefaultCrate] = useState(false);
+	const [sortBy, setSortBy] = useState("");
+	const [sortOrder, setSortOrder] = useState("asc");
 	const [searchMode, setSearchMode] = useState(false);
+	const [sortMode, setSortMode] = useState(false);
 
 	const token = localStorage.getItem("token");
 
@@ -126,22 +126,28 @@ function CratesPage({ triggerSnackbar }) {
 		<main className='crates-page'>
 			<Header text='my crates' triggerSearch={toggleSearchModal} />
 			<div className='crates-page__container'>
-				<Sorter
-					sortBy={sortBy}
-					setSortMode={setSortMode}
-					setSortOrder={setSortOrder}
-					mode='crate'
-				/>
 				<div className='crates-page__crates'>
 					<ItemList
 						itemList={pinnedCrateList}
 						type='crate'
+						context='pinned'
 						togglePin={togglePin}
 						deleteCrate={deleteCrate}
 					/>
+
+					{pinnedCrateList.length > 0 && <Divider />}
+
+					<Sorter
+						sortBy={sortBy}
+						setSortMode={setSortMode}
+						setSortOrder={setSortOrder}
+						mode='crate'
+					/>
+
 					<ItemList
 						itemList={sortedCrateList}
 						type='crate'
+						context='crates-page'
 						togglePin={togglePin}
 						deleteCrate={deleteCrate}
 					/>

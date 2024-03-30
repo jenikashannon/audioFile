@@ -1,7 +1,9 @@
+import "./ItemList.scss";
+
 // components
 import ItemAlbum from "../ItemAlbum/ItemAlbum";
 import ItemCrate from "../ItemCrate/ItemCrate";
-import ItemSearchedCrate from "../ItemSearchedCrate/ItemSearchedCrate";
+import ItemCrateSearched from "../ItemCrateSearched/ItemCrateSearched";
 
 // libraries
 import { useEffect } from "react";
@@ -28,26 +30,43 @@ function ItemList({
 	useEffect(() => {}, [albumIds, itemList]);
 
 	return (
-		<section className='item-list'>
+		<section
+			className={context === "pinned" ? "item-list__pinned" : "item-list"}
+		>
 			{itemList.map((item) => {
 				return (
-					<div key={item.id}>
-						{type === "crate" && context !== "search" && (
+					<div
+						key={item.id}
+						className={
+							context === "pinned" ? "item-list__pinned--container" : ""
+						}
+					>
+						{type === "crate" &&
+							["crates-page", "add-to-crates"].includes(context) && (
+								<ItemCrate
+									crate={item}
+									togglePin={togglePin}
+									deleteCrate={deleteCrate}
+									context={context}
+									addAlbumToCrate={addAlbumToCrate}
+								/>
+							)}
+
+						{type === "crate" && context === "pinned" && (
 							<ItemCrate
 								crate={item}
+								context={context}
 								togglePin={togglePin}
 								deleteCrate={deleteCrate}
-								context={context}
 								addAlbumToCrate={addAlbumToCrate}
 							/>
 						)}
 
 						{type === "crate" && context === "search" && (
-							<ItemSearchedCrate
+							<ItemCrateSearched
 								crate={item}
 								togglePin={togglePin}
 								deleteCrate={deleteCrate}
-								context={context}
 								addAlbumToCrate={addAlbumToCrate}
 							/>
 						)}

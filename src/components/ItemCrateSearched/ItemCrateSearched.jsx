@@ -1,4 +1,4 @@
-import "./ItemSearchedCrate.scss";
+import "./ItemCrateSearched.scss";
 
 // components
 import Icon from "../Icon/Icon.jsx";
@@ -7,7 +7,7 @@ import Icon from "../Icon/Icon.jsx";
 import { useNavigate } from "react-router-dom";
 import uniqid from "uniqid";
 
-function ItemSearchedCrate({ crate, type, togglePin }) {
+function ItemCrateSearched({ crate, type, togglePin }) {
 	const navigate = useNavigate();
 
 	// filter out matches on crate name
@@ -151,4 +151,4 @@ function ItemSearchedCrate({ crate, type, togglePin }) {
 	);
 }
 
-export default ItemSearchedCrate;
+export default ItemCrateSearched;

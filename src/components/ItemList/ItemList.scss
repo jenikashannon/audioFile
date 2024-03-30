@@ -1,0 +1,15 @@
+.item-list {
+	&__pinned {
+		display: flex;
+		overflow: scroll;
+		flex-wrap: nowrap;
+		gap: 1rem;
+		padding: 0.25rem;
+
+		&--container {
+			flex-shrink: 0;
+			flex-basis: 40%;
+			height: 7rem;
+		}
+	}
+}

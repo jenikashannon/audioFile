@@ -33,7 +33,7 @@ function MenuModal({
 		};
 	}
 
-	if (menuType === "crate") {
+	if (["crate", "crate-pinned"].includes(menuType)) {
 		const pinAction = isPinned ? "unpin" : "pin";
 		options = [pinAction, "delete"];
 		text = {
@@ -65,7 +65,11 @@ function MenuModal({
 			<div className='menu-modal' onClick={toggleModalOpen}></div>
 			<div
 				className={`menu-modal__card ${
-					menuType === "crate-header" ? "menu-modal__card--header" : ""
+					menuType === "crate-header"
+						? "menu-modal__card--header"
+						: menuType === "crate-pinned"
+						? "menu-modal__card--pinned"
+						: ""
 				}`}
 			>
 				{options.map((option) => {
