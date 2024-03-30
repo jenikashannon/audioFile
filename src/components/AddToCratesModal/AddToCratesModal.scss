@@ -10,9 +10,7 @@
 	}
 
 	&__close-container {
-		display: flex;
-		justify-content: flex-end;
-		margin-bottom: 1rem;
+		@include mixins.close-icon;
 	}
 
 	&__header {

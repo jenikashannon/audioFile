@@ -20,7 +20,9 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 				onClick={handleClose}
 			></article>
 			<div className='album-details-modal__card album-details-modal__card--long'>
-				<Icon type='close' height='20' handleClose={handleClose} />
+				<div className='album-details-modal__close-container'>
+					<Icon type='close' height='20' handleClose={handleClose} />
+				</div>
 				<img
 					className='album-details-modal__image'
 					src={album.image}
@@ -45,7 +47,7 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 						</div>
 					</div>
 				</div>
-				<Divider />
+				<Divider margin='0' />
 				<div className='album-details-modal__tracks'>
 					{album.tracks.map((track, index) => {
 						return (

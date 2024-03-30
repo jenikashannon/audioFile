@@ -6,7 +6,7 @@
 	z-index: 4;
 
 	&__image {
-		width: 50%;
+		height: 80px;
 	}
 
 	&__name {
@@ -14,7 +14,7 @@
 		font-weight: 700;
 		margin-top: 0.25rem;
 		text-align: center;
-		padding: 0 4rem;
+		padding: 0 2rem;
 	}
 
 	&__metadata {
@@ -38,6 +38,10 @@
 		display: flex;
 		width: 100%;
 		gap: 1rem;
+	}
+
+	&__close-container {
+		@include mixins.close-icon;
 	}
 
 	&__column {

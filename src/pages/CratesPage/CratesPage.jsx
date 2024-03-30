@@ -141,7 +141,7 @@ function CratesPage({ triggerSnackbar }) {
 						deleteCrate={deleteCrate}
 					/>
 
-					{pinnedCrateList.length > 0 && <Divider />}
+					{pinnedCrateList.length > 0 && <Divider margin='0 0 16px 0' />}
 
 					{crateList.length > 0 && (
 						<Sorter

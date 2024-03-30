@@ -1,7 +1,7 @@
 import "./Divider.scss";
 
-function Divider() {
-	return <div className='divider'></div>;
+function Divider({ margin }) {
+	return <div className='divider' style={{ margin }}></div>;
 }
 
 export default Divider;
