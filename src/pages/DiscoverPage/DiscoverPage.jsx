@@ -69,11 +69,15 @@ function DiscoverPage({ triggerSnackbar }) {
 		<main className='discover-page'>
 			<Header text='discover records' />
 			<div className='discover-page__container'>
-				<SearchBar term={term} setTerm={setTerm} />
+				<SearchBar
+					term={term}
+					setTerm={setTerm}
+					placeholder='album, track, artist'
+				/>
 				<div className='discover-page__results'>
 					{discoverList.length === 0 && (
 						<h2 className='discover-page__sub-header'>
-							search Spotify for albums to add to your collection.
+							add some albums to your collection by searching Spotify above.
 						</h2>
 					)}
 					<ItemList

@@ -49,8 +49,16 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 				onClick={toggleSearchModal}
 			></div>
 			<dialog className='search-crates-modal__card search-crates-modal__card--bottom-anchored'>
-				<SearchBar handleSearch={searchCrates} setTerm={setTerm} term={term} />
+				<SearchBar
+					handleSearch={searchCrates}
+					setTerm={setTerm}
+					term={term}
+					placeholder='crate name, album, track, artist'
+				/>
 				<h1 className='search-crates-modal__title'>crate results</h1>
+				{searchedCrateList.length === 0 && (
+					<p>search results will appear here.</p>
+				)}
 				<div className='search-crates-modal__results'>
 					<ItemList
 						itemList={searchedCrateList}
@@ -62,7 +70,7 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 					className='search-crates-modal__close'
 					onClick={toggleSearchModal}
 				>
-					cancel
+					close
 				</button>
 			</dialog>
 		</div>

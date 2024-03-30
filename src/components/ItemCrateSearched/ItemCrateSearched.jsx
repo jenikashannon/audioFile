@@ -104,17 +104,22 @@ function ItemCrateSearched({ crate, type, togglePin }) {
 
 			<div className='item-searched-crate__container'>
 				{uniqueMatches.map((match) => {
-					const matchType = match.key;
-
 					// find relevant album for match
 					let albumIndex;
 
-					if (matchType === "albums.tracks.name") {
+					if (match.key === "albums.tracks.name") {
 						albumIndex = trackIndices.findIndex((trackIndex) => {
 							return match.refIndex < trackIndex;
 						});
 					} else {
-						albumIndex = match.refIndex;
+						// i don't know why i have to use this math.min,
+						// but for some reason when the match is the artist of the last album in a crate
+						// (match.key === albums.artists) & matched album index = crate.albums.length - 1,
+						// fuse returns the LENGTH of the albums list
+						// instead of the proper index as refIndex
+						// e.g., should return album at index 12, but returns 13.
+
+						albumIndex = Math.min(match.refIndex, trackIndices.length - 1);
 					}
 
 					const album = crate.albums[albumIndex];
@@ -134,7 +139,7 @@ function ItemCrateSearched({ crate, type, togglePin }) {
 									{highlightMatchText(match, "albums.name", album)} ·{" "}
 									{highlightMatchText(match, "albums.artists", album)}
 								</p>
-								{matchType === "albums.tracks.name" && (
+								{match.key === "albums.tracks.name" && (
 									<div className='item-searched-crate__container--track'>
 										<Icon type='tracks' height='12' fill='0' />
 										<p className='item-searched-crate__track-name'>

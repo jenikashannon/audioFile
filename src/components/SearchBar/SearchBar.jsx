@@ -1,6 +1,6 @@
 import "./SearchBar.scss";
 
-function SearchBar({ term, setTerm, handleSearchBarClick }) {
+function SearchBar({ term, setTerm, handleSearchBarClick, placeholder }) {
 	function handleChange(event) {
 		setTerm(event.target.value);
 	}
@@ -18,7 +18,7 @@ function SearchBar({ term, setTerm, handleSearchBarClick }) {
 				value={term}
 				onClick={handleSearchBarClick}
 				onChange={handleChange}
-				placeholder='album, track, artist'
+				placeholder={placeholder}
 			/>
 			{term && (
 				<svg

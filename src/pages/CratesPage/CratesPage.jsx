@@ -151,13 +151,16 @@ function CratesPage({ triggerSnackbar }) {
 						togglePin={togglePin}
 						deleteCrate={deleteCrate}
 					/>
+					{defaultCrate && (
+						<p className='crates-page__default-text'>
+							We've created your first crate for you, just tap it to make it
+							your own.
+						</p>
+					)}
+					{crateList.length === 0 && (
+						<p>it's so empty here, tap "new crate" to start collecting.</p>
+					)}
 				</div>
-				{defaultCrate && (
-					<p className='crates-page__default-text'>
-						We've created your first crate for you, just click the edit icon to
-						make it your own.
-					</p>
-				)}
 			</div>
 
 			{sortMode && (

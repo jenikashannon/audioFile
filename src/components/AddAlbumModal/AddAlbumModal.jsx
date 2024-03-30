@@ -87,7 +87,11 @@ function AddAlbumModal({
 				<dialog className='add-album-modal__card add-album-modal__card--bottom-anchored'>
 					<Icon type='close' height='20' handleClose={handleClose} />
 					<h1 className='add-album-modal__title'>search for albums</h1>
-					<SearchBar term={term} setTerm={setTerm} />
+					<SearchBar
+						term={term}
+						setTerm={setTerm}
+						placeholder='album, track, artist'
+					/>
 					<div className='add-album-modal__results'>
 						{resultList.length === 0 && (
 							<h2 className='add-album-modal__sub-header'>
