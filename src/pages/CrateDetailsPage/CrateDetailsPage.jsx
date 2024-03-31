@@ -101,6 +101,24 @@ function CrateDetailsPage({ triggerSnackbar }) {
 		}
 	}
 
+	async function saveAlbum(album_id) {
+		try {
+			const response = await axios.put(
+				`${baseUrl}/spotify/save?album_id=${album_id}`,
+				{},
+				generateAuthHeader(token)
+			);
+
+			triggerSnackbar(response.data);
+		} catch (error) {
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
+
+			triggerSnackbar(error.response.data);
+		}
+	}
+
 	function removeAlbum(album_id) {
 		setDeletedAlbumIds((prev) => {
 			return [...prev, album_id];
@@ -244,6 +262,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 						albumIds={albumIds}
 						deleteAlbum={deleteAlbum}
 						removeAlbum={removeAlbum}
+						saveAlbum={saveAlbum}
 						toggleAddMode={toggleAddToOtherCratesMode}
 					/>
 				</div>

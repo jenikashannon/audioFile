@@ -13,6 +13,7 @@ function ItemAlbum({
 	context,
 	deleteAlbum,
 	removeAlbum,
+	saveAlbum,
 	viewAlbum,
 	addAlbum,
 	editMode,
@@ -43,6 +44,10 @@ function ItemAlbum({
 
 	function handleAdd() {
 		addAlbum(album.id);
+	}
+
+	function handleSave() {
+		saveAlbum(album.id);
 	}
 
 	function handleRemove() {
@@ -93,6 +98,7 @@ function ItemAlbum({
 					handleView={handleView}
 					handleDelete={handleDelete}
 					handleAdd={openAddModal}
+					handleSave={handleSave}
 				/>
 			)}
 		</article>

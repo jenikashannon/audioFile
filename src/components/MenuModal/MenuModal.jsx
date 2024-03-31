@@ -8,6 +8,7 @@ function MenuModal({
 	handleDelete,
 	handleLogout,
 	handlePin,
+	handleSave,
 	handleView,
 	menuType,
 	isPinned,
@@ -20,6 +21,7 @@ function MenuModal({
 		pin: handlePin,
 		unpin: handlePin,
 		add: handleAdd,
+		save: handleSave,
 		view: handleView,
 		logout: handleLogout,
 	};
@@ -53,11 +55,12 @@ function MenuModal({
 	}
 
 	if (menuType === "album-crate-details") {
-		options = ["delete", "add", "view"];
+		options = ["delete", "add", "view", "save"];
 		text = {
 			add: "add to other crate",
 			delete: "remove from crate",
 			view: "view album details",
+			save: "save to Spotify",
 		};
 	}
 

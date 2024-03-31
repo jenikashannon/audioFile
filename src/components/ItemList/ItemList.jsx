@@ -20,6 +20,7 @@ function ItemList({
 	deleteCrate,
 	deleteAlbum,
 	removeAlbum,
+	saveAlbum,
 	viewAlbum,
 	toggleAddMode,
 	itemList,
@@ -81,6 +82,7 @@ function ItemList({
 								albumIds={albumIds}
 								editMode={editMode}
 								removeAlbum={removeAlbum}
+								saveAlbum={saveAlbum}
 								toggleAddMode={toggleAddMode}
 							/>
 						)}
