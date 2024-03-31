@@ -21,7 +21,6 @@ function LoginPage({ triggerSnackbar }) {
 
 			navigate("/");
 		} catch (error) {
-			console.log(error);
 			triggerSnackbar(error.response.data);
 		}
 	}
