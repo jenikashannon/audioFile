@@ -73,7 +73,7 @@ function DiscoverPage({ triggerSnackbar }) {
 				<SearchBar
 					term={term}
 					setTerm={setTerm}
-					placeholder='album, track, artist'
+					placeholder='search Spotify by album, track, artist'
 				/>
 				<div className='discover-page__results'>
 					{discoverList.length === 0 && (

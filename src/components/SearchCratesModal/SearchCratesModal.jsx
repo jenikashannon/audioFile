@@ -53,7 +53,7 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 					handleSearch={searchCrates}
 					setTerm={setTerm}
 					term={term}
-					placeholder='crate name, album, track, artist'
+					placeholder='find a crate by name, album, track, artist'
 				/>
 				<h1 className='search-crates-modal__title'>crate results</h1>
 				{searchedCrateList.length === 0 && (
