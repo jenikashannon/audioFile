@@ -6,6 +6,7 @@ import Icon from "../Icon/Icon";
 function MenuModal({
 	handleEdit,
 	handleDelete,
+	handleLogout,
 	handlePin,
 	handleView,
 	menuType,
@@ -20,10 +21,18 @@ function MenuModal({
 		unpin: handlePin,
 		add: handleAdd,
 		view: handleView,
+		logout: handleLogout,
 	};
 
 	let options = [];
 	let text;
+
+	if (menuType === "logout") {
+		options = ["logout"];
+		text = {
+			logout: "log out",
+		};
+	}
 
 	if (menuType === "crate-header") {
 		options = ["edit", "delete"];
@@ -69,6 +78,8 @@ function MenuModal({
 						? "menu-modal__card--header"
 						: menuType === "crate-pinned"
 						? "menu-modal__card--pinned"
+						: menuType === "logout"
+						? "menu-modal__card--logout"
 						: ""
 				}`}
 			>
