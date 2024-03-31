@@ -25,7 +25,7 @@
 <li><a href="http://sass-lang.com">Sass</a></li>
 <li><a href="">JavaScript</a></li>
 <li><a href="">HTML</a></li>
-<li><a href="https://axios-http.com">axios</a></li>
+<li><a href="https://axios-http.com">Axios</a></li>
 </ul> </details>
 
 ### :dart: Features
@@ -57,6 +57,14 @@ install dependencies
 
 ```bash
 npm install
+```
+
+setup the backend
+
+```bash
+audioFile API Documentation:
+
+https://github.com/jenikashannon/audiofile-api/blob/master/README.md
 ```
 
 start the server
