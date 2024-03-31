@@ -1,0 +1,77 @@
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colors";
+
+.album-details-modal {
+	@include mixins.modal;
+	z-index: 4;
+
+	&__image {
+		height: 80px;
+	}
+
+	&__name {
+		color: colors.$grey;
+		font-weight: 700;
+		margin-top: 0.25rem;
+		text-align: center;
+		padding: 0 2rem;
+	}
+
+	&__metadata {
+		margin-bottom: 1.5rem;
+		font-size: 0.6rem;
+		color: colors.$grey;
+	}
+
+	&__row {
+		display: flex;
+		width: 100%;
+		justify-content: flex-start;
+		gap: 0.5rem;
+
+		&--first {
+			margin-top: 0.5rem;
+		}
+	}
+
+	&__container {
+		display: flex;
+		width: 100%;
+		gap: 1rem;
+	}
+
+	&__close-container {
+		@include mixins.close-icon;
+	}
+
+	&__column {
+		flex-basis: 50%;
+		text-wrap: wrap;
+
+		&--num {
+			flex-basis: 7%;
+		}
+	}
+
+	&__table-header,
+	&__tracks {
+		width: 85%;
+	}
+
+	&__tracks {
+		display: flex;
+		flex-direction: column;
+		gap: 0.9rem;
+		overflow-x: auto;
+	}
+
+	&__heading {
+		margin-bottom: 0.25rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+	}
+
+	&__detail {
+		font-size: 10px;
+	}
+}

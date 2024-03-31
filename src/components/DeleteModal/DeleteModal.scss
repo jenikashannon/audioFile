@@ -1,0 +1,29 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
+
+.delete-modal {
+	@include mixins.modal;
+
+	&__card {
+		padding: 1rem;
+		display: flex;
+		gap: 3rem;
+		align-items: center;
+		justify-content: center;
+		position: static;
+	}
+
+	&__text {
+		&--name {
+			font-weight: 600;
+			color: colors.$green-main;
+		}
+	}
+
+	&__button-container {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+}

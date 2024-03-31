@@ -1,0 +1,28 @@
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colors";
+
+.add-to-crates-modal {
+	@include mixins.modal;
+
+	&__card {
+		padding: 1rem;
+		height: 50vh;
+	}
+
+	&__close-container {
+		@include mixins.close-icon;
+	}
+
+	&__header {
+		font-size: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	&__album-name {
+		color: colors.$green-mid;
+	}
+
+	&__close-button {
+		@include mixins.close-button;
+	}
+}

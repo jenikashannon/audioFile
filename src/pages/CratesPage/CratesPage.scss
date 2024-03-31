@@ -1,0 +1,17 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/mixins";
+
+.crates-page {
+	&__container {
+		@include mixins.page;
+		padding-top: 5.5rem;
+	}
+
+	&__crates {
+		@include mixins.scroll-view;
+	}
+
+	&__default-text {
+		@include mixins.directive-text;
+	}
+}

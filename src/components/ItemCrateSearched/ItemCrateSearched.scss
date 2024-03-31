@@ -1,0 +1,58 @@
+@use "../../styles/partials/colors";
+
+.item-searched-crate {
+	padding: 1rem;
+	box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+	width: 100%;
+	margin-bottom: 1rem;
+
+	&__name {
+		font-size: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	&__title {
+		font-size: 0.7rem;
+		font-weight: 600;
+	}
+
+	&__container {
+		&--text {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			padding: 3px;
+			gap: 0;
+		}
+
+		&--match,
+		&--track {
+			display: flex;
+			gap: 4px;
+			align-items: center;
+			margin: 8px 0;
+		}
+
+		&--track {
+			margin: 0;
+		}
+	}
+
+	&__album-art,
+	&__container--text {
+		height: 40px;
+	}
+
+	&__album-name {
+		font-size: 0.7rem;
+		font-weight: 600;
+	}
+
+	&__track-name {
+		font-size: 0.7rem;
+	}
+
+	&__highlight {
+		color: colors.$accent-light;
+	}
+}

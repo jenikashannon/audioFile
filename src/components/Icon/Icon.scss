@@ -1,0 +1,15 @@
+@use "../../styles/partials/colors";
+
+.icon {
+	flex-shrink: 0;
+	position: relative;
+	display: flex;
+
+	&__button {
+		pointer-events: all;
+
+		&--disable {
+			fill: rgba(87, 87, 87, 0.4);
+		}
+	}
+}

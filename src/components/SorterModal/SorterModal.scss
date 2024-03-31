@@ -1,0 +1,38 @@
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colors";
+
+.sorter-modal {
+	@include mixins.modal;
+
+	&__card {
+		gap: 1rem;
+		justify-content: flex-start;
+	}
+
+	&__title {
+		font-size: 0.75rem;
+		font-weight: 600;
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	&__link {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__option {
+		&--active {
+			color: colors.$green-main;
+			font-weight: 600;
+		}
+	}
+
+	&__close {
+		@include mixins.close-button;
+	}
+}

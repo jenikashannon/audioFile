@@ -1,0 +1,36 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/variables";
+
+.footer {
+	background-color: colors.$black-light;
+	color: colors.$white;
+	height: variables.$footer-height;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	display: flex;
+	gap: 4rem;
+	justify-content: center;
+	align-items: center;
+	z-index: 5;
+
+	&__link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.2rem;
+	}
+
+	&__icon {
+		height: 75;
+		fill: colors.$accent-dark;
+
+		&--active {
+			fill: colors.$accent-light;
+		}
+	}
+
+	&__label {
+		color: colors.$white;
+	}
+}

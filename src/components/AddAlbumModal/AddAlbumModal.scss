@@ -1,0 +1,35 @@
+@use "../../styles/partials/mixins";
+@use "../../styles/partials/colors";
+
+.add-album-modal {
+	@include mixins.modal;
+
+	&__card {
+		height: calc(100vh - 80px - 64px);
+	}
+
+	&__close-icon {
+		@include mixins.close-icon;
+	}
+
+	&__title,
+	&__sub-header {
+		width: 100%;
+		text-align: left;
+		margin-bottom: 1rem;
+	}
+
+	&__title {
+		font-size: 1.25rem;
+		font-weight: 700;
+	}
+
+	&__results {
+		@include mixins.scroll-view;
+		margin-bottom: 1rem;
+	}
+
+	&__sub-header {
+		@include mixins.directive-text;
+	}
+}

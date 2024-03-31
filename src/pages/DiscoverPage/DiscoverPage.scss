@@ -1,0 +1,15 @@
+@use "../../styles/partials/mixins";
+
+.discover-page {
+	&__container {
+		@include mixins.page;
+	}
+
+	&__results {
+		@include mixins.scroll-view;
+	}
+
+	&__sub-header {
+		@include mixins.directive-text;
+	}
+}

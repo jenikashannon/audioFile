@@ -1,0 +1,28 @@
+@use "../../styles/partials/mixins";
+
+.search-crates-modal {
+	@include mixins.modal;
+
+	&__card {
+		height: calc(100vh - 80px - 64px);
+	}
+
+	&__title {
+		width: 100%;
+		text-align: left;
+		font-size: 0.8rem;
+		margin-bottom: 0.5rem;
+	}
+
+	&__results {
+		@include mixins.scroll-view;
+	}
+
+	&__directive-text {
+		@include mixins.directive-text;
+	}
+
+	&__close {
+		@include mixins.close-button;
+	}
+}

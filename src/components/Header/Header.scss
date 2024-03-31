@@ -1,0 +1,40 @@
+@use "../../styles/partials/colors";
+@use "../../styles/partials/variables.scss";
+
+.header {
+	background-color: colors.$green-main;
+	padding: 1rem;
+	width: 100%;
+	height: variables.$header-height;
+	position: fixed;
+	top: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 2;
+
+	&__title {
+		color: colors.$white;
+		background-color: colors.$green-main;
+		font-size: 1.5rem;
+		border: none;
+		width: 80%;
+		pointer-events: none;
+
+		&--active {
+			border-bottom: 1px colors.$white solid;
+			pointer-events: all;
+			padding: 0 4px;
+
+			&:focus {
+				border: none;
+				border-bottom: 2px colors.$accent-light solid;
+			}
+		}
+	}
+
+	&__back {
+		fill: colors.$white;
+		height: 12px;
+	}
+}

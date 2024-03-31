@@ -1,0 +1,29 @@
+@use "../../styles/partials/colors";
+
+.button {
+	border: none;
+	background-color: colors.$green-mid;
+	font-weight: 600;
+	border-radius: 4px;
+	padding: 0.5rem;
+	color: colors.$green-main;
+	width: 100%;
+
+	&--delete {
+		background-color: colors.$red;
+		color: colors.$white;
+		flex-grow: 1;
+		flex-basis: 50%;
+	}
+
+	&--cancel {
+		background-color: colors.$grey;
+		color: colors.$white;
+		flex-shrink: 2;
+		flex-basis: 50%;
+	}
+
+	&--save {
+		flex-basis: 50%;
+	}
+}
