@@ -40,6 +40,24 @@ function DiscoverPage({ triggerSnackbar }) {
 		}
 	}
 
+	async function saveAlbum(album_id) {
+		try {
+			const response = await axios.put(
+				`${baseUrl}/spotify/save?album_id=${album_id}`,
+				{},
+				generateAuthHeader(token)
+			);
+
+			triggerSnackbar(response.data);
+		} catch (error) {
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
+
+			triggerSnackbar(error.response.data);
+		}
+	}
+
 	async function toggleAddMode(album) {
 		setAddMode((prev) => {
 			return !prev;
@@ -86,6 +104,7 @@ function DiscoverPage({ triggerSnackbar }) {
 						type='album'
 						context='discover'
 						toggleAddMode={toggleAddMode}
+						saveAlbum={saveAlbum}
 						viewAlbum={viewAlbum}
 					/>
 				</div>

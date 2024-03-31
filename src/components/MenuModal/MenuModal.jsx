@@ -65,10 +65,11 @@ function MenuModal({
 	}
 
 	if (menuType === "album-discover") {
-		options = ["add", "view"];
+		options = ["add", "view", "save"];
 		text = {
 			add: "add to crates",
 			view: "view album details",
+			save: "save to Spotify",
 		};
 	}
 

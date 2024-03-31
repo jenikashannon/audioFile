@@ -43,25 +43,15 @@ function ItemList({
 						}
 					>
 						{type === "crate" &&
-							["crates-page", "add-to-crates"].includes(context) && (
+							["crates-page", "add-to-crates", "pinned"].includes(context) && (
 								<ItemCrate
 									crate={item}
+									context={context}
 									togglePin={togglePin}
 									deleteCrate={deleteCrate}
-									context={context}
 									addAlbumToCrate={addAlbumToCrate}
 								/>
 							)}
-
-						{type === "crate" && context === "pinned" && (
-							<ItemCrate
-								crate={item}
-								context={context}
-								togglePin={togglePin}
-								deleteCrate={deleteCrate}
-								addAlbumToCrate={addAlbumToCrate}
-							/>
-						)}
 
 						{type === "crate" && context === "search" && (
 							<ItemCrateSearched

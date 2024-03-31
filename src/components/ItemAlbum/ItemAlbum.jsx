@@ -48,6 +48,7 @@ function ItemAlbum({
 
 	function handleSave() {
 		saveAlbum(album.id);
+		setMenuMode(false);
 	}
 
 	function handleRemove() {
