@@ -48,6 +48,25 @@ function DiscoverPage({ triggerSnackbar }) {
 				generateAuthHeader(token)
 			);
 
+			searchSpotify(term);
+			triggerSnackbar(response.data);
+		} catch (error) {
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
+
+			triggerSnackbar(error.response.data);
+		}
+	}
+
+	async function unsaveAlbum(album_id) {
+		try {
+			const response = await axios.delete(
+				`${baseUrl}/spotify/remove?album_id=${album_id}`,
+				generateAuthHeader(token)
+			);
+
+			searchSpotify(term);
 			triggerSnackbar(response.data);
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
@@ -105,6 +124,7 @@ function DiscoverPage({ triggerSnackbar }) {
 						context='discover'
 						toggleAddMode={toggleAddMode}
 						saveAlbum={saveAlbum}
+						unsaveAlbum={unsaveAlbum}
 						viewAlbum={viewAlbum}
 					/>
 				</div>

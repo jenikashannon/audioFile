@@ -36,6 +36,7 @@
 - search crates by name, album, track, or artist
 - sort crates by name and date added
 - sort albums in a crate by name, artist, date added, and release year
+- save/unsave album in Spotify library
 
 ## :toolbox: Getting Started
 
@@ -71,6 +72,12 @@ start the server
 
 ```bash
 npm start
+```
+
+demo login (email / password)
+
+```bash
+demo@example.com / passpass
 ```
 
 ## :compass: Roadmap

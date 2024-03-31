@@ -92,6 +92,8 @@ function CrateDetailsPage({ triggerSnackbar }) {
 			getCrateDetails();
 
 			triggerSnackbar(response.data);
+
+			setEditMode(false);
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");

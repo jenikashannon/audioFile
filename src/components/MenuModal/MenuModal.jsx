@@ -64,7 +64,7 @@ function MenuModal({
 			add: "add to other crate",
 			delete: "remove from crate",
 			view: "view album details",
-			save: "save to Spotify",
+			save: "save to Spotify library",
 			unsave: "remove from Spotify library",
 		};
 	}

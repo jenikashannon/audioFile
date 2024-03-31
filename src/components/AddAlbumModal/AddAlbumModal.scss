@@ -8,6 +8,10 @@
 		height: calc(100vh - 80px - 64px);
 	}
 
+	&__close-icon {
+		@include mixins.close-icon;
+	}
+
 	&__title,
 	&__sub-header {
 		width: 100%;
