@@ -14,6 +14,7 @@ function ItemAlbum({
 	deleteAlbum,
 	removeAlbum,
 	saveAlbum,
+	unsaveAlbum,
 	viewAlbum,
 	addAlbum,
 	editMode,
@@ -48,6 +49,11 @@ function ItemAlbum({
 
 	function handleSave() {
 		saveAlbum(album.id);
+		setMenuMode(false);
+	}
+
+	function handleUnsave() {
+		unsaveAlbum(album.id);
 		setMenuMode(false);
 	}
 
@@ -100,6 +106,8 @@ function ItemAlbum({
 					handleDelete={handleDelete}
 					handleAdd={openAddModal}
 					handleSave={handleSave}
+					handleUnsave={handleUnsave}
+					isSaved={album.is_saved}
 				/>
 			)}
 		</article>

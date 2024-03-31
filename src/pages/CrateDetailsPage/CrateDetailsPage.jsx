@@ -109,6 +109,25 @@ function CrateDetailsPage({ triggerSnackbar }) {
 				generateAuthHeader(token)
 			);
 
+			getCrateDetails();
+			triggerSnackbar(response.data);
+		} catch (error) {
+			if (error.response.data === "authorize on spotify") {
+				navigate("/authorize");
+			}
+
+			triggerSnackbar(error.response.data);
+		}
+	}
+
+	async function unsaveAlbum(album_id) {
+		try {
+			const response = await axios.delete(
+				`${baseUrl}/spotify/remove?album_id=${album_id}`,
+				generateAuthHeader(token)
+			);
+
+			getCrateDetails();
 			triggerSnackbar(response.data);
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
@@ -263,6 +282,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 						deleteAlbum={deleteAlbum}
 						removeAlbum={removeAlbum}
 						saveAlbum={saveAlbum}
+						unsaveAlbum={unsaveAlbum}
 						toggleAddMode={toggleAddToOtherCratesMode}
 					/>
 				</div>

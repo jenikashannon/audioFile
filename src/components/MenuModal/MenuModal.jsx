@@ -9,9 +9,11 @@ function MenuModal({
 	handleLogout,
 	handlePin,
 	handleSave,
+	handleUnsave,
 	handleView,
 	menuType,
 	isPinned,
+	isSaved,
 	handleAdd,
 	toggleModalOpen,
 }) {
@@ -22,6 +24,7 @@ function MenuModal({
 		unpin: handlePin,
 		add: handleAdd,
 		save: handleSave,
+		unsave: handleUnsave,
 		view: handleView,
 		logout: handleLogout,
 	};
@@ -55,21 +58,25 @@ function MenuModal({
 	}
 
 	if (menuType === "album-crate-details") {
-		options = ["delete", "add", "view", "save"];
+		const saveAction = isSaved ? "unsave" : "save";
+		options = ["add", "view", saveAction];
 		text = {
 			add: "add to other crate",
 			delete: "remove from crate",
 			view: "view album details",
 			save: "save to Spotify",
+			unsave: "remove from Spotify library",
 		};
 	}
 
 	if (menuType === "album-discover") {
-		options = ["add", "view", "save"];
+		const saveAction = isSaved ? "unsave" : "save";
+		options = ["add", "view", saveAction];
 		text = {
 			add: "add to crates",
 			view: "view album details",
-			save: "save to Spotify",
+			save: "save to Spotify library",
+			unsave: "remove from Spotify library",
 		};
 	}
 
