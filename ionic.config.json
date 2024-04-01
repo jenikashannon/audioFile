@@ -1,0 +1,7 @@
+{
+  "name": "audiofile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
