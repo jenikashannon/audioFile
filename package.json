@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "@capacitor/app": "5.0.7",
+    "@capacitor/app-launcher": "^5.0.7",
     "@capacitor/cli": "5.7.4",
     "@capacitor/core": "5.7.4",
+    "@capacitor/device": "^5.0.7",
     "@capacitor/haptics": "5.0.7",
     "@capacitor/ios": "5.7.4",
     "@capacitor/keyboard": "5.0.8",

@@ -57,7 +57,7 @@ function LoginPage({ triggerSnackbar }) {
 					className='login-page__button'
 					type='submit'
 					onClick={handleClick}
-					value='log'
+					value='log in'
 				/>
 			</form>
 		</main>
