@@ -41,4 +41,8 @@ function getAlbumUris(albums) {
 	return uris;
 }
 
+function shuffleAlbums(albums) {
+	let shuffledAlbums = [];
+}
+
 export { openSpotify, triggerPlayback };

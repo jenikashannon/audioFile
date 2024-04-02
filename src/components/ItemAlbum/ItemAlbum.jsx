@@ -1,4 +1,5 @@
 import "./ItemAlbum.scss";
+import { openSpotify, triggerPlayback } from "../../utils/getAlbumUris";
 
 // components
 import Icon from "../Icon/Icon";
@@ -66,6 +67,12 @@ function ItemAlbum({
 		toggleAddMode({ id: album.id, name: album.name });
 	}
 
+	function handlePlay() {
+		openSpotify();
+		triggerPlayback([album]);
+		setMenuMode(false);
+	}
+
 	return (
 		<article className='item-album'>
 			<div className='item-album__container' onClick={handleClick}>
@@ -107,6 +114,7 @@ function ItemAlbum({
 					handleAdd={openAddModal}
 					handleSave={handleSave}
 					handleUnsave={handleUnsave}
+					handlePlay={handlePlay}
 					isSaved={album.is_saved}
 				/>
 			)}

@@ -1,6 +1,4 @@
 import "./AlbumDetailsModal.scss";
-import { baseUrl } from "../../utils/consts";
-import { generateAuthHeader } from "../../utils/generateAuthHeader";
 import { triggerPlayback, openSpotify } from "../../utils/getAlbumUris";
 
 // components
