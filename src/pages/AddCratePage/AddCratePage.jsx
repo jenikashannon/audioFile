@@ -1,7 +1,6 @@
 import "./AddCratePage.scss";
 import { baseUrl } from "../../utils/consts";
 import { generateAuthHeader } from "../../utils/generateAuthHeader";
-import image from "../../assets/images/crate.svg";
 
 // components
 import Footer from "../../components/Footer/Footer";
@@ -17,6 +16,8 @@ function AddCratePage({ triggerSnackbar }) {
 	const [crateName, setCrateName] = useState("new crate");
 
 	const token = localStorage.getItem("token");
+	const id = uniqid();
+
 	const navigate = useNavigate();
 
 	function handleChange(event) {
@@ -26,19 +27,8 @@ function AddCratePage({ triggerSnackbar }) {
 	async function handleSubmit(event) {
 		event.preventDefault();
 
-		const id = uniqid();
-
-		const formData = new FormData();
-
-		// add crate id & name
-		formData.append("name", event.target.crate_name.value);
-		formData.append("id", id);
-
-		const userUpload = event.target.crate_photo.files[0];
-
-		if (userUpload) {
-			formData.append("files", userUpload);
-		}
+		const form = document.getElementById("form");
+		const formData = new FormData(form);
 
 		try {
 			const response = await axios.post(
@@ -64,26 +54,24 @@ function AddCratePage({ triggerSnackbar }) {
 				className='add-crate-page__form'
 				onSubmit={handleSubmit}
 				encType='multipart/form-data'
+				id='form'
 			>
-				<label className='add-crate-page__label' htmlFor='crate_name'>
+				<label className='add-crate-page__label' htmlFor='name'>
 					name your crate
 				</label>
 				<input
 					className='add-crate-page__field'
 					type='text'
 					value={crateName}
-					name='crate_name'
+					name='name'
 					onChange={handleChange}
 				/>
 
-				<label className='add-crate-page__label' htmlFor='crate_photo'>
+				<input name='id' value={id} hidden />
+				<label className='add-crate-page__label' htmlFor='photo'>
 					add a photo to your crate
 				</label>
-				<input
-					className='add-crate-page__file'
-					type='file'
-					name='crate_photo'
-				/>
+				<input className='add-crate-page__file' type='file' name='photo' />
 				<input
 					className='add-crate-page__button'
 					type='submit'
