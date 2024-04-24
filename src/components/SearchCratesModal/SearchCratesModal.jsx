@@ -22,20 +22,19 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 	};
 
 	function searchCrates(term) {
-		if (!term) {
+		if (term.length < 2) {
 			return setSearchedCrateList([]);
 		}
 
 		const fuse = new Fuse(crateList, options);
 		const results = fuse.search(term);
-		// console.log(results);
 
 		const formattedResults = results.map((result) => {
 			const item = { ...result.item, matches: result.matches };
 
 			return item;
 		});
-		// console.log(formattedResults);
+		console.log(formattedResults);
 
 		setSearchedCrateList(formattedResults);
 	}

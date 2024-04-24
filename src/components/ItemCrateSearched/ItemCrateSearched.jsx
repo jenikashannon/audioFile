@@ -36,9 +36,8 @@ function ItemCrateSearched({ crate }) {
 				);
 
 				uniqueMatches.push(match);
+				return;
 			}
-
-			return;
 		}
 
 		matchValues.push(match.value);
