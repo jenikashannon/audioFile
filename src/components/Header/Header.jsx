@@ -51,6 +51,10 @@ function Header({
 		navigate("/login");
 	}
 
+	function handleProfile() {
+		navigate("/profile");
+	}
+
 	return (
 		<header className='header'>
 			{mode === "crates-page" && (
@@ -95,11 +99,12 @@ function Header({
 
 			{menuMode && (
 				<MenuModal
-					menuType={mode === "crate-details" ? "crate-header" : "logout"}
+					menuType={mode === "crate-details" ? "crate-header" : "crates-page"}
 					toggleModalOpen={toggleModalOpen}
 					handleDelete={handleDelete}
 					handleEdit={handleEdit}
 					handleLogout={handleLogout}
+					handleProfile={handleProfile}
 				/>
 			)}
 		</header>

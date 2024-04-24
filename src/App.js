@@ -7,6 +7,7 @@ import CrateDetailsPage from "./pages/CrateDetailsPage/CrateDetailsPage";
 import CratesPage from "./pages/CratesPage/CratesPage";
 import DiscoverPage from "./pages/DiscoverPage/DiscoverPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 
 // libraries
@@ -62,6 +63,7 @@ function App() {
 					path='/discover'
 					element={<DiscoverPage triggerSnackbar={triggerSnackbar} />}
 				/>
+				<Route path='profile' element={<ProfilePage />} />
 			</Routes>
 			<Snackbar
 				anchorOrigin={{ vertical, horizontal }}

@@ -9,6 +9,7 @@ function MenuModal({
 	handleLogout,
 	handlePin,
 	handlePlay,
+	handleProfile,
 	handleSave,
 	handleUnsave,
 	handleView,
@@ -29,14 +30,16 @@ function MenuModal({
 		unsave: handleUnsave,
 		view: handleView,
 		logout: handleLogout,
+		profile: handleProfile,
 	};
 
 	let options = [];
 	let text;
 
-	if (menuType === "logout") {
-		options = ["logout"];
+	if (menuType === "crates-page") {
+		options = ["profile", "logout"];
 		text = {
+			profile: "profile",
 			logout: "log out",
 		};
 	}
@@ -93,8 +96,8 @@ function MenuModal({
 						? "menu-modal__card--header"
 						: menuType === "crate-pinned"
 						? "menu-modal__card--pinned"
-						: menuType === "logout"
-						? "menu-modal__card--logout"
+						: menuType === "crates-page"
+						? "menu-modal__card--crates-page"
 						: ""
 				}`}
 			>
