@@ -34,7 +34,6 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 
 			return item;
 		});
-		console.log(formattedResults);
 
 		setSearchedCrateList(formattedResults);
 	}
