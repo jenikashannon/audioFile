@@ -132,26 +132,30 @@ function CratesPage({ triggerSnackbar }) {
 				triggerSearch={toggleSearchModal}
 			/>
 			<div className='crates-page__container'>
-				<div className='crates-page__crates'>
-					<ItemList
-						itemList={pinnedCrateList}
-						type='crate'
-						context='pinned'
-						togglePin={togglePin}
-						deleteCrate={deleteCrate}
-					/>
-
-					{pinnedCrateList.length > 0 && <Divider margin='0 0 16px 0' />}
-
-					{crateList.length > 0 && (
-						<Sorter
-							sortBy={sortBy}
-							setSortMode={setSortMode}
-							setSortOrder={setSortOrder}
-							mode='crate'
+				{pinnedCrateList.length > 0 && (
+					<>
+						<ItemList
+							itemList={pinnedCrateList}
+							type='crate'
+							context='pinned'
+							togglePin={togglePin}
+							deleteCrate={deleteCrate}
 						/>
-					)}
 
+						<Divider margin='0 0 16px 0' />
+					</>
+				)}
+
+				{crateList.length > 0 && (
+					<Sorter
+						sortBy={sortBy}
+						setSortMode={setSortMode}
+						setSortOrder={setSortOrder}
+						mode='crate'
+					/>
+				)}
+
+				<div className='crates-page__crates'>
 					<ItemList
 						itemList={sortedCrateList}
 						type='crate'

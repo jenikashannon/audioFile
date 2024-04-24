@@ -50,7 +50,7 @@ function AlbumDetailsModal({ album, setActiveAlbum }) {
 				<p className='album-details-modal__metadata'>
 					{`${album.release_date} · ${count} songs · ${duration}`}
 				</p>
-				<button onClick={handleClick}>play on Spotify</button>
+				{/* <button onClick={handleClick}>play on Spotify</button> */}
 				<div className='album-details-modal__table-header'>
 					<div className='album-details-modal__row'>
 						<p className='album-details-modal__column--num album-details-modal__heading'>

@@ -23,11 +23,12 @@
 	}
 
 	&__button {
-		background-color: colors.$green-main;
-		color: colors.$white;
-		border-radius: 40px;
-		padding: 8px;
 		border: none;
+		background-color: colors.$green-mid;
+		font-weight: 600;
+		border-radius: 4px;
+		padding: 0.5rem;
+		color: colors.$green-main;
 		width: 100%;
 		margin-top: 1rem;
 	}
