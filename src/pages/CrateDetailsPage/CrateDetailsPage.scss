@@ -8,6 +8,20 @@
 
 	&__container {
 		@include mixins.page;
+
+		&--cover-image {
+			display: flex;
+			overflow: hidden;
+			width: 200px;
+			margin: 0 auto;
+		}
+
+		&--edit-overlay {
+			border: red 2px dotted;
+		}
+	}
+
+	&__cover-image {
 	}
 
 	&__albums {
