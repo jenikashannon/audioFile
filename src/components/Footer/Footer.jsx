@@ -1,6 +1,7 @@
 import "./Footer.scss";
 
 import { NavLink, useLocation } from "react-router-dom";
+import { baseLessApi } from "../../utils/consts";
 
 function Footer() {
 	const { pathname } = useLocation();
@@ -12,7 +13,7 @@ function Footer() {
 					className={`footer__icon ${
 						pathname === "/" ? "footer__icon--active" : ""
 					}`}
-					xmlns='http://localhost:1700/icons/home.svg'
+					xmlns={`${baseLessApi}/icons/home.svg`}
 					height='40'
 					viewBox='0 -960 960 960'
 					width='40'
@@ -26,7 +27,7 @@ function Footer() {
 					className={`footer__icon ${
 						pathname === "/discover" ? "footer__icon--active" : ""
 					}`}
-					xmlns='http://localhost:1700/icons/discover.svg'
+					xmlns={`${baseLessApi}/icons/discover.svg`}
 					height='40'
 					viewBox='0 -960 960 960'
 					width='40'
@@ -40,7 +41,7 @@ function Footer() {
 					className={`footer__icon ${
 						pathname === "/crates" ? "footer__icon--active" : ""
 					}`}
-					xmlns='http://localhost:1700/icons/add-crate.svg'
+					xmlns={`${baseLessApi}/icons/add-crate.svg`}
 					height='40'
 					viewBox='0 -960 960 960'
 					width='40'
