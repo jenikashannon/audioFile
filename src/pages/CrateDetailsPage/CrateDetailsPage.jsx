@@ -202,7 +202,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 
 	function saveEdits() {
 		// if no changes, exit edit mode
-		if (crateName === crate.name && deletedAlbumIds.length === 0) {
+		if (crateName === crate.name && deletedAlbumIds.length === 0 && !formData) {
 			setEditMode(false);
 			return;
 		}
@@ -372,7 +372,11 @@ function CrateDetailsPage({ triggerSnackbar }) {
 			)}
 
 			{editPhotoMode && (
-				<AddPhotoModal name={crate.name} setEditPhotoMode={setEditPhotoMode} />
+				<AddPhotoModal
+					name={crate.name}
+					setEditPhotoMode={setEditPhotoMode}
+					setFormData={setFormData}
+				/>
 			)}
 			<Footer />
 		</main>

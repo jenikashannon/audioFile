@@ -6,11 +6,17 @@ import Button from "../Button/Button";
 // libraries
 import { useParams } from "react-router-dom";
 
-function AddPhotoModal({ name, setEditPhotoMode }) {
+function AddPhotoModal({ name, setEditPhotoMode, setFormData }) {
 	const crate_id = useParams().crate_id;
 
 	function handleCancel() {
 		setEditPhotoMode(false);
+	}
+
+	function handleSubmit() {
+		const form = document.getElementById("form");
+		const formData = new FormData(form);
+		setFormData(formData);
 	}
 
 	return (
@@ -22,7 +28,7 @@ function AddPhotoModal({ name, setEditPhotoMode }) {
 					<span className='add-photo-modal__text--name'>{name}</span>.
 				</p>
 
-				<form>
+				<form id='form'>
 					<input type='file' name='photo' />
 				</form>
 
@@ -31,7 +37,7 @@ function AddPhotoModal({ name, setEditPhotoMode }) {
 					<Button
 						text='update photo'
 						type='add-photo'
-						// handleClick={handleDelete}
+						handleClick={handleSubmit}
 					/>
 				</div>
 			</dialog>
