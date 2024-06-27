@@ -1,4 +1,5 @@
 import "./ItemAlbum.scss";
+import { openSpotify, triggerPlayback } from "../../utils/getAlbumUris";
 
 // components
 import Icon from "../Icon/Icon";
@@ -48,11 +49,13 @@ function ItemAlbum({
 	}
 
 	function handleSave() {
+		console.log("save " + album.id);
 		saveAlbum(album.id);
 		setMenuMode(false);
 	}
 
 	function handleUnsave() {
+		console.log("unsave " + album.id);
 		unsaveAlbum(album.id);
 		setMenuMode(false);
 	}
@@ -66,6 +69,12 @@ function ItemAlbum({
 		toggleAddMode({ id: album.id, name: album.name });
 	}
 
+	function handlePlay() {
+		openSpotify();
+		triggerPlayback([album]);
+		setMenuMode(false);
+	}
+	// console.log(album);
 	return (
 		<article className='item-album'>
 			<div className='item-album__container' onClick={handleClick}>
@@ -107,6 +116,7 @@ function ItemAlbum({
 					handleAdd={openAddModal}
 					handleSave={handleSave}
 					handleUnsave={handleUnsave}
+					handlePlay={handlePlay}
 					isSaved={album.is_saved}
 				/>
 			)}

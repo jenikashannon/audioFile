@@ -1,16 +1,18 @@
 import "./CrateDetailsPage.scss";
-import { baseUrl } from "../../utils/consts";
+import { baseUrl, defaultCrateImage } from "../../utils/consts";
 import { sortList } from "../../utils/sort";
 import { generateAuthHeader } from "../../utils/generateAuthHeader";
 
 // audioFile components
 import AddAlbumModal from "../../components/AddAlbumModal/AddAlbumModal";
+import AddPhotoModal from "../../components/AddPhotoModal/AddPhotoModal";
 import AddToCratesModal from "../../components/AddToCratesModal/AddToCratesModal";
 import AlbumDetailsModal from "../../components/AlbumDetailsModal/AlbumDetailsModal";
 import Button from "../../components/Button/Button";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
+import Icon from "../../components/Icon/Icon";
 import ItemList from "../../components/ItemList/ItemList";
 import LoadingPage from "../LoadingPage/LoadingPage";
 import Sorter from "../../components/Sorter/Sorter";
@@ -36,6 +38,9 @@ function CrateDetailsPage({ triggerSnackbar }) {
 	const [sortedAlbums, setSortedAlbums] = useState(null);
 	const [deletedAlbumIds, setDeletedAlbumIds] = useState([]);
 	const [albumToAdd, setAlbumToAdd] = useState(null);
+	const [isCustomImage, setIsCustomImage] = useState(true);
+	const [formData, setFormData] = useState(null);
+	const [editPhotoMode, setEditPhotoMode] = useState(false);
 
 	const crate_id = useParams().crate_id;
 	const token = localStorage.getItem("token");
@@ -56,6 +61,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 
 			setAlbumIds(albums);
 			setCrateName(response.data.name);
+			setIsCustomImage(response.data.cover_art !== defaultCrateImage);
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
@@ -196,7 +202,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 
 	function saveEdits() {
 		// if no changes, exit edit mode
-		if (crateName === crate.name && deletedAlbumIds.length === 0) {
+		if (crateName === crate.name && deletedAlbumIds.length === 0 && !formData) {
 			setEditMode(false);
 			return;
 		}
@@ -234,6 +240,10 @@ function CrateDetailsPage({ triggerSnackbar }) {
 		setEditMode(true);
 	}
 
+	function triggerEditPhoto() {
+		setEditPhotoMode(true);
+	}
+
 	function triggerDelete() {
 		setDeleteMode(true);
 	}
@@ -265,6 +275,22 @@ function CrateDetailsPage({ triggerSnackbar }) {
 				triggerDelete={triggerDelete}
 			/>
 			<div className='crate-details-page__container'>
+				{isCustomImage && (
+					<div className='crate-details-page__container--cover-image'>
+						<img
+							className='crate-details-page__cover-image'
+							src={crate.cover_art}
+						/>
+						{editMode && (
+							<div
+								className='crate-details-page__container--edit-overlay'
+								onClick={triggerEditPhoto}
+							>
+								<Icon type='pin' height='50' fill='0' />
+							</div>
+						)}
+					</div>
+				)}
 				<Sorter
 					sortBy={sortBy}
 					setSortMode={setSortMode}
@@ -342,6 +368,14 @@ function CrateDetailsPage({ triggerSnackbar }) {
 					toggleAddMode={toggleAddToOtherCratesMode}
 					albumToAdd={albumToAdd}
 					triggerSnackbar={triggerSnackbar}
+				/>
+			)}
+
+			{editPhotoMode && (
+				<AddPhotoModal
+					name={crate.name}
+					setEditPhotoMode={setEditPhotoMode}
+					setFormData={setFormData}
 				/>
 			)}
 			<Footer />

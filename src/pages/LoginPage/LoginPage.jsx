@@ -11,6 +11,7 @@ function LoginPage({ triggerSnackbar }) {
 
 	async function handleSubmit(event) {
 		event.preventDefault();
+
 		try {
 			const response = await axios.post(`${baseUrl}/auth/login`, {
 				email: event.target.email.value,
@@ -25,10 +26,15 @@ function LoginPage({ triggerSnackbar }) {
 		}
 	}
 
+	function handleClick() {
+		const form = document.getElementById("form");
+		form.requestSubmit();
+	}
+
 	return (
-		<main className='login-page' onSubmit={handleSubmit}>
+		<main className='login-page'>
 			<img className='login-page__logo' src={logo} alt='audiofil logo' />
-			<form className='login-page__form'>
+			<form id='form' className='login-page__form' onSubmit={handleSubmit}>
 				<label className='login-page__label' htmlFor='email'>
 					email
 				</label>
@@ -47,7 +53,12 @@ function LoginPage({ triggerSnackbar }) {
 					id='password'
 					name='password'
 				/>
-				<input className='login-page__button' type='submit' value='log in' />
+				<input
+					className='login-page__button'
+					type='submit'
+					onClick={handleClick}
+					value='log in'
+				/>
 			</form>
 		</main>
 	);

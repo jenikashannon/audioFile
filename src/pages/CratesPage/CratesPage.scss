@@ -4,7 +4,6 @@
 .crates-page {
 	&__container {
 		@include mixins.page;
-		padding-top: 5.5rem;
 	}
 
 	&__crates {

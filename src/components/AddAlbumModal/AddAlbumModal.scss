@@ -1,11 +1,12 @@
 @use "../../styles/partials/mixins";
 @use "../../styles/partials/colors";
+@use "../../styles/partials/variables";
 
 .add-album-modal {
 	@include mixins.modal;
 
 	&__card {
-		height: calc(100vh - 80px - 64px);
+		height: calc(100vh - variables.$header-height - variables.$header-height);
 	}
 
 	&__close-icon {

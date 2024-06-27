@@ -22,7 +22,7 @@ function SearchCratesModal({ crateList, toggleSearchModal }) {
 	};
 
 	function searchCrates(term) {
-		if (!term) {
+		if (term.length < 2) {
 			return setSearchedCrateList([]);
 		}
 

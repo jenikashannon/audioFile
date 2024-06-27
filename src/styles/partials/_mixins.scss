@@ -35,7 +35,9 @@
 
 		&--long {
 			width: 90%;
-			height: 70vh;
+			height: calc(
+				100vh - variables.$footer-height - variables.$header-height - 2rem
+			);
 			padding: 0.5rem;
 			justify-content: flex-start;
 			align-items: center;
@@ -45,10 +47,12 @@
 		&--bottom-anchored {
 			border-radius: 20px 20px 0 0;
 			position: fixed;
-			bottom: 80px;
+			bottom: variables.$footer-height;
 			width: 100%;
 			padding: 2rem;
-			max-height: calc(100vh - 80px);
+			max-height: calc(
+				100vh - variables.$footer-height - variables.$header-height
+			);
 		}
 	}
 }
@@ -70,10 +74,14 @@
 @mixin page {
 	padding: calc(variables.$header-height + 2rem) 1rem
 		calc(variables.$footer-height + 1rem);
-	position: relative;
+	position: fixed;
+	top: 0;
+	left: 0;
 	height: 100vh;
+	width: 100vw;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 }
 
 @mixin scroll-view {

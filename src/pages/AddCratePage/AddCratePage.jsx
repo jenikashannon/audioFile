@@ -16,6 +16,8 @@ function AddCratePage({ triggerSnackbar }) {
 	const [crateName, setCrateName] = useState("new crate");
 
 	const token = localStorage.getItem("token");
+	const id = uniqid();
+
 	const navigate = useNavigate();
 
 	function handleChange(event) {
@@ -25,18 +27,16 @@ function AddCratePage({ triggerSnackbar }) {
 	async function handleSubmit(event) {
 		event.preventDefault();
 
-		const id = uniqid();
+		const form = document.getElementById("form");
+		const formData = new FormData(form);
 
 		try {
 			const response = await axios.post(
 				`${baseUrl}/crates?`,
-				{
-					name: event.target.crate_name.value,
-					id,
-				},
-				generateAuthHeader(token)
+				formData,
+				generateAuthHeader(token, "form")
 			);
-
+			triggerSnackbar(response.data);
 			navigate(`/crates/${id}`);
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
@@ -50,17 +50,28 @@ function AddCratePage({ triggerSnackbar }) {
 	return (
 		<main className='add-crate-page'>
 			<Header text='add a crate' />
-			<form className='add-crate-page__form' onSubmit={handleSubmit}>
-				<label className='add-crate-page__label' htmlFor='crate_name'>
+			<form
+				className='add-crate-page__form'
+				onSubmit={handleSubmit}
+				encType='multipart/form-data'
+				id='form'
+			>
+				<label className='add-crate-page__label' htmlFor='name'>
 					name your crate
 				</label>
 				<input
 					className='add-crate-page__field'
 					type='text'
 					value={crateName}
-					name='crate_name'
+					name='name'
 					onChange={handleChange}
 				/>
+
+				<input name='id' value={id} hidden />
+				<label className='add-crate-page__label' htmlFor='photo'>
+					add a photo to your crate
+				</label>
+				<input className='add-crate-page__file' type='file' name='photo' />
 				<input
 					className='add-crate-page__button'
 					type='submit'

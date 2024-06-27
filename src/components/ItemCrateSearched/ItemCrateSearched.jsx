@@ -7,7 +7,7 @@ import Icon from "../Icon/Icon.jsx";
 import { useNavigate } from "react-router-dom";
 import uniqid from "uniqid";
 
-function ItemCrateSearched({ crate, type, togglePin }) {
+function ItemCrateSearched({ crate }) {
 	const navigate = useNavigate();
 
 	// filter out matches on crate name
@@ -36,9 +36,8 @@ function ItemCrateSearched({ crate, type, togglePin }) {
 				);
 
 				uniqueMatches.push(match);
+				return;
 			}
-
-			return;
 		}
 
 		matchValues.push(match.value);
@@ -53,6 +52,13 @@ function ItemCrateSearched({ crate, type, togglePin }) {
 
 	const trackIndices = crate.albums.map((album) => {
 		return (previousTrackIndex += album.tracks.length);
+	});
+
+	// determine artist refindices that correspond to each album
+	let previousArtistIndex = 0;
+
+	const artistIndices = crate.albums.map((album) => {
+		return (previousArtistIndex += album.artists.length);
 	});
 
 	function highlightMatchText(match, textType, album) {
@@ -100,7 +106,9 @@ function ItemCrateSearched({ crate, type, togglePin }) {
 			<h2 className='item-searched-crate__name'>
 				{highlightMatchText(crateNameMatch, "name")}
 			</h2>
-			<p className='item-searched-crate__title'>top matches:</p>
+			{uniqueMatches.length > 0 && (
+				<p className='item-searched-crate__title'>top matches:</p>
+			)}
 
 			<div className='item-searched-crate__container'>
 				{uniqueMatches.map((match) => {
@@ -110,6 +118,10 @@ function ItemCrateSearched({ crate, type, togglePin }) {
 					if (match.key === "albums.tracks.name") {
 						albumIndex = trackIndices.findIndex((trackIndex) => {
 							return match.refIndex < trackIndex;
+						});
+					} else if (match.key === "albums.artists") {
+						albumIndex = artistIndices.findIndex((artistIndex) => {
+							return match.refIndex < artistIndex;
 						});
 					} else {
 						// i don't know why i have to use this math.min,
