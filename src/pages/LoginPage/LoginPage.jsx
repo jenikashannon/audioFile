@@ -22,7 +22,7 @@ function LoginPage({ triggerSnackbar }) {
 
 			navigate("/");
 		} catch (error) {
-			triggerSnackbar(error.response.data);
+			triggerSnackbar(error.response);
 		}
 	}
 
