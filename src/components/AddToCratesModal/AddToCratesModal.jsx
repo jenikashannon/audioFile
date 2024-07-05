@@ -21,12 +21,12 @@ function AddToCratesModal({ albumToAdd, toggleAddMode, triggerSnackbar }) {
 	async function getUserCrateNames() {
 		try {
 			const response = await axios.get(
-				`${baseUrl}/crates?type=album_ids`,
+				`${baseUrl}/crates`,
 				generateAuthHeader(token)
 			);
 
 			const cratesWithoutAlbum = response.data.filter((crate) => {
-				return !crate.albumIds.includes(albumToAdd.id);
+				return !crate.albums.includes(albumToAdd);
 			});
 
 			setCrateList(cratesWithoutAlbum);

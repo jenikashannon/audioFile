@@ -40,7 +40,7 @@ function CratesPage({ triggerSnackbar }) {
 				generateAuthHeader(token)
 			);
 			setCrateList(response.data);
-			setPinnedCrateList(response.data.filter((crate) => crate.pinned_crate));
+			setPinnedCrateList(response.data.filter((crate) => crate.pinned));
 			setFilteredCrateList(
 				response.data.filter((crate) => !crate.pinned_crate)
 			);

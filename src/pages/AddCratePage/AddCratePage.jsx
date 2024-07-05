@@ -10,13 +10,11 @@ import Header from "../../components/Header/Header";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import uniqid from "uniqid";
 
 function AddCratePage({ triggerSnackbar }) {
 	const [crateName, setCrateName] = useState("new crate");
 
 	const token = localStorage.getItem("token");
-	const id = uniqid();
 
 	const navigate = useNavigate();
 
@@ -33,11 +31,11 @@ function AddCratePage({ triggerSnackbar }) {
 		try {
 			const response = await axios.post(
 				`${baseUrl}/crates?`,
-				formData,
-				generateAuthHeader(token, "form")
+				{ name: crateName },
+				generateAuthHeader(token)
 			);
 			triggerSnackbar(response.data);
-			navigate(`/crates/${id}`);
+			navigate(`/`);
 		} catch (error) {
 			if (error.response.data === "authorize on spotify") {
 				navigate("/authorize");
@@ -67,7 +65,7 @@ function AddCratePage({ triggerSnackbar }) {
 					onChange={handleChange}
 				/>
 
-				<input name='id' value={id} hidden />
+				{/* <input name='id' value={id} hidden /> */}
 				<label className='add-crate-page__label' htmlFor='photo'>
 					add a photo to your crate
 				</label>

@@ -13,7 +13,7 @@ function LoginPage({ triggerSnackbar }) {
 		event.preventDefault();
 
 		try {
-			const response = await axios.post(`${baseUrl}/auth/login`, {
+			const response = await axios.post(`${baseUrl}/users/login`, {
 				email: event.target.email.value,
 				password: event.target.password.value,
 			});

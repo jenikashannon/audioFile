@@ -29,12 +29,12 @@ function ItemCrate({
 
 	const handleClick = () => {
 		if (context !== "add-to-crates") {
-			navigate(`/crates/${crate.id}`);
+			navigate(`/crates/${crate._id}`);
 		}
 	};
 
 	function handlePin() {
-		togglePin(crate.id);
+		togglePin(crate._id);
 	}
 
 	function triggerDelete() {
@@ -43,11 +43,12 @@ function ItemCrate({
 	}
 
 	function handleDelete() {
-		deleteCrate(crate.id);
+		deleteCrate(crate._id);
+		setDeleteMode(false);
 	}
 
 	function handleAdd() {
-		addAlbumToCrate(crate.id);
+		addAlbumToCrate(crate._id);
 	}
 
 	if (context === "pinned") {

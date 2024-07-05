@@ -56,7 +56,7 @@ function CrateDetailsPage({ triggerSnackbar }) {
 			setCrate(response.data);
 
 			const albums = response.data.albums.map((album) => {
-				return album.id;
+				return album.album_id;
 			});
 
 			setAlbumIds(albums);

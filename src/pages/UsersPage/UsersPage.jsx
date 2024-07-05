@@ -20,7 +20,7 @@ function UsersPage() {
 		try {
 			if (authorizing) {
 				await axios.post(
-					`${baseUrl}/auth/authorizeSpotify?code=${code}`,
+					`${baseUrl}/users/authorizeSpotify?code=${code}`,
 					{},
 					generateAuthHeader(token)
 				);
